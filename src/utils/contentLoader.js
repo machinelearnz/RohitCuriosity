@@ -92,17 +92,108 @@ const fallbackBlogs = [
   {
     slug: '2026-market-views-macro-shifts',
     path: '/src/content/blogs/2026-market-views-macro-shifts.md',
-    title: '2026 Macro Outlook: Navigating the Intersection of Sovereign AI and Capital Allocation',
+    title: '2026 Macro Outlook: Sovereign AI, Compute Math & Capital Allocation',
     date: '2026-08-15',
     formattedDate: 'Aug 15, 2026',
     category: 'Market Views',
     author: 'Rohit Curiosity',
-    readTime: '6 min read',
+    readTime: '7 min read',
     featured: true,
     coverImage: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80',
-    tags: ['Macroeconomics', 'Sovereign AI', 'Venture Capital', 'Energy Grids'],
-    excerpt: 'An in-depth analysis of how compute energy constraints, sovereign model infrastructure, and decentralized capital flows are reshaping tech equity multiples in 2026.',
-    content: `# 2026 Macro Outlook: Sovereign AI and Capital Allocation\n\nThe global macroeconomic landscape has entered a pivotal transition phase. What began as a raw compute land-grab has transformed into a complex geopolitical race involving **sovereign compute clusters**, **next-generation grid capacity**, and **dynamic capital repricing**.\n\n---\n\n## 1. Energy as the Hard Ceiling for Intelligence\n\nOver the past three years, software scalability was largely a function of algorithmic optimization and model parameters. Today, the primary constraint is **gigawatts**.\n\n> "The true moat of modern artificial intelligence is no longer token generation speed, but reliable baseload power interconnects and geothermal/nuclear colocation."`
+    tags: ['Macroeconomics', 'Sovereign AI', 'Venture Capital', 'Quantitative Math', 'Compute Grid'],
+    excerpt: 'An in-depth mathematical analysis of how compute energy constraints, sovereign model infrastructure, and decentralized capital flows are reshaping tech equity multiples in 2026.',
+    content: `# 2026 Macro Outlook: Sovereign AI, Compute Math & Capital Allocation
+
+The global macroeconomic landscape has entered a pivotal transition phase. What began as a raw compute land-grab has transformed into a complex geopolitical race involving **sovereign compute clusters**, **next-generation grid capacity**, and **dynamic capital repricing**.
+
+---
+
+## 1. Mathematical Energy Model & Formula
+
+Over the past three years, software scalability was largely a function of algorithmic optimization and model parameters. As Einstein demonstrated mass-energy equivalence with $E = mc^2$, sovereign compute centers operate on baseline energy conversion.
+
+> [!NOTE]
+> The true moat of modern artificial intelligence is no longer token generation speed, but reliable baseload power interconnects and geothermal/nuclear colocation.
+
+### The Sovereign Compute Yield Equation
+
+We define the Net Economic Yield of a Sovereign AI Node $Y_{node}$ using KaTeX math notation:
+
+$$Y_{node} = \\sum_{t=1}^{T} \\frac{\\alpha \\cdot \\text{FLOPs}_t - \\beta \\cdot P_{\\grid}(t) - \\gamma \\cdot C_{\\cool}}{(1 + r)^t}$$
+
+Where:
+- $\\text{FLOPs}_t$ represents effective matrix multiplication throughput at time $t$
+- $P_{\\grid}(t)$ is the spot electricity price per Megawatt-hour (MWh)
+- $\\alpha, \\beta, \\gamma$ are localized efficiency scaling constants
+- $r$ represents the sovereign discount rate
+
+---
+
+## 2. Infrastructure Architecture & Embedded Body Image
+
+Sovereign compute nodes operate on multi-region edge mesh routing. Below is the primary data center infrastructure colocation setup:
+
+![High-density sovereign GPU compute data center colocation in Northern Europe](https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80)
+
+### Mesh Topology Diagram
+
+\`\`\`mermaid
+graph TD
+    A[Global Edge Ingestion] -->|Real-time Telemetry| B(Sovereign Mesh Gateway)
+    B -->|Filtered Data| C{Compute Allocator}
+    C -->|High Priority| D[H100/B200 GPU Cluster]
+    C -->|Background RAG| E[Vector Store & Disk Cache]
+    D -->|Inference Output| F[Client Cockpit & API Response]
+    E -->|Context Synthesis| F
+\`\`\`
+
+---
+
+## 3. Short Python Snippet: Hello World & Telemetry
+
+Below is a short Python program snippet initializing the telemetry engine:
+
+\`\`\`python
+# Short Python Hello World & Compute Telemetry Snippet
+def main():
+    print("Hello World! Welcome to Rohit Curiosity Intelligence Engine.")
+
+if __name__ == "__main__":
+    main()
+\`\`\`
+
+### Advanced Quantitative Risk Simulation
+
+For broader risk modeling across 10,000 Monte Carlo scenarios:
+
+\`\`\`python
+import numpy as np
+
+def calculate_energy_var(num_simulations=10000, baseline_cost_mwh=45.0, volatility=0.28):
+    """Calculates 99% Value at Risk (VaR) for GPU data center energy consumption."""
+    np.random.seed(42)
+    daily_returns = np.random.normal(0.001, volatility / np.sqrt(252), (num_simulations, 252))
+    price_paths = baseline_cost_mwh * np.exp(np.cumsum(daily_returns, axis=1))
+    
+    max_costs = np.max(price_paths, axis=1)
+    var_99 = np.percentile(max_costs, 99)
+    
+    return {
+        "mean_mwh_cost": np.mean(max_costs),
+        "var_99_mwh_cost": var_99
+    }
+
+metrics = calculate_energy_var()
+print(f"99% VaR Peak MWh Cost: \${metrics['var_99_mwh_cost']:.2f}")
+\`\`\`
+
+---
+
+## 4. Summary & Strategic Outlook
+
+1. **Energy Interconnect Moats**: Software wrappers without direct power capacity rights face margin compression.
+2. **Local Model Sovereignty**: National mandates require on-premise data localization and LLM hosting.
+3. **Capital Repricing**: Vertically integrated compute providers secure higher valuation multiples.`
   },
   {
     slug: 'ai-agents-autonomous-future',
@@ -117,7 +208,11 @@ const fallbackBlogs = [
     coverImage: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=1200&q=80',
     tags: ['AI Agents', 'Autonomous Systems', 'Architecture', 'Engineering'],
     excerpt: 'Moving past conversational wrappers: How deterministic tool routing, event loops, and multi-agent coordination establish real enterprise utility.',
-    content: `# The Architecture of Autonomous Systems: Beyond Chatbots\n\nThe conversation around AI has progressed beyond conversational generation. The actual challenge — and immense market opportunity — lies in **stateful action execution**.\n\nWhen an agent is empowered to read file systems, propose code diffs, verify outcomes, and deploy applications without human friction, the paradigm of software development fundamentally transforms.`
+    content: `# The Architecture of Autonomous Systems: Beyond Chatbots
+
+The conversation around AI has progressed beyond conversational generation. The actual challenge — and immense market opportunity — lies in **stateful action execution**.
+
+When an agent is empowered to read file systems, propose code diffs, verify outcomes, and deploy applications without human friction, the paradigm of software development fundamentally transforms.`
   },
   {
     slug: 'venture-building-playbook',
@@ -132,7 +227,11 @@ const fallbackBlogs = [
     coverImage: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1200&q=80',
     tags: ['Venture Building', 'Product Strategy', 'Product-Market Fit', '0 to 1'],
     excerpt: 'How rapid prototyping, micro-feedback loops, and capital discipline allow solopreneurs and boutique venture studios to outpace incumbent giants.',
-    content: `# The Zero-to-One Venture Playbook in an Age of Instant Prototyping\n\nWhen speed of execution approaches zero cost, how does a modern builder achieve lasting product defensibility?\n\nIn this field guide, we examine the structural tactics applied at **Rohit Curiosity** to incubate, validate, and scale digital products and venture vehicles.`
+    content: `# The Zero-to-One Venture Playbook in an Age of Instant Prototyping
+
+When speed of execution approaches zero cost, how does a modern builder achieve lasting product defensibility?
+
+In this field guide, we examine the structural tactics applied at **Rohit Curiosity** to incubate, validate, and scale digital products and venture vehicles.`
   }
 ];
 
@@ -201,31 +300,50 @@ export function getAllBlogs() {
     const blogFiles = import.meta.glob('../content/blogs/*.md', { query: '?raw', eager: true });
     const entries = Object.entries(blogFiles);
 
+    let blogs = [];
     if (entries.length === 0) {
-      return fallbackBlogs;
+      blogs = [...fallbackBlogs];
+    } else {
+      blogs = entries.map(([path, rawModule]) => {
+        const rawContent = typeof rawModule === 'string' ? rawModule : (rawModule && rawModule.default) || '';
+        const { frontmatter, content } = parseMarkdown(rawContent);
+        const slug = getSlugFromPath(path);
+
+        return {
+          slug,
+          path,
+          title: frontmatter.title || slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+          date: safeIsoDate(frontmatter.date, '2026-08-01'),
+          formattedDate: safeFormatDate(frontmatter.date, 'Aug 2026'),
+          excerpt: frontmatter.excerpt || (content ? content.slice(0, 150) + '...' : ''),
+          coverImage: frontmatter.coverImage || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+          category: frontmatter.category || 'Market Views',
+          tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : (frontmatter.tags ? [frontmatter.tags] : ['Strategy', 'Analysis']),
+          author: frontmatter.author || 'Rohit Curiosity',
+          readTime: frontmatter.readTime || calculateReadTime(content),
+          featured: Boolean(frontmatter.featured),
+          content: content || ''
+        };
+      });
     }
 
-    const blogs = entries.map(([path, rawModule]) => {
-      const rawContent = typeof rawModule === 'string' ? rawModule : (rawModule && rawModule.default) || '';
-      const { frontmatter, content } = parseMarkdown(rawContent);
-      const slug = getSlugFromPath(path);
-
-      return {
-        slug,
-        path,
-        title: frontmatter.title || slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
-        date: safeIsoDate(frontmatter.date, '2026-08-01'),
-        formattedDate: safeFormatDate(frontmatter.date, 'Aug 2026'),
-        excerpt: frontmatter.excerpt || (content ? content.slice(0, 150) + '...' : ''),
-        coverImage: frontmatter.coverImage || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
-        category: frontmatter.category || 'Market Views',
-        tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : (frontmatter.tags ? [frontmatter.tags] : ['Strategy', 'Analysis']),
-        author: frontmatter.author || 'Rohit Curiosity',
-        readTime: frontmatter.readTime || calculateReadTime(content),
-        featured: Boolean(frontmatter.featured),
-        content: content || ''
-      };
-    });
+    // Merge custom posts saved from Content Studio
+    try {
+      const savedCustom = localStorage.getItem('rohit_custom_blogs');
+      if (savedCustom) {
+        const customPosts = JSON.parse(savedCustom);
+        if (Array.isArray(customPosts)) {
+          customPosts.forEach(cp => {
+            const idx = blogs.findIndex(b => b.slug === cp.slug);
+            if (idx >= 0) {
+              blogs[idx] = { ...blogs[idx], ...cp };
+            } else {
+              blogs.unshift(cp);
+            }
+          });
+        }
+      }
+    } catch (e) {}
 
     return blogs.sort((a, b) => {
       try {
@@ -239,6 +357,35 @@ export function getAllBlogs() {
     return fallbackBlogs;
   }
 }
+
+/**
+ * Extracts a Year > Month hierarchical tree from an array of blog posts
+ */
+export function getYearMonthHierarchy(blogs = []) {
+  const tree = {};
+
+  blogs.forEach(blog => {
+    try {
+      const d = new Date(blog.date);
+      if (isNaN(d.getTime())) return;
+      const year = d.getFullYear().toString();
+      const month = d.toLocaleDateString('en-US', { month: 'Long' });
+
+      if (!tree[year]) {
+        tree[year] = { count: 0, months: {} };
+      }
+      tree[year].count += 1;
+
+      if (!tree[year].months[month]) {
+        tree[year].months[month] = [];
+      }
+      tree[year].months[month].push(blog);
+    } catch (e) {}
+  });
+
+  return tree;
+}
+
 
 /**
  * Loads all portfolio projects from markdown files dynamically
