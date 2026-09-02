@@ -14,6 +14,16 @@ export default function App() {
   // Theme state
   const [isDark, setIsDark] = useState(true);
 
+  // Section & Menu Visibility state (persisted in localStorage)
+  const [sections, setSections] = useState(() => {
+    try {
+      const saved = localStorage.getItem('rohit_section_config');
+      return saved ? JSON.parse(saved) : { about: true, blogs: true, portfolio: true, contact: true };
+    } catch (e) {
+      return { about: true, blogs: true, portfolio: true, contact: true };
+    }
+  });
+
   // Content data state (synchronous initial load)
   const [blogs, setBlogs] = useState(() => {
     try {
@@ -47,6 +57,46 @@ export default function App() {
     }
   });
 
+  // Deep Link & Hash Routing listener (#blogs/:slug, #portfolio/:slug, #admin, Ctrl+Shift+A)
+  useEffect(() => {
+    const handleHashRouting = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#blogs/')) {
+        const slug = hash.replace('#blogs/', '').trim();
+        const found = blogs.find(b => b.slug === slug);
+        if (found) {
+          setSelectedReaderItem(found);
+          setReaderType('blog');
+        }
+      } else if (hash.startsWith('#portfolio/')) {
+        const slug = hash.replace('#portfolio/', '').trim();
+        const found = portfolio.find(p => p.slug === slug);
+        if (found) {
+          setSelectedReaderItem(found);
+          setReaderType('portfolio');
+        }
+      } else if (hash === '#admin' || window.location.pathname === '/admin') {
+        setIsStudioOpen(true);
+      }
+    };
+
+    handleHashRouting();
+    window.addEventListener('hashchange', handleHashRouting);
+
+    const handleKeyDown = (e) => {
+      if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        setIsStudioOpen(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashRouting);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [blogs, portfolio]);
+
   // Sync theme with HTML root class
   useEffect(() => {
     try {
@@ -64,16 +114,35 @@ export default function App() {
   const handleSelectBlog = (blog) => {
     setSelectedReaderItem(blog);
     setReaderType('blog');
+    if (typeof window !== 'undefined') {
+      window.location.hash = `#blogs/${blog.slug}`;
+    }
   };
 
   const handleSelectProject = (project) => {
     setSelectedReaderItem(project);
     setReaderType('portfolio');
+    if (typeof window !== 'undefined') {
+      window.location.hash = `#portfolio/${project.slug}`;
+    }
   };
 
   const handleCloseReader = () => {
     setSelectedReaderItem(null);
+    if (typeof window !== 'undefined' && (window.location.hash.startsWith('#blogs/') || window.location.hash.startsWith('#portfolio/'))) {
+      window.location.hash = readerType === 'blog' ? '#blogs' : '#portfolio';
+    }
   };
+
+  // About Section customizable data (persisted in localStorage)
+  const [aboutData, setAboutData] = useState(() => {
+    try {
+      const saved = localStorage.getItem('rohit_about_config');
+      return saved ? JSON.parse(saved) : {};
+    } catch (e) {
+      return {};
+    }
+  });
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
@@ -86,6 +155,7 @@ export default function App() {
         setIsDark={setIsDark} 
         onOpenStudio={() => setIsStudioOpen(true)}
         isAdmin={isAdmin}
+        sections={sections}
       />
 
       {/* Main Content Sections */}
@@ -95,35 +165,46 @@ export default function App() {
           onOpenStudio={() => setIsStudioOpen(true)}
           blogCount={blogs.length}
           portfolioCount={portfolio.length}
+          sections={sections}
         />
         
-        <AboutSection 
-          isDark={isDark} 
-        />
+        {sections.about && (
+          <AboutSection 
+            isDark={isDark} 
+            aboutData={aboutData}
+          />
+        )}
         
-        <BlogSection 
-          blogs={blogs} 
-          onSelectBlog={handleSelectBlog} 
-          onOpenStudio={() => setIsStudioOpen(true)}
-          isDark={isDark} 
-        />
+        {sections.blogs && (
+          <BlogSection 
+            blogs={blogs} 
+            onSelectBlog={handleSelectBlog} 
+            onOpenStudio={() => setIsStudioOpen(true)}
+            isDark={isDark} 
+          />
+        )}
         
-        <PortfolioSection 
-          portfolio={portfolio} 
-          onSelectProject={handleSelectProject} 
-          onOpenStudio={() => setIsStudioOpen(true)}
-          isDark={isDark} 
-        />
+        {sections.portfolio && (
+          <PortfolioSection 
+            portfolio={portfolio} 
+            onSelectProject={handleSelectProject} 
+            onOpenStudio={() => setIsStudioOpen(true)}
+            isDark={isDark} 
+          />
+        )}
         
-        <ContactSection 
-          isDark={isDark} 
-        />
+        {sections.contact && (
+          <ContactSection 
+            isDark={isDark} 
+          />
+        )}
       </main>
 
       {/* Global Footer */}
       <Footer 
         isDark={isDark} 
         onOpenStudio={() => setIsStudioOpen(true)} 
+        isAdmin={isAdmin}
       />
 
       {/* Full-Screen Reading Modal for Blog & Portfolio Markdown */}
@@ -133,6 +214,7 @@ export default function App() {
           type={readerType} 
           onClose={handleCloseReader} 
           isDark={isDark} 
+          isAdmin={isAdmin}
         />
       )}
 
@@ -143,6 +225,8 @@ export default function App() {
           onClose={() => setIsStudioOpen(false)} 
           isDark={isDark}
           onAdminStatusChange={setIsAdmin}
+          onSectionsChange={setSections}
+          onAboutDataChange={setAboutData}
         />
       )}
 
