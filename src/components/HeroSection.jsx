@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { LinkedinIcon, TwitterIcon, GithubIcon } from './SocialIcons';
 
-export default function HeroSection({ isDark, onOpenStudio, blogCount, portfolioCount }) {
+export default function HeroSection({ isDark, onOpenStudio, blogCount, portfolioCount, sections = { about: true, blogs: true, portfolio: true, contact: true } }) {
   const metrics = [
     { label: 'Market Briefings', value: `${blogCount}+`, sub: 'Live Analysis', icon: TrendingUp },
     { label: 'Venture Showcases', value: `${portfolioCount}+`, sub: 'Case Studies', icon: Cpu },
@@ -53,37 +53,37 @@ export default function HeroSection({ isDark, onOpenStudio, blogCount, portfolio
 
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
-            <a
-              href="#blogs"
-              className="flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold bg-gradient-to-r from-brand-500 to-blue-600 hover:from-brand-400 hover:to-blue-500 text-white shadow-glow-brand transition-all duration-200 transform hover:-translate-y-0.5"
-            >
-              <span>Explore Market Views</span>
-              <ArrowRight className="w-4 h-4" />
-            </a>
+            {sections.blogs && (
+              <a
+                href="#blogs"
+                className="flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold bg-gradient-to-r from-brand-500 to-blue-600 hover:from-brand-400 hover:to-blue-500 text-white shadow-glow-brand transition-all duration-200 transform hover:-translate-y-0.5"
+              >
+                <span>Explore Views & Blogs</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            )}
 
-            <a
-              href="#portfolio"
-              className={`flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold border transition-all duration-200 ${
-                isDark 
-                  ? 'border-slate-700 bg-slate-900/60 text-slate-200 hover:bg-slate-800 hover:border-slate-600' 
-                  : 'border-slate-300 bg-white text-slate-800 hover:bg-slate-50 hover:border-slate-400 shadow-sm'
-              }`}
-            >
-              <span>View Portfolio</span>
-            </a>
+            {sections.portfolio && (
+              <a
+                href="#portfolio"
+                className={`flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold border transition-all duration-200 ${
+                  isDark 
+                    ? 'border-slate-700 bg-slate-900/60 text-slate-200 hover:bg-slate-800 hover:border-slate-600' 
+                    : 'border-slate-300 bg-white text-slate-800 hover:bg-slate-50 hover:border-slate-400 shadow-sm'
+                }`}
+              >
+                <span>View Portfolio</span>
+              </a>
+            )}
 
-            <button
-              onClick={onOpenStudio}
-              className={`flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold border border-dashed transition-all duration-200 ${
-                isDark 
-                  ? 'border-brand-500/40 bg-brand-500/5 text-brand-300 hover:bg-brand-500/10' 
-                  : 'border-brand-400 bg-brand-50 text-brand-700 hover:bg-brand-100'
-              }`}
-              title="Add or manage your markdown articles without code"
-            >
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>Launch CMS Studio</span>
-            </button>
+            {sections.contact && (
+              <a
+                href="#contact"
+                className="flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold bg-amber-500/20 text-amber-400 border border-amber-500/40 hover:bg-amber-500/30 transition-all duration-200"
+              >
+                <span>Connect</span>
+              </a>
+            )}
           </div>
 
           {/* Social Profiles Pill Bar */}

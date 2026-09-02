@@ -16,7 +16,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 
-export default function Navbar({ isDark, setIsDark, onOpenStudio, isAdmin }) {
+export default function Navbar({ isDark, setIsDark, onOpenStudio, isAdmin, sections = { about: true, blogs: true, portfolio: true, contact: true } }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -27,7 +27,7 @@ export default function Navbar({ isDark, setIsDark, onOpenStudio, isAdmin }) {
       setIsScrolled(window.scrollY > 20);
 
       // Section positions
-      const sections = [
+      const sectionList = [
         { id: 'hero', element: document.querySelector('main') },
         { id: 'about', element: document.getElementById('about') },
         { id: 'blogs', element: document.getElementById('blogs') },
@@ -37,8 +37,8 @@ export default function Navbar({ isDark, setIsDark, onOpenStudio, isAdmin }) {
 
       const scrollPosition = window.scrollY + 200;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
+      for (let i = sectionList.length - 1; i >= 0; i--) {
+        const section = sectionList[i];
         if (section.element && typeof section.element.offsetTop === 'number') {
           const top = section.element.offsetTop;
           if (scrollPosition >= top) {
@@ -53,12 +53,12 @@ export default function Navbar({ isDark, setIsDark, onOpenStudio, isAdmin }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Primary content sections
+  // Primary content sections filtered dynamically by section settings (About, Views & Blogs, Portfolio)
   const navLinks = [
-    { name: 'About', id: 'about', href: '#about', icon: User },
-    { name: 'Market Views', id: 'blogs', href: '#blogs', icon: BookOpen },
-    { name: 'Portfolio', id: 'portfolio', href: '#portfolio', icon: FolderGit2 },
-  ];
+    sections.about && { name: 'About', id: 'about', href: '#about', icon: User },
+    sections.blogs && { name: 'Views & Blogs', id: 'blogs', href: '#blogs', icon: BookOpen },
+    sections.portfolio && { name: 'Portfolio', id: 'portfolio', href: '#portfolio', icon: FolderGit2 },
+  ].filter(Boolean);
 
   return (
     <header 
@@ -124,30 +124,20 @@ export default function Navbar({ isDark, setIsDark, onOpenStudio, isAdmin }) {
           {/* Action CTAs */}
           <div className="hidden sm:flex items-center gap-3">
             
-            {/* Content Studio CMS Trigger (Admin Protected) */}
-            <button
-              onClick={onOpenStudio}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold border transition-all duration-200 ${
-                isAdmin
-                  ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20'
-                  : isDark 
-                    ? 'bg-slate-900/80 border-slate-700/70 text-slate-300 hover:text-white hover:border-brand-500/50 hover:bg-slate-800' 
-                    : 'bg-slate-50 border-slate-200 text-slate-700 hover:text-slate-900 hover:border-brand-400 hover:bg-white'
-              }`}
-              title={isAdmin ? "Admin Mode Active - Open Studio" : "Admin Only - Open Content Studio"}
-            >
-              {isAdmin ? (
+            {/* Content Studio Trigger (Only Visible when Admin is Logged In) */}
+            {isAdmin && (
+              <button
+                onClick={onOpenStudio}
+                className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 transition-all duration-200"
+                title="Admin Mode Active - Open Studio"
+              >
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              ) : (
-                <Lock className="w-3.5 h-3.5 text-amber-400" />
-              )}
-              <span>Content Studio</span>
-              <span className={`px-1 py-0.2 text-[10px] rounded font-mono ${
-                isAdmin ? 'bg-emerald-500/20 text-emerald-300' : 'bg-brand-500/20 text-brand-400'
-              }`}>
-                {isAdmin ? 'ADMIN' : 'CMS'}
-              </span>
-            </button>
+                <span>Content Studio</span>
+                <span className="px-1 py-0.2 text-[10px] rounded font-mono bg-emerald-500/20 text-emerald-300">
+                  ADMIN
+                </span>
+              </button>
+            )}
 
             {/* Dark / Light Mode Toggle */}
             <button

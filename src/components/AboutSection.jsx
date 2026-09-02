@@ -13,13 +13,24 @@ import {
   Brain,
   Code2,
   BarChart3,
-  Rocket
+  Rocket,
+  ShieldCheck,
+  Award,
+  Briefcase,
+  Wrench
 } from 'lucide-react';
 
-export default function AboutSection({ isDark }) {
+export default function AboutSection({ isDark, aboutData = {} }) {
   const [activeTab, setActiveTab] = useState('pillars');
 
-  const pillars = [
+  // Default Fallbacks for About Section Data
+  const profileImage = aboutData.imageUrl || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80';
+  const name = aboutData.name || 'Rohit Curiosity';
+  const roleTitle = aboutData.roleTitle || 'Founder & Principal Architect';
+  const missionTitle = aboutData.missionTitle || 'Curiosity as a Competitive Moat';
+  const missionText = aboutData.missionText || 'We believe that in an era of abundant AI code generation, the primary leverage shifts to first-principles inquiry, resilient system architecture, and uncompromising clarity of thought.';
+  
+  const pillars = aboutData.pillars || [
     {
       title: 'High-Conviction Market Analysis',
       icon: BarChart3,
@@ -40,7 +51,7 @@ export default function AboutSection({ isDark }) {
     }
   ];
 
-  const milestones = [
+  const milestones = aboutData.milestones || [
     {
       year: '2026',
       title: 'Rohit Curiosity Research & Venture Studio',
@@ -61,7 +72,7 @@ export default function AboutSection({ isDark }) {
     }
   ];
 
-  const skills = [
+  const skills = aboutData.skills || [
     'Market Intelligence', 'Macro Modeling', 'Autonomous AI Agents', 'React & TypeScript', 
     'Tailwind CSS', 'Vite & Next.js', 'Venture Strategy', 'Capital Allocation', 
     'Vector Embeddings', 'System Architecture', 'Zero-Code CMS Design', 'UI/UX Craft'
@@ -69,6 +80,9 @@ export default function AboutSection({ isDark }) {
 
   return (
     <section id="about" className="py-24 relative">
+      {/* Background Accent */}
+      <div className="absolute top-1/3 left-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -87,137 +101,142 @@ export default function AboutSection({ isDark }) {
           </p>
         </div>
 
-        {/* Bio Overview & Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
+        {/* 3-PART ABOUT LAYOUT */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* Left Column: Avatar & Quick Info */}
-          <div className={`lg:col-span-5 p-8 rounded-3xl border relative overflow-hidden ${
-            isDark ? 'bg-slate-900/60 border-slate-800 shadow-card-dark' : 'bg-white border-slate-200 shadow-sm'
-          }`}>
-            <div className="absolute top-0 right-0 w-40 h-40 bg-brand-500/10 rounded-full blur-2xl pointer-events-none" />
+          {/* LEFT COLUMN (5 Cols): Left Top (Image) & Left Bottom (Mission) */}
+          <div className="lg:col-span-5 flex flex-col gap-6">
             
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-500 via-indigo-500 to-amber-500 p-0.5 shadow-glow-brand">
-                <div className={`w-full h-full rounded-[14px] flex items-center justify-center font-extrabold text-2xl ${
-                  isDark ? 'bg-[#0B0F17] text-brand-400' : 'bg-white text-brand-600'
-                }`}>
-                  RC
+            {/* PART 1: LEFT TOP - Professional Image Card */}
+            <div className={`p-6 sm:p-8 rounded-3xl border relative overflow-hidden flex flex-col justify-between ${
+              isDark ? 'bg-slate-900/60 border-slate-800 shadow-card-dark' : 'bg-white border-slate-200 shadow-sm'
+            }`}>
+              <div className="relative h-64 sm:h-72 rounded-2xl overflow-hidden mb-6 group border border-slate-800">
+                <img
+                  src={profileImage}
+                  alt={name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F17] via-transparent to-transparent opacity-60" />
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                  <span className="px-2.5 py-1 rounded-md text-[11px] font-mono font-bold bg-black/70 text-amber-400 backdrop-blur-md border border-amber-500/30">
+                    rohitcuriosity.com
+                  </span>
+                  <span className="px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-500/90 text-white backdrop-blur-md">
+                    Verified Profile
+                  </span>
                 </div>
               </div>
+
               <div>
-                <h3 className={`text-2xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  Rohit Curiosity
-                </h3>
-                <p className="text-sm font-medium text-brand-400 font-mono">rohitcuriosity.com</p>
-                <div className="flex items-center gap-2 mt-1">
+                <div className="flex items-center justify-between mb-1">
+                  <h3 className={`text-2xl font-extrabold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                    {name}
+                  </h3>
+                  <Award className="w-5 h-5 text-amber-400" />
+                </div>
+                <p className="text-xs font-semibold text-brand-400 font-mono mb-3">{roleTitle}</p>
+                <div className="flex items-center gap-2 text-xs text-emerald-400">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                  <span className="text-xs text-emerald-400 font-medium">Available for Advisory & Projects</span>
+                  <span>Available for Advisory, Compute & Venture Strategy</span>
                 </div>
               </div>
             </div>
 
-            <p className={`text-sm leading-relaxed mb-6 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-              "We believe that in an era of abundant AI code generation, the primary leverage shifts to **first-principles inquiry**, **system architecture**, and **uncompromising clarity of thought**."
-            </p>
+            {/* PART 2: LEFT BOTTOM - Mission or Goal Statement Card */}
+            <div className={`p-6 sm:p-8 rounded-3xl border flex flex-col justify-between flex-1 relative overflow-hidden ${
+              isDark ? 'bg-slate-900/60 border-slate-800 shadow-card-dark' : 'bg-white border-slate-200 shadow-sm'
+            }`}>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-full blur-2xl pointer-events-none" />
 
-            <div className="space-y-2.5 mb-8">
-              {[
-                'Specialized in Macro Market & Tech Synthesis',
-                'Architect of Autonomous Enterprise Tools',
-                'Advocate for Lean, Zero-Overhead Software'
-              ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2.5 text-xs font-medium text-slate-300">
-                  <CheckCircle2 className="w-4 h-4 text-brand-400 flex-shrink-0" />
-                  <span className={isDark ? 'text-slate-300' : 'text-slate-700'}>{item}</span>
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-4">
+                  <Target className="w-3.5 h-3.5" />
+                  <span>Mission & Vision Statement</span>
                 </div>
-              ))}
+
+                <h4 className={`text-xl font-bold tracking-tight mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                  {missionTitle}
+                </h4>
+
+                <p className={`text-xs sm:text-sm leading-relaxed mb-6 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                  "{missionText}"
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                <span className="text-[11px] font-mono text-slate-500">Core Directive</span>
+                <a
+                  href="#contact"
+                  className="flex items-center gap-1 text-xs font-bold text-brand-400 hover:text-brand-300 transition-colors"
+                >
+                  <span>Connect Directly</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </div>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href="#contact"
-                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-semibold bg-brand-500 hover:bg-brand-400 text-white shadow-glow-brand transition-all"
-              >
-                <span>Connect</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
-              <button
-                onClick={() => alert("Personal Brief & CV PDF is ready for download in your release package.")}
-                className={`flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-xs font-semibold border transition-all ${
-                  isDark ? 'border-slate-700 text-slate-300 hover:bg-slate-800' : 'border-slate-200 text-slate-700 hover:bg-slate-50'
-                }`}
-              >
-                <Download className="w-4 h-4 text-amber-400" />
-                <span>Download CV</span>
-              </button>
-            </div>
           </div>
 
-          {/* Right Column: Interactive Tabs for Pillars vs Journey */}
-          <div className="lg:col-span-7">
-            {/* Tab Selector */}
-            <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-slate-900/40 border border-slate-800 mb-6 max-w-md">
-              <button
-                onClick={() => setActiveTab('pillars')}
-                className={`flex-1 py-2 rounded-xl text-xs font-semibold transition-all ${
-                  activeTab === 'pillars' 
-                    ? 'bg-brand-500 text-white shadow-sm' 
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                Core Pillars
-              </button>
-              <button
-                onClick={() => setActiveTab('journey')}
-                className={`flex-1 py-2 rounded-xl text-xs font-semibold transition-all ${
-                  activeTab === 'journey' 
-                    ? 'bg-brand-500 text-white shadow-sm' 
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                Career Milestone Track
-              </button>
-              <button
-                onClick={() => setActiveTab('skills')}
-                className={`flex-1 py-2 rounded-xl text-xs font-semibold transition-all ${
-                  activeTab === 'skills' 
-                    ? 'bg-brand-500 text-white shadow-sm' 
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                Skill Stack
-              </button>
+          {/* PART 3: RIGHT COLUMN (7 Cols) - Core Pillars / Milestones / Skill Stack */}
+          <div className="lg:col-span-7 flex flex-col">
+            
+            {/* Tab Controls */}
+            <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-slate-900/60 border border-slate-800 mb-6">
+              {[
+                { id: 'pillars', label: 'Core Pillars', icon: BarChart3 },
+                { id: 'journey', label: 'Career Milestones', icon: Briefcase },
+                { id: 'skills', label: 'Skill Stack', icon: Wrench },
+              ].map((tab) => {
+                const Icon = tab.icon;
+                const isActive = activeTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
+                      isActive
+                        ? 'bg-brand-500 text-white shadow-glow-brand'
+                        : isDark
+                          ? 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                          : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span>{tab.label}</span>
+                  </button>
+                );
+              })}
             </div>
 
             {/* Tab 1: Core Pillars */}
             {activeTab === 'pillars' && (
-              <div className="space-y-4">
+              <div className="space-y-4 flex-1">
                 {pillars.map((pillar, idx) => {
-                  const Icon = pillar.icon;
+                  const Icon = pillar.icon || BarChart3;
                   return (
                     <div
                       key={idx}
-                      className={`p-6 rounded-2xl border transition-all duration-200 hover:border-brand-500/50 ${
-                        isDark ? 'bg-slate-900/50 border-slate-800/80' : 'bg-white border-slate-200 shadow-sm'
+                      className={`p-6 rounded-3xl border transition-all duration-200 hover:border-brand-500/50 ${
+                        isDark ? 'bg-slate-900/60 border-slate-800/90 shadow-card-dark' : 'bg-white border-slate-200 shadow-sm'
                       }`}
                     >
                       <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-xl bg-brand-500/10 text-brand-400 flex-shrink-0">
+                        <div className="p-3 rounded-2xl bg-brand-500/10 text-brand-400 flex-shrink-0 border border-brand-500/20">
                           <Icon className="w-5 h-5" />
                         </div>
                         <div>
-                          <h4 className={`text-base font-bold mb-1 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                          <h4 className={`text-base font-bold mb-1.5 ${isDark ? 'text-white' : 'text-slate-900'}`}>
                             {pillar.title}
                           </h4>
-                          <p className={`text-xs sm:text-sm leading-relaxed mb-3 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                          <p className={`text-xs sm:text-sm leading-relaxed mb-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                             {pillar.description}
                           </p>
                           <div className="flex flex-wrap gap-2">
-                            {pillar.points.map((pt, pidx) => (
+                            {(pillar.points || []).map((pt, pidx) => (
                               <span
                                 key={pidx}
-                                className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-slate-800/70 text-slate-300 border border-slate-700/50"
+                                className="px-3 py-1 rounded-lg text-[11px] font-medium bg-slate-800/80 text-slate-300 border border-slate-700/50"
                               >
                                 {pt}
                               </span>
@@ -233,23 +252,26 @@ export default function AboutSection({ isDark }) {
 
             {/* Tab 2: Career Milestones */}
             {activeTab === 'journey' && (
-              <div className={`p-6 rounded-2xl border ${
-                isDark ? 'bg-slate-900/50 border-slate-800/80' : 'bg-white border-slate-200 shadow-sm'
+              <div className={`p-8 rounded-3xl border flex-1 ${
+                isDark ? 'bg-slate-900/60 border-slate-800/90 shadow-card-dark' : 'bg-white border-slate-200 shadow-sm'
               }`}>
-                <div className="space-y-6 relative before:absolute before:inset-0 before:left-3 before:w-0.5 before:bg-slate-800">
+                <h4 className={`text-sm font-extrabold uppercase tracking-wider mb-6 text-brand-400`}>
+                  Executive Career Timeline & Track Record
+                </h4>
+                <div className="space-y-8 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-slate-800">
                   {milestones.map((m, idx) => (
-                    <div key={idx} className="relative flex items-start gap-5 pl-8">
-                      <div className="absolute left-1.5 top-1.5 w-3.5 h-3.5 rounded-full bg-brand-500 border-2 border-[#0B0F17] shadow-glow-brand" />
+                    <div key={idx} className="relative flex items-start gap-6 pl-10">
+                      <div className="absolute left-2 top-1.5 w-3.5 h-3.5 rounded-full bg-brand-500 border-2 border-[#0B0F17] shadow-glow-brand" />
                       <div>
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-xs font-mono font-bold text-amber-400">{m.year}</span>
+                          <span className="text-xs font-mono font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">{m.year}</span>
                           <span className="text-slate-600">•</span>
                           <span className="text-xs font-semibold text-brand-400">{m.role}</span>
                         </div>
-                        <h4 className={`text-sm font-bold mb-1 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                        <h5 className={`text-base font-bold mb-1.5 ${isDark ? 'text-white' : 'text-slate-900'}`}>
                           {m.title}
-                        </h4>
-                        <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                        </h5>
+                        <p className={`text-xs sm:text-sm leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                           {m.description}
                         </p>
                       </div>
@@ -259,19 +281,19 @@ export default function AboutSection({ isDark }) {
               </div>
             )}
 
-            {/* Tab 3: Skills & Competencies */}
+            {/* Tab 3: Skills & Core Competencies */}
             {activeTab === 'skills' && (
-              <div className={`p-6 rounded-2xl border ${
-                isDark ? 'bg-slate-900/50 border-slate-800/80' : 'bg-white border-slate-200 shadow-sm'
+              <div className={`p-8 rounded-3xl border flex-1 ${
+                isDark ? 'bg-slate-900/60 border-slate-800/90 shadow-card-dark' : 'bg-white border-slate-200 shadow-sm'
               }`}>
-                <h4 className={`text-sm font-bold mb-3 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  Expertise & Core Competencies
+                <h4 className={`text-sm font-extrabold uppercase tracking-wider mb-6 text-brand-400`}>
+                  Technical Stack & Domain Expertise
                 </h4>
-                <div className="flex flex-wrap gap-2.5">
+                <div className="flex flex-wrap gap-3">
                   {skills.map((skill, idx) => (
                     <div
                       key={idx}
-                      className="px-3.5 py-2 rounded-xl text-xs font-semibold bg-brand-500/10 text-brand-300 border border-brand-500/20 hover:bg-brand-500/20 transition-colors"
+                      className="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-brand-500/10 text-brand-300 border border-brand-500/20 hover:bg-brand-500/20 transition-colors shadow-sm"
                     >
                       {skill}
                     </div>

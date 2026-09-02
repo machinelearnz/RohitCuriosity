@@ -71,9 +71,9 @@ export default function Footer({ isDark, onOpenStudio }) {
               <li><a href="#blogs" className="hover:text-brand-400 transition-colors">Market Views & Insights</a></li>
               <li><a href="#portfolio" className="hover:text-brand-400 transition-colors">Portfolio & Ventures</a></li>
               <li><a href="#contact" className="hover:text-brand-400 transition-colors">Direct Inquiries</a></li>
-              <li>
-                <button onClick={onOpenStudio} className="text-brand-400 hover:underline flex items-center gap-1">
-                  <span>Content Studio (CMS)</span>
+              <li className="pt-1">
+                <button onClick={onOpenStudio} className="text-slate-500 hover:text-amber-400 transition-colors flex items-center gap-1 text-[11px]">
+                  <span>🔒 Admin Portal</span>
                 </button>
               </li>
             </ul>

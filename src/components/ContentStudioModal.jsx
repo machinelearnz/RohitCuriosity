@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   X, 
   Sparkles, 
@@ -19,12 +19,109 @@ import {
   ShieldCheck,
   KeyRound,
   LogOut,
-  AlertCircle
+  AlertCircle,
+  Code2,
+  Image as ImageIcon,
+  Calculator,
+  Sliders,
+  CheckSquare,
+  Square,
+  User,
+  Upload
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { saveMediaItem, resolveMediaUrl } from '../utils/mediaStore';
 
-export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminStatusChange }) {
+function CodeBlock({ language, value }) {
+  const [copiedCode, setCopiedCode] = useState(false);
+
+  const handleCopyCode = () => {
+    navigator.clipboard.writeText(value);
+    setCopiedCode(true);
+    setTimeout(() => setCopiedCode(false), 2000);
+  };
+
+  return (
+    <div className="relative my-6 rounded-2xl border border-slate-800 overflow-hidden bg-[#0D131F] shadow-xl group">
+      <div className="flex items-center justify-between px-4 py-2 bg-slate-900/90 border-b border-slate-800 text-xs text-slate-400">
+        <span className="font-mono font-semibold text-brand-400 uppercase tracking-wider flex items-center gap-1.5">
+          <Code2 className="w-3.5 h-3.5 text-slate-500" />
+          {language || 'code'}
+        </span>
+        <button
+          onClick={handleCopyCode}
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-semibold border border-slate-700/80 text-slate-300 hover:text-white hover:bg-slate-800 transition-all"
+        >
+          {copiedCode ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+          <span>{copiedCode ? 'Copied!' : 'Copy Code'}</span>
+        </button>
+      </div>
+      <SyntaxHighlighter
+        language={language || 'text'}
+        style={vscDarkPlus}
+        customStyle={{
+          margin: 0,
+          padding: '1.25rem 1rem',
+          fontSize: '0.875rem',
+          lineHeight: '1.6',
+          backgroundColor: 'transparent',
+          fontFamily: 'JetBrains Mono, Menlo, Monaco, Consolas, monospace'
+        }}
+        showLineNumbers={true}
+        lineNumberStyle={{
+          minWidth: '2.5rem',
+          paddingRight: '1rem',
+          marginRight: '1rem',
+          color: '#64748B',
+          textAlign: 'right',
+          borderRight: '1px solid #1E293B',
+          userSelect: 'none'
+        }}
+      >
+        {value}
+      </SyntaxHighlighter>
+    </div>
+  );
+}
+
+function MarkdownImage({ src, alt }) {
+  const [hasError, setHasError] = useState(false);
+  const resolvedUrl = resolveMediaUrl(src);
+
+  if (hasError || !resolvedUrl) {
+    return (
+      <div className="my-6 p-6 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col items-center justify-center text-center shadow-lg">
+        <ImageIcon className="w-8 h-8 text-brand-400 mb-2" />
+        <span className="text-xs font-bold text-slate-200">{alt || 'Article Visual'}</span>
+        <span className="text-[11px] text-slate-500 mt-1">Image URL invalid or local file link broken. Upload photo to embed.</span>
+      </div>
+    );
+  }
+
+  return (
+    <figure className="markdown-image-wrapper my-6 flex flex-col items-center">
+      <img
+        src={resolvedUrl}
+        alt={alt || 'Blog illustration'}
+        onError={() => setHasError(true)}
+        className="max-w-full max-h-[480px] object-contain rounded-2xl border border-slate-800 shadow-xl"
+        loading="lazy"
+      />
+      {alt && (
+        <figcaption className="markdown-image-caption mt-2 text-center text-xs text-slate-400 font-medium italic">
+          {alt}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminStatusChange, onSectionsChange, onAboutDataChange }) {
   // Admin Auth State
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(() => {
     return localStorage.getItem('rohit_admin_session') === 'true';
@@ -35,10 +132,132 @@ export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminSta
   const [newPasscodeInput, setNewPasscodeInput] = useState('');
   const [passcodeSuccess, setPasscodeSuccess] = useState('');
 
+  // Menu / Section Controls State
+  const [sectionConfig, setSectionConfig] = useState(() => {
+    try {
+      const saved = localStorage.getItem('rohit_section_config');
+      return saved ? JSON.parse(saved) : { about: true, blogs: true, portfolio: true, contact: true };
+    } catch (e) {
+      return { about: true, blogs: true, portfolio: true, contact: true };
+    }
+  });
+
+  // About Section Data State
+  const [aboutConfig, setAboutConfig] = useState(() => {
+    try {
+      const saved = localStorage.getItem('rohit_about_config');
+      return saved ? JSON.parse(saved) : {};
+    } catch (e) {
+      return {};
+    }
+  });
+
+  const handleUpdateAboutField = (field, value) => {
+    const updated = { ...aboutConfig, [field]: value };
+    setAboutConfig(updated);
+    localStorage.setItem('rohit_about_config', JSON.stringify(updated));
+    if (onAboutDataChange) onAboutDataChange(updated);
+  };
+
+  // Image Upload Handlers (converts local image files to Data URL for instant rendering)
+  const handleProfileImageUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      const dataUrl = evt.target?.result;
+      if (dataUrl) {
+        handleUpdateAboutField('imageUrl', dataUrl);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleCoverImageUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      const dataUrl = evt.target?.result;
+      if (dataUrl) {
+        setCoverImage(dataUrl);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleBodyImageUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      const dataUrl = evt.target?.result;
+      if (dataUrl) {
+        const caption = prompt('Enter a caption for this uploaded image:', file.name.replace(/\.[^/.]+$/, '')) || 'Uploaded article visual';
+        insertTemplate(`![${caption}](${dataUrl})`);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
   // Studio State
   const [contentType, setContentType] = useState('blog'); // 'blog' or 'portfolio'
   const [activeTab, setActiveTab] = useState('editor'); // 'editor', 'preview', 'guide', 'security'
   const [copied, setCopied] = useState(false);
+
+  // Body Textarea Ref & Image Inserter Modal state
+  const bodyTextareaRef = useRef(null);
+  const [showImageEmbedModal, setShowImageEmbedModal] = useState(false);
+  const [embedImageUrl, setEmbedImageUrl] = useState('');
+  const [embedImageCaption, setEmbedImageCaption] = useState('');
+
+  const handleEmbedModalFileUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      const dataUrl = evt.target?.result;
+      if (dataUrl) {
+        setEmbedImageUrl(dataUrl);
+        if (!embedImageCaption) {
+          setEmbedImageCaption(file.name.replace(/\.[^/.]+$/, ''));
+        }
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleInsertEmbeddedImage = () => {
+    if (!embedImageUrl.trim()) return;
+    const caption = embedImageCaption.trim() || 'Article visual';
+    const mediaRef = saveMediaItem(embedImageUrl.trim());
+    const imageMarkdown = `![${caption}](${mediaRef})`;
+
+    const textarea = bodyTextareaRef.current;
+    if (textarea) {
+      const start = textarea.selectionStart ?? body.length;
+      const end = textarea.selectionEnd ?? body.length;
+
+      const before = body.substring(0, start);
+      const after = body.substring(end);
+
+      const formattedInsert = `\n\n${imageMarkdown}\n\n`;
+      const newBody = before + formattedInsert + after;
+      setBody(newBody);
+
+      setTimeout(() => {
+        textarea.focus();
+        const nextPos = start + formattedInsert.length;
+        textarea.setSelectionRange(nextPos, nextPos);
+      }, 50);
+    } else {
+      setBody(prev => prev + `\n\n${imageMarkdown}\n\n`);
+    }
+
+    setShowImageEmbedModal(false);
+    setEmbedImageUrl('');
+    setEmbedImageCaption('');
+  };
 
   // Form State
   const [title, setTitle] = useState('Sovereign Compute & The New Capital Moats');
@@ -59,17 +278,48 @@ export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminSta
   // Markdown Body
   const [body, setBody] = useState(`## Executive Thesis
 
-In this briefing, we explore the fundamental shift occurring across capital markets and autonomous compute architectures.
+In this briefing, we explore the fundamental shift occurring across capital markets and autonomous compute architectures. As demonstrated by energy math $E = mc^2$, baseline power conversion dictates model economics.
 
-### 1. Key Structural Shifts
-- **Constraint Transition:** Moving from token speed to raw power availability.
-- **Valuation Dynamics:** Vertical outcome-based billing replacing seat-based SaaS.
+> [!NOTE]
+> The true moat of modern artificial intelligence is no longer token generation speed, but reliable baseload power interconnects.
 
-> "The true moat of modern technology is first-principles insight combined with deterministic execution."
+### 1. Key Structural Shifts & Yield Equation
 
-### 2. Actionable Takeaways
+We define the Net Economic Yield $Y_{node}$ as:
+
+$$\\displaystyle Y_{node} = \\sum_{t=1}^{T} \\frac{\\alpha \\cdot \\text{FLOPs}_t - \\beta \\cdot P_{\\grid}(t)}{(1 + r)^t}$$
+
+### 2. Infrastructure Colocation Setup
+
+![High-density sovereign GPU compute data center colocation](https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80)
+
+### 3. Telemetry Script (Python)
+
+\`\`\`python
+# Short Python Hello World & Compute Telemetry Snippet
+def main():
+    print("Hello World! Welcome to Rohit Curiosity Intelligence Engine.")
+
+if __name__ == "__main__":
+    main()
+\`\`\`
+
+### 4. Actionable Takeaways
 1. Prioritize energy co-located infrastructure.
 2. Build verified autonomous agent pipelines.`);
+
+  // Handle section visibility toggle
+  const handleToggleSection = (key) => {
+    const updated = { ...sectionConfig, [key]: !sectionConfig[key] };
+    setSectionConfig(updated);
+    localStorage.setItem('rohit_section_config', JSON.stringify(updated));
+    if (onSectionsChange) onSectionsChange(updated);
+  };
+
+  // Quick Template Inserters into Body Textarea
+  const insertTemplate = (snippet) => {
+    setBody(prev => prev + '\n\n' + snippet);
+  };
 
   // Handle passkey verification
   const handleVerifyPasskey = (e) => {
@@ -203,7 +453,7 @@ ${body}`;
 
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-3">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Admin Protected Area</span>
+              <span>Admin Protected Portal</span>
             </div>
 
             <h3 className={`text-2xl font-extrabold tracking-tight mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
@@ -211,7 +461,7 @@ ${body}`;
             </h3>
             
             <p className={`text-xs leading-relaxed mb-6 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-              Creating and modifying markdown content is strictly restricted to the administrator of <span className="font-semibold text-brand-400">rohitcuriosity.com</span>.
+              Creating and modifying markdown content or updating website navigation is strictly restricted to the administrator of <span className="font-semibold text-brand-400">rohitcuriosity.com</span>.
             </p>
 
             {authError && (
@@ -232,7 +482,7 @@ ${body}`;
                     setPasskeyInput(e.target.value);
                     setAuthError('');
                   }}
-                  placeholder="Enter Admin Passkey..."
+                  placeholder="Enter Admin Passkey (default: rohit2026)..."
                   className={`w-full pl-4 pr-11 py-3 rounded-xl text-sm transition-all outline-none focus:ring-2 focus:ring-brand-400 ${
                     isDark ? 'bg-slate-900 border border-slate-800 text-white placeholder-slate-500' : 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400'
                   }`}
@@ -240,7 +490,7 @@ ${body}`;
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-500 hover:text-slate-300"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -248,63 +498,61 @@ ${body}`;
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-bold bg-gradient-to-r from-brand-500 to-blue-600 hover:from-brand-400 hover:to-blue-500 text-white shadow-glow-brand transition-all"
+                className="w-full py-3 rounded-xl text-sm font-bold bg-brand-500 hover:bg-brand-400 text-white shadow-glow-brand transition-all flex items-center justify-center gap-2"
               >
                 <Unlock className="w-4 h-4" />
-                <span>Verify & Unlock Studio</span>
+                <span>Authorize & Unlock Studio</span>
               </button>
             </form>
 
-            <div className="mt-6 pt-4 border-t border-slate-800/80 w-full text-center">
-              <p className="text-[11px] text-slate-500">
-                Default Master Passkey: <code className="text-amber-400 font-mono">rohit2026</code>
-              </p>
-            </div>
-
+            <p className="text-[11px] text-slate-500 mt-4">
+              Tip: Passkey is stored securely in your browser's local state.
+            </p>
           </div>
         </div>
       ) : (
-        /* Authenticated Admin Studio View */
+        /* If Authenticated: Show Full Studio UI */
         <div className={`relative w-full max-w-5xl max-h-[92vh] flex flex-col rounded-3xl border overflow-hidden shadow-2xl ${
           isDark ? 'bg-[#0B0F17] border-slate-800' : 'bg-white border-slate-200'
         }`}>
           
-          {/* Header Bar */}
+          {/* Studio Modal Header */}
           <div className={`flex items-center justify-between px-6 py-4 border-b ${
-            isDark ? 'bg-[#0B0F17]/90 border-slate-800' : 'bg-white/90 border-slate-200'
+            isDark ? 'bg-[#0B0F17] border-slate-800' : 'bg-slate-50 border-slate-200'
           }`}>
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-xl bg-gradient-to-br from-brand-500 to-amber-500 text-white">
+              <div className="p-2 rounded-xl bg-brand-500/10 text-brand-400 border border-brand-500/20">
                 <Sparkles className="w-5 h-5" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className={`text-base font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                    Content Studio & Markdown CMS
+                  <h3 className={`text-base sm:text-lg font-extrabold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                    Rohit Curiosity Content Studio
                   </h3>
-                  <span className="flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                    <ShieldCheck className="w-3 h-3" />
-                    <span>Admin Verified</span>
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                    Admin Active
                   </span>
                 </div>
-                <p className="text-xs text-slate-400">Create, preview, and export articles with zero coding required.</p>
+                <p className="text-xs text-slate-400">
+                  Markdown publishing engine & site menu section management.
+                </p>
               </div>
             </div>
 
             <div className="flex items-center gap-2">
               <button
                 onClick={handleLogoutAdmin}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 border border-slate-800 transition-colors"
-                title="Lock studio and log out"
+                className="flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold border border-rose-500/30 bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 transition-all"
+                title="Lock Studio session"
               >
                 <LogOut className="w-3.5 h-3.5" />
-                <span>Lock Studio</span>
+                <span className="hidden sm:inline">Lock Studio</span>
               </button>
 
               <button
                 onClick={onClose}
                 className={`p-2 rounded-xl border transition-colors ${
-                  isDark ? 'border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800' : 'border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  isDark ? 'border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800' : 'border-slate-200 text-slate-600 hover:bg-slate-100'
                 }`}
               >
                 <X className="w-5 h-5" />
@@ -312,88 +560,97 @@ ${body}`;
             </div>
           </div>
 
-          {/* Subheader: Content Type & View Tabs */}
-          <div className={`flex flex-wrap items-center justify-between px-6 py-3 border-b gap-3 ${
-            isDark ? 'bg-slate-900/60 border-slate-800/80' : 'bg-slate-50 border-slate-200'
+          {/* Top Control Toolbar (Content Type + Mode Tabs) */}
+          <div className={`px-6 py-3 border-b flex flex-wrap items-center justify-between gap-4 ${
+            isDark ? 'bg-slate-900/60 border-slate-800' : 'bg-slate-100 border-slate-200'
           }`}>
-            {/* Switch Content Type */}
-            <div className="flex items-center gap-1.5 p-1 rounded-xl bg-black/30 border border-slate-800">
+            {/* Content Type Selector */}
+            <div className="flex items-center gap-2 p-1 rounded-xl bg-slate-950/60 border border-slate-800">
               <button
-                onClick={() => {
-                  setContentType('blog');
-                  setCategory('Market Views');
-                }}
+                onClick={() => setContentType('blog')}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  contentType === 'blog' ? 'bg-brand-500 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'
+                  contentType === 'blog'
+                    ? 'bg-brand-500 text-white shadow-sm'
+                    : 'text-slate-400 hover:text-white'
                 }`}
               >
                 <FileText className="w-3.5 h-3.5" />
-                <span>Blog Article</span>
+                <span>Blog Briefing</span>
               </button>
+
               <button
-                onClick={() => {
-                  setContentType('portfolio');
-                  setCategory('Fintech & Data');
-                }}
+                onClick={() => setContentType('portfolio')}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  contentType === 'portfolio' ? 'bg-brand-500 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'
+                  contentType === 'portfolio'
+                    ? 'bg-brand-500 text-white shadow-sm'
+                    : 'text-slate-400 hover:text-white'
                 }`}
               >
                 <FolderGit2 className="w-3.5 h-3.5" />
-                <span>Portfolio Case Study</span>
+                <span>Portfolio Project</span>
               </button>
             </div>
 
-            {/* View Modes */}
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1 p-1 rounded-xl bg-black/30 border border-slate-800">
-                <button
-                  onClick={() => setActiveTab('editor')}
-                  className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold ${
-                    activeTab === 'editor' ? 'bg-slate-800 text-white' : 'text-slate-400'
-                  }`}
-                >
-                  <Edit3 className="w-3.5 h-3.5" />
-                  <span>Form Editor</span>
-                </button>
-                <button
-                  onClick={() => setActiveTab('preview')}
-                  className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold ${
-                    activeTab === 'preview' ? 'bg-slate-800 text-white' : 'text-slate-400'
-                  }`}
-                >
-                  <Eye className="w-3.5 h-3.5" />
-                  <span>Live Preview</span>
-                </button>
-                <button
-                  onClick={() => setActiveTab('guide')}
-                  className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold ${
-                    activeTab === 'guide' ? 'bg-slate-800 text-white' : 'text-slate-400'
-                  }`}
-                >
-                  <HelpCircle className="w-3.5 h-3.5" />
-                  <span>Workflow</span>
-                </button>
-                <button
-                  onClick={() => setActiveTab('security')}
-                  className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold ${
-                    activeTab === 'security' ? 'bg-slate-800 text-white' : 'text-slate-400'
-                  }`}
-                >
-                  <KeyRound className="w-3.5 h-3.5" />
-                  <span>Security</span>
-                </button>
-              </div>
-
-              {/* Action Buttons */}
+            {/* View Mode Tabs */}
+            <div className="flex items-center gap-1 sm:gap-2">
               <button
-                onClick={handleCopy}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
-                  copied ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40' : 'bg-slate-800 text-slate-200 border-slate-700 hover:bg-slate-700'
+                onClick={() => setActiveTab('editor')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                  activeTab === 'editor'
+                    ? 'bg-brand-500/20 text-brand-300 border border-brand-500/40'
+                    : 'text-slate-400 hover:text-white'
                 }`}
               >
-                {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                <span>{copied ? 'Copied!' : 'Copy'}</span>
+                <Edit3 className="w-3.5 h-3.5" />
+                <span>Form Editor</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('preview')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                  activeTab === 'preview'
+                    ? 'bg-brand-500/20 text-brand-300 border border-brand-500/40'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                <Eye className="w-3.5 h-3.5" />
+                <span>Live Preview</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('guide')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                  activeTab === 'guide'
+                    ? 'bg-brand-500/20 text-brand-300 border border-brand-500/40'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                <HelpCircle className="w-3.5 h-3.5" />
+                <span>Body Examples</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('security')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                  activeTab === 'security'
+                    ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                <Sliders className="w-3.5 h-3.5" />
+                <span>Edit About & Settings</span>
+              </button>
+            </div>
+
+            {/* Actions */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleCopy}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:text-white transition-all"
+                title="Copies raw Markdown with frontmatter to clipboard"
+              >
+                {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                <span>{copied ? 'Copied!' : 'Copy Raw'}</span>
               </button>
 
               <button
@@ -415,7 +672,7 @@ ${body}`;
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 
                 {/* Metadata Fields Column */}
-                <div className="lg:col-span-6 space-y-4">
+                <div className="lg:col-span-5 space-y-4">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-brand-400">
                     1. Frontmatter Metadata
                   </h4>
@@ -440,7 +697,7 @@ ${body}`;
                         type="text"
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
-                        placeholder="Market Views, Tech, Strategy..."
+                        placeholder="Market Views, Tech..."
                         className={`w-full px-3.5 py-2 rounded-xl text-xs ${
                           isDark ? 'bg-slate-900 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
                         }`}
@@ -470,7 +727,7 @@ ${body}`;
                           type="text"
                           value={statMetric}
                           onChange={(e) => setStatMetric(e.target.value)}
-                          placeholder="e.g. AUM Monitored, Users"
+                          placeholder="e.g. AUM Monitored"
                           className={`w-full px-3.5 py-2 rounded-xl text-xs ${
                             isDark ? 'bg-slate-900 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
                           }`}
@@ -482,7 +739,7 @@ ${body}`;
                           type="text"
                           value={statValue}
                           onChange={(e) => setStatValue(e.target.value)}
-                          placeholder="e.g. $420M+, +200%"
+                          placeholder="e.g. $420M+"
                           className={`w-full px-3.5 py-2 rounded-xl text-xs ${
                             isDark ? 'bg-slate-900 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
                           }`}
@@ -492,11 +749,19 @@ ${body}`;
                   )}
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-400 mb-1">Cover Image URL</label>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="block text-xs font-semibold text-slate-400">Cover Image URL</label>
+                      <label className="text-[11px] font-bold text-brand-400 hover:text-brand-300 flex items-center gap-1 cursor-pointer">
+                        <Upload className="w-3 h-3" />
+                        <span>Upload File</span>
+                        <input type="file" accept="image/*" onChange={handleCoverImageUpload} className="hidden" />
+                      </label>
+                    </div>
                     <input
                       type="text"
                       value={coverImage}
                       onChange={(e) => setCoverImage(e.target.value)}
+                      placeholder="Paste image URL or click Upload File..."
                       className={`w-full px-3.5 py-2 rounded-xl text-xs font-mono ${
                         isDark ? 'bg-slate-900 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
                       }`}
@@ -530,24 +795,37 @@ ${body}`;
                 </div>
 
                 {/* Markdown Content Column */}
-                <div className="lg:col-span-6 flex flex-col space-y-4">
-                  <div className="flex items-center justify-between">
+                <div className="lg:col-span-7 flex flex-col space-y-3">
+                  <div className="flex items-center justify-between flex-wrap gap-2">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-brand-400">
                       2. Article Body (Markdown)
                     </h4>
-                    <span className="text-[11px] text-slate-500">Supports full GitHub Markdown</span>
+
+                    {/* Clean Image Embed Button */}
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setShowImageEmbedModal(true)}
+                        className="px-3 py-1.5 rounded-xl bg-brand-500/20 text-brand-300 border border-brand-500/40 hover:bg-brand-500/30 transition-all flex items-center gap-1.5 shadow-sm text-xs font-semibold"
+                      >
+                        <ImageIcon className="w-3.5 h-3.5 text-brand-400" />
+                        <span>+ Embed Image at Cursor</span>
+                      </button>
+                    </div>
                   </div>
 
                   <textarea
-                    rows={14}
+                    ref={bodyTextareaRef}
+                    rows={15}
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
+                    placeholder="Write your article in Markdown. Place cursor anywhere in text and click '+ Embed Image at Cursor'..."
                     className={`w-full flex-1 p-4 rounded-2xl text-xs sm:text-sm font-mono leading-relaxed resize-none ${
                       isDark ? 'bg-slate-950 border border-slate-800 text-slate-200' : 'bg-slate-50 border border-slate-300 text-slate-900'
                     }`}
                   />
 
-                  <div className="p-3.5 rounded-xl bg-brand-500/10 border border-brand-500/20 text-xs text-slate-300 flex items-center justify-between">
+                  <div className="p-3 rounded-xl bg-brand-500/10 border border-brand-500/20 text-xs text-slate-300 flex items-center justify-between">
                     <span>Target placement folder: <code className="text-brand-400 font-bold">{targetFolder}</code></span>
                     <button
                       onClick={handleDownload}
@@ -585,75 +863,291 @@ ${body}`;
                 </div>
 
                 <div className="markdown-content">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkGfm, remarkMath]} 
+                    rehypePlugins={[rehypeKatex]}
+                    components={{
+                      img: ({ node, src, alt, ...props }) => (
+                        <MarkdownImage src={src} alt={alt} />
+                      ),
+                      code: ({ node, inline, className, children, ...props }) => {
+                        const match = /language-(\w+)/.exec(className || '');
+                        const language = match ? match[1] : '';
+                        const value = String(children).replace(/\n$/, '');
+                        if (!inline && (language || value.includes('\n'))) {
+                          return <CodeBlock language={language} value={value} />;
+                        }
+                        return <code className={className} {...props}>{children}</code>;
+                      }
+                    }}
+                  >
                     {body}
                   </ReactMarkdown>
                 </div>
               </div>
             )}
 
-            {/* TAB 3: Workflow Guide */}
+            {/* TAB 3: Workflow & Body Examples Guide */}
             {activeTab === 'guide' && (
-              <div className="space-y-6 max-w-3xl mx-auto py-4">
-                <div className="p-6 rounded-2xl bg-brand-500/10 border border-brand-500/30">
-                  <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
+              <div className="space-y-6 max-w-4xl mx-auto py-2">
+                <div className="p-5 rounded-2xl bg-brand-500/10 border border-brand-500/30">
+                  <h3 className="text-base font-bold text-white mb-1 flex items-center gap-2">
                     <Terminal className="w-5 h-5 text-brand-400" />
-                    Admin Markdown Content Flow
+                    Rich Media Markdown Examples & Syntax Guide
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    As an authenticated admin, you can write and export posts directly to your repository folder.
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    Copy and paste these exact syntax patterns into your article body to render math equations, inline images with captions, Python scripts, and architecture diagrams.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800">
-                    <div className="w-8 h-8 rounded-full bg-brand-500/20 text-brand-400 font-bold flex items-center justify-center mb-3">
-                      1
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  
+                  {/* Example 1: Math Formula */}
+                  <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+                    <div className="flex items-center gap-2 text-amber-400 font-bold text-xs uppercase tracking-wider">
+                      <Calculator className="w-4 h-4" /> 1. KaTeX Math Notation
                     </div>
-                    <h4 className="text-sm font-bold text-white mb-1">Create or Edit</h4>
-                    <p className="text-xs text-slate-400 leading-relaxed">
-                      Use the Form Editor to compose your article and metadata.
-                    </p>
+                    <p className="text-[11px] text-slate-400">Inline ($E = mc^2$) or Display Block Equation ($$\\dots$$):</p>
+                    <pre className="p-3 rounded-xl bg-slate-950 text-slate-200 font-mono text-[11px] overflow-x-auto border border-slate-800">
+{`Inline formula: $E = mc^2$
+
+Display equation block:
+$$\\displaystyle Y_{node} = \\sum_{t=1}^{T} \\frac{\\alpha \\cdot \\text{FLOPs}_t - \\beta \\cdot P_{\\grid}(t)}{(1 + r)^t}$$`}
+                    </pre>
                   </div>
 
-                  <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800">
-                    <div className="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center mb-3">
-                      2
+                  {/* Example 2: Inline Image with Caption */}
+                  <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+                    <div className="flex items-center gap-2 text-blue-400 font-bold text-xs uppercase tracking-wider">
+                      <ImageIcon className="w-4 h-4" /> 2. Body Image with Lightbox
                     </div>
-                    <h4 className="text-sm font-bold text-white mb-1">Download & Save</h4>
-                    <p className="text-xs text-slate-400 leading-relaxed">
-                      Click Download and drop into:
-                      <br /><code className="text-[11px] text-brand-400">{targetFolder}</code>
-                    </p>
+                    <p className="text-[11px] text-slate-400">Standard markdown image syntax with custom caption:</p>
+                    <pre className="p-3 rounded-xl bg-slate-950 text-slate-200 font-mono text-[11px] overflow-x-auto border border-slate-800">
+{`![High-density sovereign GPU compute data center colocation](https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80)`}
+                    </pre>
                   </div>
 
-                  <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800">
-                    <div className="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center mb-3">
-                      3
+                  {/* Example 3: Python Script */}
+                  <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+                    <div className="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase tracking-wider">
+                      <Code2 className="w-4 h-4" /> 3. Python Script Snippet
                     </div>
-                    <h4 className="text-sm font-bold text-white mb-1">Instant Sync</h4>
-                    <p className="text-xs text-slate-400 leading-relaxed">
-                      The site automatically updates the article feed on rohitcuriosity.com!
-                    </p>
+                    <p className="text-[11px] text-slate-400">Code block with syntax highlighting & Copy button:</p>
+                    <pre className="p-3 rounded-xl bg-slate-950 text-slate-200 font-mono text-[11px] overflow-x-auto border border-slate-800">
+{`\`\`\`python
+# Short Python Hello World & Compute Telemetry Snippet
+def main():
+    print("Hello World! Welcome to Rohit Curiosity Intelligence Engine.")
+
+if __name__ == "__main__":
+    main()
+\`\`\``}
+                    </pre>
                   </div>
+
+                  {/* Example 4: Mermaid Diagram */}
+                  <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+                    <div className="flex items-center gap-2 text-purple-400 font-bold text-xs uppercase tracking-wider">
+                      <Layers className="w-4 h-4" /> 4. Mermaid Architecture Diagram
+                    </div>
+                    <p className="text-[11px] text-slate-400">Renders live interactive SVG diagrams:</p>
+                    <pre className="p-3 rounded-xl bg-slate-950 text-slate-200 font-mono text-[11px] overflow-x-auto border border-slate-800">
+{`\`\`\`mermaid
+graph TD
+    A[Global Telemetry] --> B(Ingestion Mesh)
+    B --> C[GPU Compute Cluster]
+\`\`\``}
+                    </pre>
+                  </div>
+
                 </div>
               </div>
             )}
 
-            {/* TAB 4: Security & Custom Passkey */}
+            {/* TAB 4: Site Menu Control & Security Passkey */}
             {activeTab === 'security' && (
-              <div className="max-w-xl mx-auto py-6 space-y-6">
-                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800">
-                  <h4 className="text-sm font-bold text-white mb-2 flex items-center gap-2">
+              <div className="max-w-2xl mx-auto py-4 space-y-6">
+                
+                {/* SECTION CONTROL SETTINGS */}
+                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <div>
+                      <h4 className="text-sm font-bold text-white flex items-center gap-2">
+                        <Sliders className="w-4 h-4 text-brand-400" />
+                        Main Menu & Website Section Visibility Controls
+                      </h4>
+                      <p className="text-xs text-slate-400 mt-0.5">
+                        Gradually enable or disable sections displayed on your public website.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                    
+                    {/* About Section Toggle */}
+                    <div 
+                      onClick={() => handleToggleSection('about')}
+                      className={`p-4 rounded-xl border cursor-pointer transition-all flex items-center justify-between ${
+                        sectionConfig.about 
+                          ? 'bg-brand-500/10 border-brand-500/30 text-white' 
+                          : 'bg-slate-950 border-slate-800 text-slate-500'
+                      }`}
+                    >
+                      <div>
+                        <div className="text-xs font-bold">About Me Section</div>
+                        <div className="text-[10px] text-slate-400">Pillars, Journey & Photo</div>
+                      </div>
+                      {sectionConfig.about ? <CheckSquare className="w-5 h-5 text-brand-400" /> : <Square className="w-5 h-5 text-slate-600" />}
+                    </div>
+
+                    {/* Views & Blogs Section Toggle */}
+                    <div 
+                      onClick={() => handleToggleSection('blogs')}
+                      className={`p-4 rounded-xl border cursor-pointer transition-all flex items-center justify-between ${
+                        sectionConfig.blogs 
+                          ? 'bg-brand-500/10 border-brand-500/30 text-white' 
+                          : 'bg-slate-950 border-slate-800 text-slate-500'
+                      }`}
+                    >
+                      <div>
+                        <div className="text-xs font-bold">Views & Blogs Section</div>
+                        <div className="text-[10px] text-slate-400">Market Briefs & Articles</div>
+                      </div>
+                      {sectionConfig.blogs ? <CheckSquare className="w-5 h-5 text-brand-400" /> : <Square className="w-5 h-5 text-slate-600" />}
+                    </div>
+
+                    {/* Portfolio Section Toggle */}
+                    <div 
+                      onClick={() => handleToggleSection('portfolio')}
+                      className={`p-4 rounded-xl border cursor-pointer transition-all flex items-center justify-between ${
+                        sectionConfig.portfolio 
+                          ? 'bg-brand-500/10 border-brand-500/30 text-white' 
+                          : 'bg-slate-950 border-slate-800 text-slate-500'
+                      }`}
+                    >
+                      <div>
+                        <div className="text-xs font-bold">Portfolio Section</div>
+                        <div className="text-[10px] text-slate-400">Venture Cases</div>
+                      </div>
+                      {sectionConfig.portfolio ? <CheckSquare className="w-5 h-5 text-brand-400" /> : <Square className="w-5 h-5 text-slate-600" />}
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* EDIT ABOUT SECTION CONFIGURATION CARD */}
+                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <div>
+                      <h4 className="text-sm font-bold text-white flex items-center gap-2">
+                        <User className="w-4 h-4 text-brand-400" />
+                        Edit About Section Content & 3-Part Layout
+                      </h4>
+                      <p className="text-xs text-slate-400 mt-0.5">
+                        Customize professional photo, mission statement, and profile info displayed on the website.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <div className="flex items-center justify-between mb-1">
+                          <label className="block text-xs font-semibold text-slate-400">
+                            Professional Photo (Left Top)
+                          </label>
+                          <label className="text-[11px] font-bold text-brand-400 hover:text-brand-300 flex items-center gap-1 cursor-pointer">
+                            <Upload className="w-3 h-3" />
+                            <span>Upload Image</span>
+                            <input type="file" accept="image/*" onChange={handleProfileImageUpload} className="hidden" />
+                          </label>
+                        </div>
+                        <input
+                          type="text"
+                          value={aboutConfig.imageUrl || ''}
+                          onChange={(e) => handleUpdateAboutField('imageUrl', e.target.value)}
+                          placeholder="Paste image URL or click Upload Image..."
+                          className={`w-full px-3.5 py-2 rounded-xl text-xs font-mono ${
+                            isDark ? 'bg-slate-950 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
+                          }`}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-400 mb-1">
+                          Full Name & Title
+                        </label>
+                        <input
+                          type="text"
+                          value={aboutConfig.name || ''}
+                          onChange={(e) => handleUpdateAboutField('name', e.target.value)}
+                          placeholder="Rohit Curiosity"
+                          className={`w-full px-3.5 py-2 rounded-xl text-xs ${
+                            isDark ? 'bg-slate-950 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
+                          }`}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-400 mb-1">
+                        Role Title / Headline
+                      </label>
+                      <input
+                        type="text"
+                        value={aboutConfig.roleTitle || ''}
+                        onChange={(e) => handleUpdateAboutField('roleTitle', e.target.value)}
+                        placeholder="Founder & Principal Architect"
+                        className={`w-full px-3.5 py-2 rounded-xl text-xs ${
+                          isDark ? 'bg-slate-950 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
+                        }`}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-400 mb-1">
+                        Mission Title (Left Bottom Card)
+                      </label>
+                      <input
+                        type="text"
+                        value={aboutConfig.missionTitle || ''}
+                        onChange={(e) => handleUpdateAboutField('missionTitle', e.target.value)}
+                        placeholder="Curiosity as a Competitive Moat"
+                        className={`w-full px-3.5 py-2 rounded-xl text-xs ${
+                          isDark ? 'bg-slate-950 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
+                        }`}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-400 mb-1">
+                        Mission & Goal Statement Text (Left Bottom Card)
+                      </label>
+                      <textarea
+                        rows={3}
+                        value={aboutConfig.missionText || ''}
+                        onChange={(e) => handleUpdateAboutField('missionText', e.target.value)}
+                        placeholder="Enter your mission statement paragraph..."
+                        className={`w-full px-3.5 py-2 rounded-xl text-xs leading-relaxed ${
+                          isDark ? 'bg-slate-950 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
+                        }`}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* PASSKEY CHANGE FORM */}
+                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+                  <h4 className="text-sm font-bold text-white flex items-center gap-2">
                     <KeyRound className="w-4 h-4 text-amber-400" />
-                    Change Admin Passkey
+                    Change Admin Master Passkey
                   </h4>
-                  <p className="text-xs text-slate-400 mb-6 leading-relaxed">
+                  <p className="text-xs text-slate-400 leading-relaxed">
                     Set a custom master passcode to secure your Content Studio. This replaces the default <code className="text-amber-400">rohit2026</code>.
                   </p>
 
                   {passcodeSuccess && (
-                    <div className="p-3 mb-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs flex items-center gap-2">
+                    <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs flex items-center gap-2">
                       <Check className="w-4 h-4" />
                       <span>{passcodeSuccess}</span>
                     </div>
@@ -684,11 +1178,101 @@ ${body}`;
                     </button>
                   </form>
                 </div>
+
               </div>
             )}
 
           </div>
 
+        </div>
+      )}
+
+      {/* EMBED IMAGE SUB-MODAL */}
+      {showImageEmbedModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
+          <div className={`relative w-full max-w-lg p-6 rounded-3xl border shadow-2xl ${
+            isDark ? 'bg-[#0B0F17] border-slate-800 text-white' : 'bg-white border-slate-200 text-slate-900'
+          }`}>
+            <div className="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+              <h3 className="text-base font-bold flex items-center gap-2">
+                <ImageIcon className="w-5 h-5 text-brand-400" />
+                Embed Image at Cursor Position
+              </h3>
+              <button 
+                type="button" 
+                onClick={() => setShowImageEmbedModal(false)} 
+                className="p-1 rounded-lg hover:bg-slate-800 text-slate-400"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-400 mb-1.5">
+                  1. Select Photo File from Device OR Paste URL
+                </label>
+                <div className="flex items-center gap-2">
+                  <label className="px-3.5 py-2 rounded-xl bg-brand-500/20 text-brand-300 border border-brand-500/40 hover:bg-brand-500/30 text-xs font-bold cursor-pointer flex items-center gap-1.5 flex-shrink-0">
+                    <Upload className="w-4 h-4 text-brand-400" />
+                    <span>Upload File</span>
+                    <input type="file" accept="image/*" onChange={handleEmbedModalFileUpload} className="hidden" />
+                  </label>
+                  <input
+                    type="text"
+                    value={embedImageUrl}
+                    onChange={(e) => setEmbedImageUrl(e.target.value)}
+                    placeholder="https://images.unsplash.com/..."
+                    className={`flex-1 px-3.5 py-2 rounded-xl text-xs font-mono ${
+                      isDark ? 'bg-slate-950 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
+                    }`}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-400 mb-1.5">
+                  2. Image Caption / Subtitle
+                </label>
+                <input
+                  type="text"
+                  value={embedImageCaption}
+                  onChange={(e) => setEmbedImageCaption(e.target.value)}
+                  placeholder="e.g. Figure 1: High-density GPU cluster interconnect"
+                  className={`w-full px-3.5 py-2 rounded-xl text-xs ${
+                    isDark ? 'bg-slate-950 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
+                  }`}
+                />
+              </div>
+
+              {/* Live Preview Box */}
+              {embedImageUrl && (
+                <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col items-center">
+                  <span className="text-[10px] uppercase font-bold text-brand-400 mb-2">Live Image Preview</span>
+                  <img src={embedImageUrl} alt="Preview" className="max-h-48 object-contain rounded-xl border border-slate-800" />
+                  {embedImageCaption && <span className="text-[11px] text-slate-400 italic mt-2 text-center">{embedImageCaption}</span>}
+                </div>
+              )}
+
+              <div className="flex items-center justify-end gap-3 pt-2 border-t border-slate-800/80">
+                <button
+                  type="button"
+                  onClick={() => setShowImageEmbedModal(false)}
+                  className="px-4 py-2 rounded-xl text-xs font-semibold border border-slate-800 text-slate-400 hover:text-white"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={handleInsertEmbeddedImage}
+                  disabled={!embedImageUrl.trim()}
+                  className="px-5 py-2 rounded-xl text-xs font-bold bg-brand-500 hover:bg-brand-400 text-white shadow-glow-brand disabled:opacity-50"
+                >
+                  Insert Image at Cursor
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
