@@ -1,4 +1,5 @@
 import yaml from 'js-yaml';
+import { resolveMediaUrl, compileMarkdownWithMedia } from './mediaStore';
 
 /**
  * Safe date parsing functions that never throw RangeError
@@ -316,7 +317,7 @@ export function getAllBlogs() {
           date: safeIsoDate(frontmatter.date, '2026-08-01'),
           formattedDate: safeFormatDate(frontmatter.date, 'Aug 2026'),
           excerpt: frontmatter.excerpt || (content ? content.slice(0, 150) + '...' : ''),
-          coverImage: frontmatter.coverImage || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+          coverImage: resolveMediaUrl(frontmatter.coverImage || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80'),
           category: frontmatter.category || 'Market Views',
           tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : (frontmatter.tags ? [frontmatter.tags] : ['Strategy', 'Analysis']),
           author: frontmatter.author || 'Rohit Curiosity',
@@ -334,11 +335,16 @@ export function getAllBlogs() {
         const customPosts = JSON.parse(savedCustom);
         if (Array.isArray(customPosts)) {
           customPosts.forEach(cp => {
+            const compiledPost = {
+              ...cp,
+              coverImage: resolveMediaUrl(cp.coverImage),
+              content: cp.content || ''
+            };
             const idx = blogs.findIndex(b => b.slug === cp.slug);
             if (idx >= 0) {
-              blogs[idx] = { ...blogs[idx], ...cp };
+              blogs[idx] = { ...blogs[idx], ...compiledPost };
             } else {
-              blogs.unshift(cp);
+              blogs.unshift(compiledPost);
             }
           });
         }

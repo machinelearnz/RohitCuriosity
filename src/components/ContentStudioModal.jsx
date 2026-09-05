@@ -27,7 +27,13 @@ import {
   CheckSquare,
   Square,
   User,
-  Upload
+  Upload,
+  Mail,
+  Trash2,
+  Inbox,
+  Search,
+  MessageSquare,
+  CheckCircle2
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -35,7 +41,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { saveMediaItem, resolveMediaUrl } from '../utils/mediaStore';
+import { saveMediaItem, saveMediaItemAsync, uploadImageToServer, resolveMediaUrl, compileMarkdownWithMedia } from '../utils/mediaStore';
 
 function CodeBlock({ language, value }) {
   const [copiedCode, setCopiedCode] = useState(false);
@@ -93,7 +99,18 @@ function MarkdownImage({ src, alt }) {
   const [hasError, setHasError] = useState(false);
   const resolvedUrl = resolveMediaUrl(src);
 
-  if (hasError || !resolvedUrl) {
+  useEffect(() => {
+    setHasError(false);
+  }, [src, resolvedUrl]);
+
+  const handleImageError = () => {
+    setHasError(true);
+  };
+
+  // If src starts with media: and resolvedUrl is empty or unchanged, return fallback card
+  const isUnresolvedMedia = typeof src === 'string' && src.startsWith('media:') && (!resolvedUrl || resolvedUrl === src);
+
+  if (hasError || !resolvedUrl || isUnresolvedMedia) {
     return (
       <div className="my-6 p-6 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col items-center justify-center text-center shadow-lg">
         <ImageIcon className="w-8 h-8 text-brand-400 mb-2" />
@@ -108,7 +125,7 @@ function MarkdownImage({ src, alt }) {
       <img
         src={resolvedUrl}
         alt={alt || 'Blog illustration'}
-        onError={() => setHasError(true)}
+        onError={handleImageError}
         className="max-w-full max-h-[480px] object-contain rounded-2xl border border-slate-800 shadow-xl"
         loading="lazy"
       />
@@ -173,37 +190,106 @@ export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminSta
     reader.readAsDataURL(file);
   };
 
-  const handleCoverImageUpload = (e) => {
+  const handleCoverImageUpload = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (evt) => {
-      const dataUrl = evt.target?.result;
-      if (dataUrl) {
-        setCoverImage(dataUrl);
-      }
-    };
-    reader.readAsDataURL(file);
+    const serverPath = await saveMediaItemAsync(file);
+    if (serverPath) {
+      setCoverImage(serverPath);
+    }
   };
 
-  const handleBodyImageUpload = (e) => {
+  const handleBodyImageUpload = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (evt) => {
-      const dataUrl = evt.target?.result;
-      if (dataUrl) {
-        const caption = prompt('Enter a caption for this uploaded image:', file.name.replace(/\.[^/.]+$/, '')) || 'Uploaded article visual';
-        insertTemplate(`![${caption}](${dataUrl})`);
-      }
-    };
-    reader.readAsDataURL(file);
+    const caption = prompt('Enter a caption for this uploaded image:', file.name.replace(/\.[^/.]+$/, '')) || 'Uploaded article visual';
+    const mediaRef = await saveMediaItemAsync(file);
+    if (mediaRef) {
+      insertTemplate(`![${caption}](${mediaRef})`);
+    }
   };
 
   // Studio State
   const [contentType, setContentType] = useState('blog'); // 'blog' or 'portfolio'
-  const [activeTab, setActiveTab] = useState('editor'); // 'editor', 'preview', 'guide', 'security'
+  const [activeTab, setActiveTab] = useState('editor'); // 'editor', 'preview', 'inbox', 'guide', 'security'
   const [copied, setCopied] = useState(false);
+
+  // Contact Messages Inbox state
+  const [contactMessages, setContactMessages] = useState(() => {
+    try {
+      const saved = localStorage.getItem('rohit_contact_messages');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  });
+
+  const [inboxSearch, setInboxSearch] = useState('');
+  const [inboxFilter, setInboxFilter] = useState('all'); // 'all', 'unread', 'read'
+
+  // Refresh inbox messages when tab opens or localStorage changes
+  useEffect(() => {
+    const loadInbox = () => {
+      try {
+        const saved = localStorage.getItem('rohit_contact_messages');
+        if (saved) setContactMessages(JSON.parse(saved));
+      } catch (e) {}
+    };
+    loadInbox();
+    window.addEventListener('storage', loadInbox);
+    return () => window.removeEventListener('storage', loadInbox);
+  }, [activeTab]);
+
+  const handleToggleMessageRead = (msgId) => {
+    const updated = contactMessages.map(m => {
+      if (m.id === msgId) {
+        return { ...m, status: m.status === 'read' ? 'unread' : 'read' };
+      }
+      return m;
+    });
+    setContactMessages(updated);
+    localStorage.setItem('rohit_contact_messages', JSON.stringify(updated));
+  };
+
+  const handleDeleteMessage = (msgId) => {
+    if (!confirm('Are you sure you want to delete this transmission message?')) return;
+    const updated = contactMessages.filter(m => m.id !== msgId);
+    setContactMessages(updated);
+    localStorage.setItem('rohit_contact_messages', JSON.stringify(updated));
+  };
+
+  const handleClearAllMessages = () => {
+    if (!confirm('Are you sure you want to clear ALL incoming transmissions?')) return;
+    setContactMessages([]);
+    localStorage.setItem('rohit_contact_messages', JSON.stringify([]));
+  };
+
+  const handleExportMessages = () => {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(contactMessages, null, 2));
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", `transmissions_inbox_${Date.now()}.json`);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+  };
+
+  const unreadCount = contactMessages.filter(m => m.status === 'unread').length;
+
+  const filteredMessages = contactMessages.filter(m => {
+    if (inboxFilter === 'unread' && m.status !== 'unread') return false;
+    if (inboxFilter === 'read' && m.status !== 'read') return false;
+    if (inboxSearch.trim()) {
+      const q = inboxSearch.toLowerCase();
+      const matchName = (m.name || '').toLowerCase().includes(q);
+      const matchEmail = (m.email || '').toLowerCase().includes(q);
+      const matchTx = (m.txId || '').toLowerCase().includes(q);
+      const matchBody = (m.message || '').toLowerCase().includes(q);
+      const matchScope = (m.inquiryType || '').toLowerCase().includes(q);
+      return matchName || matchEmail || matchTx || matchBody || matchScope;
+    }
+    return true;
+  });
 
   // Body Textarea Ref & Image Inserter Modal state
   const bodyTextareaRef = useRef(null);
@@ -211,26 +297,34 @@ export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminSta
   const [embedImageUrl, setEmbedImageUrl] = useState('');
   const [embedImageCaption, setEmbedImageCaption] = useState('');
 
+  // Store the raw File so we can POST it to the server on insert
+  const [embedImageFile, setEmbedImageFile] = useState(null);
+
   const handleEmbedModalFileUpload = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (evt) => {
-      const dataUrl = evt.target?.result;
-      if (dataUrl) {
-        setEmbedImageUrl(dataUrl);
-        if (!embedImageCaption) {
-          setEmbedImageCaption(file.name.replace(/\.[^/.]+$/, ''));
-        }
-      }
-    };
-    reader.readAsDataURL(file);
+    setEmbedImageFile(file);
+    // Generate a local preview URL for the modal thumbnail
+    const previewUrl = URL.createObjectURL(file);
+    setEmbedImageUrl(previewUrl);
+    if (!embedImageCaption) {
+      setEmbedImageCaption(file.name.replace(/\.[^/.]+$/, ''));
+    }
   };
 
-  const handleInsertEmbeddedImage = () => {
-    if (!embedImageUrl.trim()) return;
+  const handleInsertEmbeddedImage = async () => {
+    if (!embedImageFile && !embedImageUrl.trim()) return;
     const caption = embedImageCaption.trim() || 'Article visual';
-    const mediaRef = saveMediaItem(embedImageUrl.trim());
+
+    // Upload file to server, get clean static path
+    let mediaRef;
+    if (embedImageFile) {
+      mediaRef = await saveMediaItemAsync(embedImageFile);
+    } else {
+      // Fallback for pasted URLs (not Base64)
+      mediaRef = embedImageUrl.trim();
+    }
+
     const imageMarkdown = `![${caption}](${mediaRef})`;
 
     const textarea = bodyTextareaRef.current;
@@ -254,9 +348,15 @@ export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminSta
       setBody(prev => prev + `\n\n${imageMarkdown}\n\n`);
     }
 
+    // Revoke the object URL to free memory
+    if (embedImageUrl.startsWith('blob:')) {
+      URL.revokeObjectURL(embedImageUrl);
+    }
+
     setShowImageEmbedModal(false);
     setEmbedImageUrl('');
     setEmbedImageCaption('');
+    setEmbedImageFile(null);
   };
 
   // Form State
@@ -407,8 +507,45 @@ summary: "${excerpt.replace(/"/g, '\\"')}"
 ${body}`;
   }
 
+  const getCompiledMarkdown = () => {
+    return compileMarkdownWithMedia(fullMarkdown);
+  };
+
   const handleDownload = () => {
-    const blob = new Blob([fullMarkdown], { type: 'text/markdown;charset=utf-8' });
+    const markdownToExport = getCompiledMarkdown();
+
+    // Auto-save to localStorage custom posts so website immediately updates with full image data
+    try {
+      const savedCustom = localStorage.getItem('rohit_custom_blogs');
+      const customPosts = savedCustom ? JSON.parse(savedCustom) : [];
+      const compiledBody = compileMarkdownWithMedia(body);
+      const compiledCover = resolveMediaUrl(coverImage);
+
+      const newPostObj = {
+        slug,
+        title,
+        date: dateStr,
+        formattedDate: dateStr,
+        category,
+        author,
+        readTime,
+        coverImage: compiledCover,
+        tags: formattedTags,
+        excerpt,
+        content: compiledBody
+      };
+      const idx = customPosts.findIndex(p => p.slug === slug);
+      if (idx >= 0) {
+        customPosts[idx] = newPostObj;
+      } else {
+        customPosts.unshift(newPostObj);
+      }
+      localStorage.setItem('rohit_custom_blogs', JSON.stringify(customPosts));
+    } catch (e) {
+      console.warn('LocalStorage auto-save warning:', e);
+    }
+
+    const blob = new Blob([markdownToExport], { type: 'text/markdown;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
@@ -420,7 +557,8 @@ ${body}`;
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(fullMarkdown);
+    const markdownToExport = getCompiledMarkdown();
+    navigator.clipboard.writeText(markdownToExport);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -482,7 +620,7 @@ ${body}`;
                     setPasskeyInput(e.target.value);
                     setAuthError('');
                   }}
-                  placeholder="Enter Admin Passkey (default: rohit2026)..."
+                  placeholder="Enter Admin Passkey..."
                   className={`w-full pl-4 pr-11 py-3 rounded-xl text-sm transition-all outline-none focus:ring-2 focus:ring-brand-400 ${
                     isDark ? 'bg-slate-900 border border-slate-800 text-white placeholder-slate-500' : 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400'
                   }`}
@@ -615,6 +753,23 @@ ${body}`;
               >
                 <Eye className="w-3.5 h-3.5" />
                 <span>Live Preview</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('inbox')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all relative ${
+                  activeTab === 'inbox'
+                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                <Mail className="w-3.5 h-3.5" />
+                <span>Inbox</span>
+                {unreadCount > 0 && (
+                  <span className="px-1.5 py-0.2 rounded-full text-[10px] font-black bg-rose-500 text-white animate-pulse">
+                    {unreadCount}
+                  </span>
+                )}
               </button>
 
               <button
@@ -844,6 +999,18 @@ ${body}`;
               <div className={`p-8 rounded-3xl border ${
                 isDark ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-200'
               }`}>
+                {/* Header Cover Image */}
+                {coverImage && (
+                  <div className="relative h-64 sm:h-80 mb-6 rounded-2xl overflow-hidden shadow-lg border border-slate-800">
+                    <img
+                      src={resolveMediaUrl(coverImage)}
+                      alt={title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F17] via-transparent to-transparent opacity-80 pointer-events-none" />
+                  </div>
+                )}
+
                 <div className="mb-6">
                   <div className="flex items-center gap-2 text-xs text-slate-400 mb-2">
                     <span className="px-2.5 py-0.5 rounded bg-brand-500/20 text-brand-400 font-bold uppercase">{category}</span>
@@ -866,6 +1033,13 @@ ${body}`;
                   <ReactMarkdown 
                     remarkPlugins={[remarkGfm, remarkMath]} 
                     rehypePlugins={[rehypeKatex]}
+                    urlTransform={(url) => {
+                      // Allow data:image/ URIs, standard protocols, and relative paths
+                      if (url.startsWith('data:image/')) return url;
+                      if (url.startsWith('/')) return url;
+                      if (url.startsWith('http://') || url.startsWith('https://')) return url;
+                      return url;
+                    }}
                     components={{
                       img: ({ node, src, alt, ...props }) => (
                         <MarkdownImage src={src} alt={alt} />
@@ -884,6 +1058,191 @@ ${body}`;
                     {body}
                   </ReactMarkdown>
                 </div>
+              </div>
+            )}
+
+            {/* TAB: Incoming Transmissions Inbox */}
+            {activeTab === 'inbox' && (
+              <div className="space-y-6 max-w-5xl mx-auto py-2">
+                
+                {/* Inbox Control Header */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-2xl bg-slate-900 border border-slate-800">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-base font-bold text-white flex items-center gap-2">
+                        <Inbox className="w-5 h-5 text-emerald-400" />
+                        Transmission Inbox
+                      </h3>
+                      <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                        {contactMessages.length} Messages ({unreadCount} unread)
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Direct inquiries submitted through rohitcuriosity.com contact portal.
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {contactMessages.length > 0 && (
+                      <>
+                        <button
+                          onClick={handleExportMessages}
+                          className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white border border-slate-700 flex items-center gap-1.5"
+                        >
+                          <Download className="w-3.5 h-3.5" />
+                          <span>Export JSON</span>
+                        </button>
+
+                        <button
+                          onClick={handleClearAllMessages}
+                          className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 border border-rose-500/30 flex items-center gap-1.5"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                          <span>Clear Inbox</span>
+                        </button>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {/* Filter and Search Bar */}
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-950 border border-slate-800 text-xs">
+                    <button
+                      onClick={() => setInboxFilter('all')}
+                      className={`px-3 py-1 rounded-lg font-semibold transition-all ${
+                        inboxFilter === 'all' ? 'bg-brand-500 text-white' : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      All ({contactMessages.length})
+                    </button>
+                    <button
+                      onClick={() => setInboxFilter('unread')}
+                      className={`px-3 py-1 rounded-lg font-semibold transition-all ${
+                        inboxFilter === 'unread' ? 'bg-rose-500 text-white' : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      Unread ({unreadCount})
+                    </button>
+                    <button
+                      onClick={() => setInboxFilter('read')}
+                      className={`px-3 py-1 rounded-lg font-semibold transition-all ${
+                        inboxFilter === 'read' ? 'bg-slate-800 text-white' : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      Read ({contactMessages.length - unreadCount})
+                    </button>
+                  </div>
+
+                  <div className="relative w-full sm:w-64">
+                    <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="text"
+                      value={inboxSearch}
+                      onChange={(e) => setInboxSearch(e.target.value)}
+                      placeholder="Search sender, email, scope..."
+                      className={`w-full pl-9 pr-3.5 py-1.5 rounded-xl text-xs outline-none ${
+                        isDark ? 'bg-slate-950 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
+                      }`}
+                    />
+                  </div>
+                </div>
+
+                {/* Message Cards List */}
+                {filteredMessages.length === 0 ? (
+                  <div className="py-16 text-center rounded-2xl bg-slate-900/50 border border-slate-800 space-y-2">
+                    <Mail className="w-10 h-10 text-slate-600 mx-auto" />
+                    <h4 className="text-sm font-bold text-slate-300">No Messages in Inbox</h4>
+                    <p className="text-xs text-slate-500">
+                      {inboxSearch ? 'No transmissions match your search query.' : 'Incoming contact form submissions will appear here.'}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {filteredMessages.map((msg) => {
+                      const isUnread = msg.status === 'unread';
+                      const replyMailto = `mailto:${msg.email}?subject=${encodeURIComponent(`Re: [${msg.txId || 'Transmission'}] ${msg.inquiryType || 'Inquiry'}`)}&body=${encodeURIComponent(`Hi ${msg.name},\n\nThank you for reaching out regarding your ${msg.inquiryType} briefing.\n\n---\nOriginal Message from ${msg.name} (${msg.email}):\n"${msg.message}"`)}`;
+
+                      return (
+                        <div
+                          key={msg.id}
+                          className={`p-5 rounded-2xl border transition-all space-y-3 ${
+                            isUnread
+                              ? 'bg-slate-900 border-brand-500/40 shadow-md'
+                              : 'bg-slate-950/80 border-slate-800/80 opacity-90'
+                          }`}
+                        >
+                          <div className="flex flex-wrap items-start justify-between gap-2 border-b border-slate-800/60 pb-3">
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <span className={`w-2 h-2 rounded-full ${isUnread ? 'bg-emerald-400 animate-pulse' : 'bg-slate-600'}`} />
+                                <h4 className="text-sm font-bold text-white flex items-center gap-2">
+                                  {msg.name}
+                                </h4>
+                                <span className="text-xs text-brand-400 font-mono">&lt;{msg.email}&gt;</span>
+                              </div>
+                              <div className="flex items-center gap-2 mt-1 text-[11px] text-slate-400">
+                                <span className="px-2 py-0.5 rounded bg-brand-500/20 text-brand-300 font-medium">
+                                  {msg.inquiryType || 'General Inquiry'}
+                                </span>
+                                {msg.budget && (
+                                  <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-300">
+                                    Tier: {msg.budget}
+                                  </span>
+                                )}
+                                <span>•</span>
+                                <span>{msg.timestamp ? new Date(msg.timestamp).toLocaleString() : 'Recent'}</span>
+                              </div>
+                            </div>
+
+                            <div className="flex items-center gap-2">
+                              {msg.txId && (
+                                <span className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700">
+                                  {msg.txId}
+                                </span>
+                              )}
+                              <button
+                                onClick={() => handleToggleMessageRead(msg.id)}
+                                className={`px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all ${
+                                  isUnread
+                                    ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30 hover:bg-emerald-500/30'
+                                    : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-white'
+                                }`}
+                              >
+                                {isUnread ? 'Mark Read' : 'Mark Unread'}
+                              </button>
+                            </div>
+                          </div>
+
+                          {/* Message Body */}
+                          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800/80 text-xs sm:text-sm text-slate-200 leading-relaxed font-sans whitespace-pre-wrap">
+                            {msg.message}
+                          </div>
+
+                          {/* Message Action Footer */}
+                          <div className="flex items-center justify-between pt-1 text-xs">
+                            <a
+                              href={replyMailto}
+                              className="px-3.5 py-1.5 rounded-xl bg-brand-500 hover:bg-brand-400 text-white font-bold transition-all flex items-center gap-1.5 shadow-sm"
+                            >
+                              <MessageSquare className="w-3.5 h-3.5" />
+                              <span>Reply via Email</span>
+                            </a>
+
+                            <button
+                              onClick={() => handleDeleteMessage(msg.id)}
+                              className="p-1.5 rounded-lg text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 transition-all"
+                              title="Delete message"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
               </div>
             )}
 
@@ -1143,7 +1502,7 @@ graph TD
                     Change Admin Master Passkey
                   </h4>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    Set a custom master passcode to secure your Content Studio. This replaces the default <code className="text-amber-400">rohit2026</code>.
+                    Set a custom master passcode to secure your Content Studio.
                   </p>
 
                   {passcodeSuccess && (

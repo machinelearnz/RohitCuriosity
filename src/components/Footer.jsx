@@ -37,7 +37,7 @@ export default function Footer({ isDark, onOpenStudio }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-14">
           
           {/* Brand Col */}
-          <div className="lg:col-span-5 space-y-4">
+          <div className="lg:col-span-7 space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-amber-500 p-0.5">
                 <div className={`w-full h-full rounded-[10px] flex items-center justify-center font-black text-xs ${
@@ -50,19 +50,14 @@ export default function Footer({ isDark, onOpenStudio }) {
                 Rohit <span className="text-brand-400">Curiosity</span>
               </span>
             </div>
-            <p className="text-xs sm:text-sm leading-relaxed max-w-sm">
+            <p className="text-xs sm:text-sm leading-relaxed max-w-md">
               Navigating macroeconomic shifts, sovereign compute frontiers, and venture systems at <span className="text-slate-200 font-mono">rohitcuriosity.com</span>.
             </p>
-            <div className="flex items-center gap-3 pt-2">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-mono bg-brand-500/10 text-brand-400 border border-brand-500/20">
-                <Sparkles className="w-3 h-3 text-amber-400" />
-                <span>Zero-Code Markdown Architecture</span>
-              </span>
-            </div>
+
           </div>
 
           {/* Quick Links */}
-          <div className="lg:col-span-3 space-y-3">
+          <div className="lg:col-span-5 space-y-3 lg:pl-12">
             <h4 className={`text-xs font-bold uppercase tracking-wider ${isDark ? 'text-white' : 'text-slate-900'}`}>
               Navigation
             </h4>
@@ -77,42 +72,6 @@ export default function Footer({ isDark, onOpenStudio }) {
                 </button>
               </li>
             </ul>
-          </div>
-
-          {/* Newsletter Subscribe */}
-          <div className="lg:col-span-4 space-y-3">
-            <h4 className={`text-xs font-bold uppercase tracking-wider ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              Intelligence Dispatch
-            </h4>
-            <p className="text-xs leading-relaxed">
-              Get notified whenever a new market brief or venture case study is published on rohitcuriosity.com.
-            </p>
-
-            <form onSubmit={handleSubscribe} className="space-y-2">
-              <div className="flex items-center gap-2">
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@domain.com"
-                  className={`flex-1 px-3.5 py-2 rounded-xl text-xs outline-none focus:ring-2 focus:ring-brand-400 ${
-                    isDark ? 'bg-slate-900 border border-slate-800 text-white' : 'bg-white border border-slate-300 text-slate-900'
-                  }`}
-                />
-                <button
-                  type="submit"
-                  className="px-4 py-2 rounded-xl text-xs font-semibold bg-brand-500 hover:bg-brand-400 text-white transition-all shadow-glow-brand flex-shrink-0"
-                >
-                  {subscribed ? <Check className="w-4 h-4" /> : 'Subscribe'}
-                </button>
-              </div>
-              {subscribed && (
-                <p className="text-[11px] text-emerald-400 font-medium animate-fadeIn">
-                  ✓ Successfully subscribed to the dispatch list!
-                </p>
-              )}
-            </form>
           </div>
 
         </div>

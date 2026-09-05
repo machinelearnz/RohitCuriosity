@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
+// import HeroSection from './components/HeroSection'; // Temporarily removed – landing page disabled
 import AboutSection from './components/AboutSection';
 import BlogSection from './components/BlogSection';
 import PortfolioSection from './components/PortfolioSection';
@@ -160,14 +160,7 @@ export default function App() {
 
       {/* Main Content Sections */}
       <main>
-        <HeroSection 
-          isDark={isDark} 
-          onOpenStudio={() => setIsStudioOpen(true)}
-          blogCount={blogs.length}
-          portfolioCount={portfolio.length}
-          sections={sections}
-        />
-        
+
         {sections.about && (
           <AboutSection 
             isDark={isDark} 

@@ -32,7 +32,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import mermaid from 'mermaid';
 import confetti from 'canvas-confetti';
-import { resolveMediaUrl } from '../utils/mediaStore';
+import { resolveMediaUrl, compileMarkdownWithMedia } from '../utils/mediaStore';
 
 /**
  * Robust Markdown Image component with Error Handling & Fallback
@@ -41,7 +41,17 @@ function MarkdownImage({ src, alt, onZoom }) {
   const [hasError, setHasError] = useState(false);
   const resolvedUrl = resolveMediaUrl(src);
 
-  if (hasError || !resolvedUrl) {
+  useEffect(() => {
+    setHasError(false);
+  }, [src, resolvedUrl]);
+
+  const handleImageError = () => {
+    setHasError(true);
+  };
+
+  const isUnresolvedMedia = typeof src === 'string' && src.startsWith('media:') && (!resolvedUrl || resolvedUrl === src);
+
+  if (hasError || !resolvedUrl || isUnresolvedMedia) {
     return (
       <div className="my-6 p-6 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col items-center justify-center text-center shadow-lg">
         <ImageIcon className="w-8 h-8 text-brand-400 mb-2" />
@@ -56,7 +66,7 @@ function MarkdownImage({ src, alt, onZoom }) {
       <img
         src={resolvedUrl}
         alt={alt || 'Blog illustration'}
-        onError={() => setHasError(true)}
+        onError={handleImageError}
         onClick={() => onZoom && onZoom({ src: resolvedUrl, caption: alt })}
         className="max-w-full max-h-[500px] object-contain rounded-2xl border border-slate-800 shadow-xl cursor-pointer transition-transform hover:scale-[1.01]"
         loading="lazy"
@@ -419,10 +429,10 @@ ${canonicalUrl}`;
           {item.coverImage && (
             <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden shadow-lg group">
               <img
-                src={item.coverImage}
+                src={resolveMediaUrl(item.coverImage)}
                 alt={item.title}
                 className="w-full h-full object-cover cursor-zoom-in transition-transform duration-500 group-hover:scale-105"
-                onClick={() => setLightboxImage({ src: item.coverImage, caption: item.title })}
+                onClick={() => setLightboxImage({ src: resolveMediaUrl(item.coverImage), caption: item.title })}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F17] via-transparent to-transparent opacity-80 pointer-events-none" />
               
@@ -517,6 +527,13 @@ ${canonicalUrl}`;
             <ReactMarkdown
               remarkPlugins={[remarkGfm, remarkMath]}
               rehypePlugins={[rehypeKatex]}
+              urlTransform={(url) => {
+                // Allow data:image/ URIs, standard protocols, and relative paths
+                if (url.startsWith('data:image/')) return url;
+                if (url.startsWith('/')) return url;
+                if (url.startsWith('http://') || url.startsWith('https://')) return url;
+                return url;
+              }}
               components={{
                 // Custom Image component with Responsive Sizing, Error Fallback, Lightbox, and Subtle Caption
                 img: ({ node, src, alt, ...props }) => (

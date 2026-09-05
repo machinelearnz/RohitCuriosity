@@ -93,9 +93,7 @@ export default function BlogSection({ blogs = [], onSelectBlog, onOpenStudio, is
           }`}>
             Perspectives from the <span className="text-brand-400">Frontier</span>
           </h2>
-          <p className={`text-sm sm:text-base mt-2 max-w-xl ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-            Markdown-driven intelligence briefings featuring math notation, rich code blocks, interactive charts, and cross-posting tools.
-          </p>
+
         </div>
 
         {/* Search & Category / Date Filter Toolbar */}
