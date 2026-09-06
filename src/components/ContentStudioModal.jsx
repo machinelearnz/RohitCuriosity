@@ -545,28 +545,17 @@ if __name__ == "__main__":
   };
 
   // Handle passkey verification
-  const storedPasscode = localStorage.getItem('rohit_admin_passcode');
-  const isFirstTimeSetup = !storedPasscode;
-
   const handleVerifyPasskey = (e) => {
     e.preventDefault();
     
-    if (isFirstTimeSetup) {
-      // First-time setup: save the entered passkey as the new admin password
-      if (passkeyInput.trim().length < 4) {
-        setAuthError('Passkey must be at least 4 characters long.');
-        return;
-      }
-      localStorage.setItem('rohit_admin_passcode', passkeyInput.trim());
-      setIsAdminAuthenticated(true);
-      localStorage.setItem('rohit_admin_session', 'true');
-      setAuthError('');
-      setPasskeyInput('');
-      if (onAdminStatusChange) onAdminStatusChange(true);
-      return;
-    }
+    // Master passkey from environment variable or siteConfig
+    const masterPasscode = import.meta.env.VITE_ADMIN_PASSCODE || SITE_CONFIG.adminPasscode || 'rohit2026';
+    const localCustomPasscode = localStorage.getItem('rohit_admin_passcode');
+    const inputClean = passkeyInput.trim();
 
-    if (passkeyInput.trim() === storedPasscode) {
+    const isValid = (localCustomPasscode && inputClean === localCustomPasscode) || (inputClean === masterPasscode);
+
+    if (isValid) {
       setIsAdminAuthenticated(true);
       localStorage.setItem('rohit_admin_session', 'true');
       setAuthError('');
@@ -735,14 +724,11 @@ ${body}`;
             </div>
 
             <h3 className={`text-2xl font-extrabold tracking-tight mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              {isFirstTimeSetup ? 'Set Up Admin Access' : 'Content Studio Authorization'}
+              Content Studio Authorization
             </h3>
             
             <p className={`text-xs leading-relaxed mb-6 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-              {isFirstTimeSetup 
-                ? 'No admin passkey has been set yet. Create a passkey (minimum 4 characters) to secure your Content Studio.'
-                : <>Creating and modifying content is restricted to the administrator of <span className="font-semibold text-brand-400">rohitcuriosity.com</span>.</>
-              }
+              Creating and modifying content is strictly restricted to the administrator of <span className="font-semibold text-brand-400">rohitcuriosity.com</span>.
             </p>
 
             {authError && (
@@ -763,7 +749,7 @@ ${body}`;
                     setPasskeyInput(e.target.value);
                     setAuthError('');
                   }}
-                  placeholder={isFirstTimeSetup ? 'Create a new Admin Passkey...' : 'Enter Admin Passkey...'}
+                  placeholder="Enter Admin Passkey..."
                   className={`w-full pl-4 pr-11 py-3 rounded-xl text-sm transition-all outline-none focus:ring-2 focus:ring-brand-400 ${
                     isDark ? 'bg-slate-900 border border-slate-800 text-white placeholder-slate-500' : 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400'
                   }`}
@@ -782,12 +768,12 @@ ${body}`;
                 className="w-full py-3 rounded-xl text-sm font-bold bg-brand-500 hover:bg-brand-400 text-white shadow-glow-brand transition-all flex items-center justify-center gap-2"
               >
                 <Unlock className="w-4 h-4" />
-                <span>{isFirstTimeSetup ? 'Set Passkey & Unlock Studio' : 'Authorize & Unlock Studio'}</span>
+                <span>Authorize & Unlock Studio</span>
               </button>
             </form>
 
             <p className="text-[11px] text-slate-500 mt-4">
-              Tip: Passkey is stored securely in your browser's local state.
+              🔒 Protected portal for site administrator.
             </p>
           </div>
         </div>

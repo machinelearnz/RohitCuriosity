@@ -66,11 +66,6 @@ export default function Footer({ isDark, onOpenStudio, sections = { about: true,
               {sections.blogs && <li><a href="#blogs" className="hover:text-brand-400 transition-colors">Market Views & Insights</a></li>}
               {sections.portfolio && <li><a href="#portfolio" className="hover:text-brand-400 transition-colors">Portfolio & Ventures</a></li>}
               {sections.contact && <li><a href="#contact" className="hover:text-brand-400 transition-colors">Direct Inquiries</a></li>}
-              <li className="pt-1">
-                <button onClick={onOpenStudio} className="text-slate-500 hover:text-amber-400 transition-colors flex items-center gap-1 text-[11px]">
-                  <span>🔒 Admin Portal</span>
-                </button>
-              </li>
             </ul>
           </div>
 

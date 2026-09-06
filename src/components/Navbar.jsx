@@ -222,17 +222,6 @@ export default function Navbar({ isDark, setIsDark, onOpenStudio, isAdmin, secti
           })}
 
           <div className="pt-3 border-t border-slate-800/60 flex flex-col gap-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenStudio();
-              }}
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-200 border border-slate-700"
-            >
-              <Lock className="w-4 h-4 text-amber-400" />
-              <span>Launch Content Studio (Admin Protected)</span>
-            </button>
-
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
