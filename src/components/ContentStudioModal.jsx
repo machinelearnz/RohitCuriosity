@@ -28,6 +28,8 @@ import {
   Square,
   User,
   Upload,
+  FileUp,
+  Calendar,
   Mail,
   Trash2,
   Inbox,
@@ -42,6 +44,8 @@ import rehypeKatex from 'rehype-katex';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { saveMediaItem, saveMediaItemAsync, uploadImageToServer, resolveMediaUrl, compileMarkdownWithMedia } from '../utils/mediaStore';
+import { SITE_CONFIG } from '../config/siteConfig';
+import { parseMarkdown, calculateReadTime } from '../utils/contentLoader';
 
 function CodeBlock({ language, value }) {
   const [copiedCode, setCopiedCode] = useState(false);
@@ -153,9 +157,9 @@ export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminSta
   const [sectionConfig, setSectionConfig] = useState(() => {
     try {
       const saved = localStorage.getItem('rohit_section_config');
-      return saved ? JSON.parse(saved) : { about: true, blogs: true, portfolio: true, contact: true };
+      return saved ? JSON.parse(saved) : { ...SITE_CONFIG.sections };
     } catch (e) {
-      return { about: true, blogs: true, portfolio: true, contact: true };
+      return { ...SITE_CONFIG.sections };
     }
   });
 
@@ -363,17 +367,136 @@ export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminSta
   const [title, setTitle] = useState('Sovereign Compute & The New Capital Moats');
   const [category, setCategory] = useState('Market Views');
   const [author, setAuthor] = useState('Rohit Curiosity');
+  const [date, setDate] = useState(() => new Date().toISOString().split('T')[0]);
   const [readTime, setReadTime] = useState('5 min read');
   const [coverImage, setCoverImage] = useState('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80');
   const [tags, setTags] = useState('Macroeconomics, Sovereign AI, Venture Strategy');
   const [excerpt, setExcerpt] = useState('A concise exploration of how energy availability and sovereign clusters dictate enterprise valuation models.');
-  
+  const [importMessage, setImportMessage] = useState(null);
+
   // Portfolio specific
   const [client, setClient] = useState('Institutional Desk');
   const [role, setRole] = useState('Lead Architect');
   const [statMetric, setStatMetric] = useState('AUM Monitored');
   const [statValue, setStatValue] = useState('$250M+');
   const [demoUrl, setDemoUrl] = useState('https://example.com/demo');
+
+  // Markdown File Upload / Importer Handler
+  const handleMarkdownFileUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      try {
+        const rawText = evt.target?.result;
+        if (!rawText || typeof rawText !== 'string') return;
+
+        const { frontmatter, content } = parseMarkdown(rawText);
+
+        // Auto-detect content type
+        if (frontmatter.role || frontmatter.client || frontmatter.technologies || frontmatter.demoUrl || frontmatter.stats) {
+          setContentType('portfolio');
+        } else {
+          setContentType('blog');
+        }
+
+        // Populate Title
+        if (frontmatter.title) {
+          setTitle(frontmatter.title);
+        } else {
+          const cleanName = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]+/g, ' ');
+          setTitle(cleanName.charAt(0).toUpperCase() + cleanName.slice(1));
+        }
+
+        // Populate Date
+        if (frontmatter.date) {
+          try {
+            const parsedDate = new Date(frontmatter.date);
+            if (!isNaN(parsedDate.getTime())) {
+              setDate(parsedDate.toISOString().split('T')[0]);
+            } else {
+              setDate(String(frontmatter.date));
+            }
+          } catch {
+            setDate(String(frontmatter.date));
+          }
+        }
+
+        // Populate Author
+        if (frontmatter.author) {
+          setAuthor(frontmatter.author);
+        }
+
+        // Populate Category
+        if (frontmatter.category) {
+          setCategory(frontmatter.category);
+        }
+
+        // Populate Read Time
+        if (frontmatter.readTime) {
+          setReadTime(frontmatter.readTime);
+        } else if (content) {
+          setReadTime(calculateReadTime(content));
+        }
+
+        // Populate Cover Image
+        if (frontmatter.coverImage) {
+          setCoverImage(frontmatter.coverImage);
+        }
+
+        // Populate Tags / Technologies
+        if (Array.isArray(frontmatter.tags)) {
+          setTags(frontmatter.tags.join(', '));
+        } else if (typeof frontmatter.tags === 'string') {
+          setTags(frontmatter.tags);
+        } else if (Array.isArray(frontmatter.technologies)) {
+          setTags(frontmatter.technologies.join(', '));
+        } else if (typeof frontmatter.technologies === 'string') {
+          setTags(frontmatter.technologies);
+        }
+
+        // Populate Excerpt / Summary
+        if (frontmatter.excerpt) {
+          setExcerpt(frontmatter.excerpt);
+        } else if (frontmatter.summary) {
+          setExcerpt(frontmatter.summary);
+        }
+
+        // Populate Portfolio fields
+        if (frontmatter.client) setClient(frontmatter.client);
+        if (frontmatter.role) setRole(frontmatter.role);
+        if (frontmatter.demoUrl) setDemoUrl(frontmatter.demoUrl);
+        if (frontmatter.stats) {
+          if (frontmatter.stats.metric) setStatMetric(frontmatter.stats.metric);
+          if (frontmatter.stats.value) setStatValue(frontmatter.stats.value);
+        }
+
+        // Clean body content: strip leading top level "# Title" if present
+        let cleanBody = content || '';
+        const titleHeadingRegex = /^#\s+[^\r\n]+(?:\r?\n)+/;
+        if (titleHeadingRegex.test(cleanBody)) {
+          cleanBody = cleanBody.replace(titleHeadingRegex, '');
+        }
+        setBody(cleanBody);
+
+        setImportMessage({
+          type: 'success',
+          text: `Loaded "${file.name}". All frontmatter fields & markdown body are populated and ready to edit.`
+        });
+        setTimeout(() => setImportMessage(null), 6000);
+      } catch (err) {
+        console.error('Error importing markdown file:', err);
+        setImportMessage({
+          type: 'error',
+          text: `Failed to parse markdown file: ${err.message}`
+        });
+        setTimeout(() => setImportMessage(null), 6000);
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  };
 
   // Markdown Body
   const [body, setBody] = useState(`## Executive Thesis
@@ -422,10 +545,27 @@ if __name__ == "__main__":
   };
 
   // Handle passkey verification
+  const storedPasscode = localStorage.getItem('rohit_admin_passcode');
+  const isFirstTimeSetup = !storedPasscode;
+
   const handleVerifyPasskey = (e) => {
     e.preventDefault();
-    const storedPasscode = localStorage.getItem('rohit_admin_passcode') || 'rohit2026';
     
+    if (isFirstTimeSetup) {
+      // First-time setup: save the entered passkey as the new admin password
+      if (passkeyInput.trim().length < 4) {
+        setAuthError('Passkey must be at least 4 characters long.');
+        return;
+      }
+      localStorage.setItem('rohit_admin_passcode', passkeyInput.trim());
+      setIsAdminAuthenticated(true);
+      localStorage.setItem('rohit_admin_session', 'true');
+      setAuthError('');
+      setPasskeyInput('');
+      if (onAdminStatusChange) onAdminStatusChange(true);
+      return;
+    }
+
     if (passkeyInput.trim() === storedPasscode) {
       setIsAdminAuthenticated(true);
       localStorage.setItem('rohit_admin_session', 'true');
@@ -433,7 +573,7 @@ if __name__ == "__main__":
       setPasskeyInput('');
       if (onAdminStatusChange) onAdminStatusChange(true);
     } else {
-      setAuthError('Invalid Admin Passkey. Access is strictly restricted to Rohit Curiosity administrators.');
+      setAuthError('Invalid Admin Passkey. Access is strictly restricted to authorized administrators.');
     }
   };
 
@@ -465,7 +605,7 @@ if __name__ == "__main__":
 
   // Construct complete Markdown with Frontmatter
   const formattedTags = tags.split(',').map(t => t.trim()).filter(Boolean);
-  const dateStr = new Date().toISOString().split('T')[0];
+  const dateStr = date || new Date().toISOString().split('T')[0];
 
   let fullMarkdown = '';
   if (contentType === 'blog') {
@@ -595,11 +735,14 @@ ${body}`;
             </div>
 
             <h3 className={`text-2xl font-extrabold tracking-tight mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              Content Studio Authorization
+              {isFirstTimeSetup ? 'Set Up Admin Access' : 'Content Studio Authorization'}
             </h3>
             
             <p className={`text-xs leading-relaxed mb-6 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-              Creating and modifying markdown content or updating website navigation is strictly restricted to the administrator of <span className="font-semibold text-brand-400">rohitcuriosity.com</span>.
+              {isFirstTimeSetup 
+                ? 'No admin passkey has been set yet. Create a passkey (minimum 4 characters) to secure your Content Studio.'
+                : <>Creating and modifying content is restricted to the administrator of <span className="font-semibold text-brand-400">rohitcuriosity.com</span>.</>
+              }
             </p>
 
             {authError && (
@@ -620,7 +763,7 @@ ${body}`;
                     setPasskeyInput(e.target.value);
                     setAuthError('');
                   }}
-                  placeholder="Enter Admin Passkey..."
+                  placeholder={isFirstTimeSetup ? 'Create a new Admin Passkey...' : 'Enter Admin Passkey...'}
                   className={`w-full pl-4 pr-11 py-3 rounded-xl text-sm transition-all outline-none focus:ring-2 focus:ring-brand-400 ${
                     isDark ? 'bg-slate-900 border border-slate-800 text-white placeholder-slate-500' : 'bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400'
                   }`}
@@ -639,7 +782,7 @@ ${body}`;
                 className="w-full py-3 rounded-xl text-sm font-bold bg-brand-500 hover:bg-brand-400 text-white shadow-glow-brand transition-all flex items-center justify-center gap-2"
               >
                 <Unlock className="w-4 h-4" />
-                <span>Authorize & Unlock Studio</span>
+                <span>{isFirstTimeSetup ? 'Set Passkey & Unlock Studio' : 'Authorize & Unlock Studio'}</span>
               </button>
             </form>
 
@@ -799,6 +942,20 @@ ${body}`;
 
             {/* Actions */}
             <div className="flex items-center gap-2">
+              <label 
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border border-brand-500/30 bg-brand-500/10 hover:bg-brand-500/20 text-brand-300 hover:text-brand-200 transition-all cursor-pointer shadow-sm"
+                title="Upload an existing .md file to edit and download"
+              >
+                <FileUp className="w-3.5 h-3.5 text-brand-400" />
+                <span>Upload .md</span>
+                <input
+                  type="file"
+                  accept=".md,.markdown,text/markdown,text/plain"
+                  onChange={handleMarkdownFileUpload}
+                  className="hidden"
+                />
+              </label>
+
               <button
                 onClick={handleCopy}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-300 hover:text-white transition-all"
@@ -822,15 +979,44 @@ ${body}`;
           {/* Studio Content Body */}
           <div className="flex-1 overflow-y-auto p-6">
             
+            {/* Import Notification Banner */}
+            {importMessage && (
+              <div className={`mb-6 p-4 rounded-2xl border flex items-center justify-between gap-3 text-xs transition-all ${
+                importMessage.type === 'success'
+                  ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
+                  : 'bg-rose-500/10 border-rose-500/30 text-rose-300'
+              }`}>
+                <div className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                  <span className="font-medium">{importMessage.text}</span>
+                </div>
+                <button onClick={() => setImportMessage(null)} className="p-1 hover:opacity-75">
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            )}
+
             {/* TAB 1: Editor Form */}
             {activeTab === 'editor' && (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 
                 {/* Metadata Fields Column */}
                 <div className="lg:col-span-5 space-y-4">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-brand-400">
-                    1. Frontmatter Metadata
-                  </h4>
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-brand-400">
+                      1. Frontmatter Metadata
+                    </h4>
+                    <label className="text-[11px] font-bold text-brand-400 hover:text-brand-300 flex items-center gap-1 cursor-pointer">
+                      <FileUp className="w-3 h-3" />
+                      <span>Upload .md file</span>
+                      <input
+                        type="file"
+                        accept=".md,.markdown,text/markdown,text/plain"
+                        onChange={handleMarkdownFileUpload}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
 
                   <div>
                     <label className="block text-xs font-semibold text-slate-400 mb-1">Title</label>
@@ -843,6 +1029,40 @@ ${body}`;
                       }`}
                     />
                     <span className="text-[10px] text-slate-500 mt-1 block">File will save as: <code className="text-brand-400">{slug}.md</code></span>
+                  </div>
+
+                  {/* Explicit Author & Date Fields */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-400 mb-1">Author</label>
+                      <div className="relative">
+                        <input
+                          type="text"
+                          value={author}
+                          onChange={(e) => setAuthor(e.target.value)}
+                          placeholder="e.g. Rohit Curiosity"
+                          className={`w-full pl-8 pr-3 py-2 rounded-xl text-xs ${
+                            isDark ? 'bg-slate-900 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
+                          }`}
+                        />
+                        <User className="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-400 mb-1">Publication Date</label>
+                      <div className="relative">
+                        <input
+                          type="date"
+                          value={date}
+                          onChange={(e) => setDate(e.target.value)}
+                          className={`w-full pl-8 pr-3 py-2 rounded-xl text-xs ${
+                            isDark ? 'bg-slate-900 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
+                          }`}
+                        />
+                        <Calendar className="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                      </div>
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
@@ -1012,8 +1232,12 @@ ${body}`;
                 )}
 
                 <div className="mb-6">
-                  <div className="flex items-center gap-2 text-xs text-slate-400 mb-2">
+                  <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400 mb-2">
                     <span className="px-2.5 py-0.5 rounded bg-brand-500/20 text-brand-400 font-bold uppercase">{category}</span>
+                    <span>•</span>
+                    <span className="font-semibold text-slate-300">{author}</span>
+                    <span>•</span>
+                    <span>{dateStr}</span>
                     <span>•</span>
                     <span>{readTime}</span>
                   </div>

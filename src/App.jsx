@@ -9,19 +9,24 @@ import Footer from './components/Footer';
 import ContentModalReader from './components/ContentModalReader';
 import ContentStudioModal from './components/ContentStudioModal';
 import { getAllBlogs, getAllPortfolio } from './utils/contentLoader';
+import { SITE_CONFIG } from './config/siteConfig';
 
 export default function App() {
   // Theme state
   const [isDark, setIsDark] = useState(true);
 
-  // Section & Menu Visibility state (persisted in localStorage)
+  // Section & Menu Visibility state
+  // In production: always use SITE_CONFIG (committed to repo)
+  // In dev: localStorage override is allowed for live preview via admin toggle
+  const isDev = import.meta.env.DEV;
   const [sections, setSections] = useState(() => {
-    try {
-      const saved = localStorage.getItem('rohit_section_config');
-      return saved ? JSON.parse(saved) : { about: true, blogs: true, portfolio: true, contact: true };
-    } catch (e) {
-      return { about: true, blogs: true, portfolio: true, contact: true };
+    if (isDev) {
+      try {
+        const saved = localStorage.getItem('rohit_section_config');
+        if (saved) return JSON.parse(saved);
+      } catch (e) {}
     }
+    return { ...SITE_CONFIG.sections };
   });
 
   // Content data state (synchronous initial load)
@@ -198,6 +203,7 @@ export default function App() {
         isDark={isDark} 
         onOpenStudio={() => setIsStudioOpen(true)} 
         isAdmin={isAdmin}
+        sections={sections}
       />
 
       {/* Full-Screen Reading Modal for Blog & Portfolio Markdown */}

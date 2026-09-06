@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { LinkedinIcon, TwitterIcon, GithubIcon } from './SocialIcons';
 
-export default function Footer({ isDark, onOpenStudio }) {
+export default function Footer({ isDark, onOpenStudio, sections = { about: true, blogs: true, portfolio: true, contact: true } }) {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -62,10 +62,10 @@ export default function Footer({ isDark, onOpenStudio }) {
               Navigation
             </h4>
             <ul className="space-y-2 text-xs font-medium">
-              <li><a href="#about" className="hover:text-brand-400 transition-colors">About & Core Pillars</a></li>
-              <li><a href="#blogs" className="hover:text-brand-400 transition-colors">Market Views & Insights</a></li>
-              <li><a href="#portfolio" className="hover:text-brand-400 transition-colors">Portfolio & Ventures</a></li>
-              <li><a href="#contact" className="hover:text-brand-400 transition-colors">Direct Inquiries</a></li>
+              {sections.about && <li><a href="#about" className="hover:text-brand-400 transition-colors">About & Core Pillars</a></li>}
+              {sections.blogs && <li><a href="#blogs" className="hover:text-brand-400 transition-colors">Market Views & Insights</a></li>}
+              {sections.portfolio && <li><a href="#portfolio" className="hover:text-brand-400 transition-colors">Portfolio & Ventures</a></li>}
+              {sections.contact && <li><a href="#contact" className="hover:text-brand-400 transition-colors">Direct Inquiries</a></li>}
               <li className="pt-1">
                 <button onClick={onOpenStudio} className="text-slate-500 hover:text-amber-400 transition-colors flex items-center gap-1 text-[11px]">
                   <span>🔒 Admin Portal</span>
