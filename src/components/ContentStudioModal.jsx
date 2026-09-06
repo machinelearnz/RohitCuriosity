@@ -17,7 +17,6 @@ import {
   Lock,
   Unlock,
   ShieldCheck,
-  KeyRound,
   LogOut,
   AlertCircle,
   Code2,
@@ -46,6 +45,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { saveMediaItem, saveMediaItemAsync, uploadImageToServer, resolveMediaUrl, compileMarkdownWithMedia } from '../utils/mediaStore';
 import { SITE_CONFIG } from '../config/siteConfig';
 import { parseMarkdown, calculateReadTime } from '../utils/contentLoader';
+import { computeSha256 } from '../utils/crypto';
 
 function CodeBlock({ language, value }) {
   const [copiedCode, setCopiedCode] = useState(false);
@@ -150,8 +150,6 @@ export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminSta
   const [passkeyInput, setPasskeyInput] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [authError, setAuthError] = useState('');
-  const [newPasscodeInput, setNewPasscodeInput] = useState('');
-  const [passcodeSuccess, setPasscodeSuccess] = useState('');
 
   // Menu / Section Controls State
   const [sectionConfig, setSectionConfig] = useState(() => {
@@ -544,16 +542,39 @@ if __name__ == "__main__":
     setBody(prev => prev + '\n\n' + snippet);
   };
 
-  // Handle passkey verification
-  const handleVerifyPasskey = (e) => {
+  // Handle passkey verification with SHA-256 cryptographic hashing
+  const handleVerifyPasskey = async (e) => {
     e.preventDefault();
-    
-    // Master passkey from environment variable or siteConfig
-    const masterPasscode = import.meta.env.VITE_ADMIN_PASSCODE || SITE_CONFIG.adminPasscode || 'rohit2026';
-    const localCustomPasscode = localStorage.getItem('rohit_admin_passcode');
     const inputClean = passkeyInput.trim();
+    if (!inputClean) return;
 
-    const isValid = (localCustomPasscode && inputClean === localCustomPasscode) || (inputClean === masterPasscode);
+    const inputHash = await computeSha256(inputClean);
+
+    // Master passkey hash from siteConfig or env
+    const masterHash = import.meta.env.VITE_ADMIN_PASSCODE_HASH || SITE_CONFIG.adminPasscodeHash || '';
+    const envPass = import.meta.env.VITE_ADMIN_PASSCODE || '';
+    const configPass = SITE_CONFIG.adminPasscode || '';
+    const localCustomHash = localStorage.getItem('rohit_admin_passcode_hash') || '';
+    const localCustomPass = localStorage.getItem('rohit_admin_passcode') || '';
+
+    let isValid = false;
+
+    // 1. Check against master SHA-256 hash (Mahakali1402)
+    if (masterHash && inputHash.toLowerCase() === masterHash.toLowerCase()) {
+      isValid = true;
+    } 
+    // 2. Check against custom hash saved locally in Settings
+    else if (localCustomHash && inputHash.toLowerCase() === localCustomHash.toLowerCase()) {
+      isValid = true;
+    }
+    // 3. Optional plaintext overrides
+    else if (envPass && inputClean === envPass) {
+      isValid = true;
+    } else if (configPass && inputClean === configPass) {
+      isValid = true;
+    } else if (localCustomPass && localCustomPass !== 'rohit2026' && inputClean === localCustomPass) {
+      isValid = true;
+    }
 
     if (isValid) {
       setIsAdminAuthenticated(true);
@@ -570,18 +591,6 @@ if __name__ == "__main__":
     setIsAdminAuthenticated(false);
     localStorage.removeItem('rohit_admin_session');
     if (onAdminStatusChange) onAdminStatusChange(false);
-  };
-
-  const handleChangePasscode = (e) => {
-    e.preventDefault();
-    if (newPasscodeInput.trim().length < 4) {
-      setAuthError('New passkey must be at least 4 characters long.');
-      return;
-    }
-    localStorage.setItem('rohit_admin_passcode', newPasscodeInput.trim());
-    setNewPasscodeInput('');
-    setPasscodeSuccess('Admin passkey successfully updated!');
-    setTimeout(() => setPasscodeSuccess(''), 3000);
   };
 
   if (!isOpen) return null;
@@ -1703,49 +1712,6 @@ graph TD
                       />
                     </div>
                   </div>
-                </div>
-
-                {/* PASSKEY CHANGE FORM */}
-                <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
-                  <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                    <KeyRound className="w-4 h-4 text-amber-400" />
-                    Change Admin Master Passkey
-                  </h4>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    Set a custom master passcode to secure your Content Studio.
-                  </p>
-
-                  {passcodeSuccess && (
-                    <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs flex items-center gap-2">
-                      <Check className="w-4 h-4" />
-                      <span>{passcodeSuccess}</span>
-                    </div>
-                  )}
-
-                  <form onSubmit={handleChangePasscode} className="space-y-4">
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-400 mb-1.5">
-                        New Master Passcode
-                      </label>
-                      <input
-                        type="password"
-                        required
-                        value={newPasscodeInput}
-                        onChange={(e) => setNewPasscodeInput(e.target.value)}
-                        placeholder="Enter minimum 4 characters..."
-                        className={`w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm ${
-                          isDark ? 'bg-slate-950 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
-                        }`}
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="px-5 py-2.5 rounded-xl text-xs font-bold bg-brand-500 hover:bg-brand-400 text-white shadow-glow-brand"
-                    >
-                      Update Passkey
-                    </button>
-                  </form>
                 </div>
 
               </div>
