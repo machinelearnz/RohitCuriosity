@@ -304,6 +304,13 @@ ${canonicalUrl}`;
     }
   };
 
+  // Sanitize content to strip duplicate top H1 header if present in raw markdown
+  const cleanContent = React.useMemo(() => {
+    const raw = item?.content || (item?.summary && !item?.excerpt ? '' : item?.summary) || '';
+    if (!raw) return '';
+    return raw.replace(/^#\s+[^\r\n]+(?:\r?\n)*/, '').trimStart();
+  }, [item?.content, item?.summary, item?.excerpt]);
+
   if (!item) return null;
 
   return (
@@ -488,6 +495,12 @@ ${canonicalUrl}`;
               {item.title}
             </h1>
 
+            {(item.excerpt || item.summary) && (
+              <p className="text-sm sm:text-base text-slate-400 italic mb-4 leading-relaxed">
+                {item.excerpt || item.summary}
+              </p>
+            )}
+
             {/* Tags / Pills */}
             <div className="flex flex-wrap gap-2 mb-6">
               {(item.tags || item.technologies || []).map((t, idx) => (
@@ -578,7 +591,7 @@ ${canonicalUrl}`;
                 }
               }}
             >
-              {item.content || item.summary || 'No additional content provided.'}
+              {cleanContent || 'No additional content provided.'}
             </ReactMarkdown>
           </div>
 

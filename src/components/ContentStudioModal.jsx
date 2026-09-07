@@ -619,8 +619,6 @@ tags: [${formattedTags.map(t => `"${t}"`).join(', ')}]
 excerpt: "${excerpt.replace(/"/g, '\\"')}"
 ---
 
-# ${title}
-
 ${body}`;
   } else {
     fullMarkdown = `---
@@ -639,8 +637,6 @@ stats:
   value: "${statValue}"
 summary: "${excerpt.replace(/"/g, '\\"')}"
 ---
-
-# ${title}
 
 ${body}`;
   }

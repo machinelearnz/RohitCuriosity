@@ -15,8 +15,6 @@ stats:
 summary: "A concise 1-2 sentence description summarizing what was built and the core value delivered."
 ---
 
-# Project Name: Brief Catchy Subtitle
-
 Provide a high-level executive overview of what this project accomplished.
 
 ---

@@ -15,8 +15,6 @@ stats:
 summary: "An ultra-low latency analytics terminal aggregating multi-asset order book depth, sovereign yield spreads, and institutional dark pool signals."
 ---
 
-# AlphaPulse: Real-Time Institutional Liquidity & Macro Radar
-
 AlphaPulse was architected to solve a critical information asymmetry problem for modern family offices and quantitative discretionary traders: **consolidating cross-asset liquidity signals into a singular low-latency cockpit.**
 
 ---

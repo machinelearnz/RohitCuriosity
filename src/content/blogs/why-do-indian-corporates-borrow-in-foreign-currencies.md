@@ -10,8 +10,6 @@ tags: ["Corporate Finance", "Macroeconomics", "FX Risk", "Central Bank Policy", 
 excerpt: "An analytical deep dive into why Indian corporates borrow offshore, deconstructing currency risk, interest rate parity failures, and the impact of RBI interventions on funding arbitrage."
 ---
 
-# Why Do Indian Corporates Borrow in Foreign Currencies?
-
 With persistent waves of External Commercial Borrowings (ECBs) and recurring surges in FCNR(B) deposits, a fundamental corporate finance question warrants closer inspection: Why should an Indian company with predominantly domestic revenues borrow abroad? Is tapping offshore capital a quantifiable arbitrage, or is it an exercise in unhedged currency speculation wrapped in qualitative justifications?
 
 Every corporate treasury team encounters a standard dilemma when evaluating cross-border debt:
@@ -56,7 +54,7 @@ Historically, if an Indian corporate borrowed in USD unhedged at a nominal rate 
 
 Corporate balance sheets often suffer when treasury teams mistake structural currency depreciation for temporary volatility, leaving long-term foreign obligations unhedged.
 
-*   **Power Finance Corporation (Q4 FY2020):** Infrastructure financier PFC maintained less than 50% of its foreign currency liabilities hedged. When the COVID-19 shock triggered rapid Rupee depreciation, PFC recorded a staggering ₹5,000 crore foreign exchange loss—wiping out over half of its normalized annual profit and dragging its Tier-I capital down to 12.45%.
+*   **Power Finance Corporation :** Infrastructure financier PFC maintained less than 50% of its foreign currency liabilities hedged. When the COVID-19 shock triggered rapid Rupee depreciation, PFC recorded a staggering ₹5,000 crore foreign exchange loss—wiping out over half of its normalized annual profit and dragging its Tier-I capital down to 12.45%.
 *   **The FCCB Crisis (Post-2008):** Prior to 2008, companies like Suzlon Energy and Wockhardt issued zero-hedge Foreign Currency Convertible Bonds (FCCBs), assuming rising stock prices would trigger equity conversion. When the 2008 crash collapsed stock prices and depreciated the Rupee by 25%, bondholders demanded cash redemptions. Forced to buy expensive USD with depreciated Rupees, issuers faced devastating balance sheet shocks, triggering widespread defaults and restructurings.
 
 ---
@@ -71,14 +69,16 @@ In practice, empirical evidence reveals a structural divergence from these theor
 
 ---
 
-## Part 4: Recent Events — The 2026 Malhotra Special Swap
+## Part 4: Recent Events — RBI Special Swap (2026)
 
 Central bank policy can directly engineer CIP breakdowns. In June 2026, under RBI Governor Sanjay Malhotra, the RBI introduced a Special Swap Facility that fundamentally restructured the economics of foreign borrowing.
 
 *   **Zero-Cost FCNR(B) Swaps:** The RBI offered commercial banks an at-par USD-INR swap (0.0% hedging cost) on 3-to-5-year foreign currency deposits. Bypassing interbank forward premiums of ~3.5%, this allowed banks to pass a massive 17% to 27% leveraged, tax-free dollar return to non-resident depositors, mobilizing an unprecedented $127.2 billion.
 *   **Fixed 1.5% ECB Capped Swap:** For Public Sector Undertakings (PSUs) like PFC and REC Limited, the RBI capped the swap hedging cost at a fixed 1.50% per annum for 3-to-5-year tenors.
 
-This policy intervention completely altered the historical corporate borrowing paradigm. Previously, as documented by Acharya and Vij, Indian firms had to run immense unhedged UIP carry trades because the market-quoted forward premium of ~3.5% wiped out nominal interest rate savings. By introducing a subsidized, fixed 1.5% swap rate, the RBI converted a highly risky, unhedged carry trade into a risk-free, fully hedged cost-of-capital arbitrage. The broader systemic question of who bears the cost of subsidizing this FX hedge and managing the resulting ~INR 10 Trillion liquidity surplus remains a complex macroeconomic trade-off.
+This policy intervention completely altered the historical corporate borrowing paradigm. Previously, as documented by Acharya and Vij, Indian firms had to run immense unhedged UIP carry trades because the market-quoted forward premium of ~3.5% wiped out nominal interest rate savings. By introducing a subsidized, fixed 1.5% swap rate, the RBI converted a highly risky, unhedged carry trade into a risk-free, fully hedged cost-of-capital arbitrage.
+
+The broader systemic question of who bears the cost of subsidizing this FX hedge and managing the resulting ~INR 10 Trillion liquidity surplus remains a complex macroeconomic trade-off.
 
 ---
 

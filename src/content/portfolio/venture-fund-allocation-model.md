@@ -15,8 +15,6 @@ stats:
 summary: "A web-based financial simulation engine executing 10,000+ Monte Carlo runs to model fund reserves, pro-rata dilution scenarios, and optimal exit thresholds."
 ---
 
-# VentureSim: Dynamic Cap Table & Fund Return Optimization
-
 Predicting venture fund performance across multiple market cycles requires moving beyond rigid static spreadsheets.
 
 **VentureSim** empowers general partners and emerging fund managers to model dynamic portfolio outcomes under volatile valuation distributions and multi-round dilution.

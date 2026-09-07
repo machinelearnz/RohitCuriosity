@@ -10,8 +10,6 @@ tags: ["ArtificialIntelligence", "FinTech", "CapitalMarkets", "Valuation", "Corp
 excerpt: "Nearly 250 years after the French Revolution, Charles Dickens’ opening lines in A Tale of Two Cities remain the ultimate framework for reflecting on technological disruption"
 ---
 
-# It was the best of times, it was the worst of times ...
-
 It was the best of times, it was the worst of times ...
 
 Nearly 250 years after the French Revolution, Charles Dickens’ opening lines in A Tale of Two Cities remain the ultimate framework for reflecting on technological disruption.

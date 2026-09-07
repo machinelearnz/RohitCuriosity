@@ -15,8 +15,6 @@ stats:
 summary: "An autonomous ingestion and synthesis engine that indexes multi-modal academic preprints, SEC filings, and GitHub repositories into queryable mental models."
 ---
 
-# OmniContext: Autonomous Knowledge Synthesizer
-
 Research analysts spend upwards of 35% of their working hours manually triaging PDFs, scraping quarterly earnings transcripts, and mapping competitive feature matrices.
 
 **OmniContext** provides an automated cognitive pipeline that reads, cross-verifies, and summarizes unstructured research into actionable, structured briefs.

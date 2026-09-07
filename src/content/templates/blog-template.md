@@ -10,8 +10,6 @@ tags: ["Keyword 1", "Keyword 2", "Keyword 3"]
 excerpt: "A short 1-2 sentence preview summary of your article that displays on the blog card."
 ---
 
-# Your Catchy Blog Post Title Goes Here
-
 Write your introduction paragraph here. Markdown supports standard headers, bold text, bullet points, and code blocks.
 
 ---
