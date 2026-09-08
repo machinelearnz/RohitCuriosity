@@ -178,18 +178,14 @@ export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminSta
     if (onAboutDataChange) onAboutDataChange(updated);
   };
 
-  // Image Upload Handlers (converts local image files to Data URL for instant rendering)
-  const handleProfileImageUpload = (e) => {
+  // Image Upload Handlers (saves image to public/images/ for permanent deployment)
+  const handleProfileImageUpload = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (evt) => {
-      const dataUrl = evt.target?.result;
-      if (dataUrl) {
-        handleUpdateAboutField('imageUrl', dataUrl);
-      }
-    };
-    reader.readAsDataURL(file);
+    const serverPath = await saveMediaItemAsync(file);
+    if (serverPath) {
+      handleUpdateAboutField('imageUrl', serverPath);
+    }
   };
 
   const handleCoverImageUpload = async (e) => {

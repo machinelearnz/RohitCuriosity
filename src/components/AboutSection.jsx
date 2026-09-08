@@ -24,7 +24,7 @@ export default function AboutSection({ isDark, aboutData = {} }) {
   const [activeTab, setActiveTab] = useState('education');
 
   // Profile data
-  const profileImage = aboutData.imageUrl || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80';
+  const profileImage = aboutData.imageUrl || '/images/rohit_profile.png';
   const name = aboutData.name || 'Rohit Gajare';
   const roleTitle = aboutData.roleTitle || 'Product Management | Treasury, Risk & Quantitative Solutions';
   const missionTitle = aboutData.missionTitle || 'Leverage AI & Analytics to understand markets and manage risks';
@@ -174,9 +174,6 @@ export default function AboutSection({ isDark, aboutData = {} }) {
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
                   <span className="px-2.5 py-1 rounded-md text-[11px] font-mono font-bold bg-black/70 text-brand-400 backdrop-blur-md border border-brand-500/30">
                     rohitcuriosity.com
-                  </span>
-                  <span className="px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-500/90 text-white backdrop-blur-md">
-                    Verified Profile
                   </span>
                 </div>
               </div>
