@@ -76,7 +76,7 @@ export default function BlogSection({ blogs = [], onSelectBlog, onOpenStudio, is
   }, [blogs, selectedCategory, selectedYear, selectedMonth, searchQuery]);
 
   return (
-    <section id="blogs" className="py-24 relative">
+    <section id="blogs" className="pt-32 pb-24 relative">
       {/* Background Subtle Accent */}
       <div className="absolute top-1/2 right-0 w-96 h-96 bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
 

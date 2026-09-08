@@ -1692,21 +1692,6 @@ graph TD
                         }`}
                       />
                     </div>
-
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-400 mb-1">
-                        Mission & Goal Statement Text (Left Bottom Card)
-                      </label>
-                      <textarea
-                        rows={3}
-                        value={aboutConfig.missionText || ''}
-                        onChange={(e) => handleUpdateAboutField('missionText', e.target.value)}
-                        placeholder="Enter your mission statement paragraph..."
-                        className={`w-full px-3.5 py-2 rounded-xl text-xs leading-relaxed ${
-                          isDark ? 'bg-slate-950 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
-                        }`}
-                      />
-                    </div>
                   </div>
                 </div>
 

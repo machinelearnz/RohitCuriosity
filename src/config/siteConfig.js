@@ -17,7 +17,7 @@ export const SITE_CONFIG = {
   adminPasscode: import.meta.env.VITE_ADMIN_PASSCODE || '',
   
   sections: {
-    about: false,       // Disabled — update content before enabling
+    about: true,        // Enabled with updated profile, education, career, and skills
     blogs: true,        // Enabled
     portfolio: false,   // Disabled — update content before enabling
     contact: true       // Enabled

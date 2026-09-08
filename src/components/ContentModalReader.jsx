@@ -214,7 +214,7 @@ export default function ContentModalReader({ item, type, onClose, isDark, isAdmi
   const [bookmarked, setBookmarked] = useState(false);
   const [lightboxImage, setLightboxImage] = useState(null);
   const originUrl = typeof window !== 'undefined' ? window.location.origin : 'https://rohitcuriosity.com';
-  const canonicalUrl = `${originUrl}/#blogs/${item?.slug || 'post'}`;
+  const canonicalUrl = `${originUrl}/${type === 'portfolio' ? 'portfolio' : 'blogs'}/${item?.slug || 'post'}`;
 
   // Canonical Link Injection in <head>
   useEffect(() => {

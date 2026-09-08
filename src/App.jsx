@@ -62,31 +62,71 @@ export default function App() {
     }
   });
 
-  // Deep Link & Hash Routing listener (#blogs/:slug, #portfolio/:slug, #admin, Ctrl+Shift+A)
+  // Path & Hash Routing listener (/blogs/:slug, /portfolio/:slug, /admin, legacy #blogs/:slug, Ctrl+Shift+A)
   useEffect(() => {
-    const handleHashRouting = () => {
-      const hash = window.location.hash;
+    const handleRouting = () => {
+      const hash = window.location.hash || '';
+      const pathname = window.location.pathname || '/';
+
+      // 1. Backward Compatibility: Migrate legacy hash URLs to clean paths seamlessly
       if (hash.startsWith('#blogs/')) {
         const slug = hash.replace('#blogs/', '').trim();
+        if (slug) {
+          window.history.replaceState(null, '', `/blogs/${slug}`);
+          const found = blogs.find(b => b.slug === slug);
+          if (found) {
+            setSelectedReaderItem(found);
+            setReaderType('blog');
+          }
+          return;
+        }
+      } else if (hash.startsWith('#portfolio/')) {
+        const slug = hash.replace('#portfolio/', '').trim();
+        if (slug) {
+          window.history.replaceState(null, '', `/portfolio/${slug}`);
+          const found = portfolio.find(p => p.slug === slug);
+          if (found) {
+            setSelectedReaderItem(found);
+            setReaderType('portfolio');
+          }
+          return;
+        }
+      } else if (hash === '#admin') {
+        window.history.replaceState(null, '', '/admin');
+        setIsStudioOpen(true);
+        return;
+      }
+
+      // 2. Standard Path-based routing (/blogs/:slug, /portfolio/:slug, /admin)
+      const blogMatch = pathname.match(/^\/blogs\/([^/]+)/);
+      const portfolioMatch = pathname.match(/^\/portfolio\/([^/]+)/);
+
+      if (blogMatch) {
+        const slug = blogMatch[1];
         const found = blogs.find(b => b.slug === slug);
         if (found) {
           setSelectedReaderItem(found);
           setReaderType('blog');
         }
-      } else if (hash.startsWith('#portfolio/')) {
-        const slug = hash.replace('#portfolio/', '').trim();
+      } else if (portfolioMatch) {
+        const slug = portfolioMatch[1];
         const found = portfolio.find(p => p.slug === slug);
         if (found) {
           setSelectedReaderItem(found);
           setReaderType('portfolio');
         }
-      } else if (hash === '#admin' || window.location.pathname === '/admin') {
+      } else if (pathname === '/admin') {
         setIsStudioOpen(true);
+      } else {
+        // Section anchors or root
+        setSelectedReaderItem(null);
+        setIsStudioOpen(false);
       }
     };
 
-    handleHashRouting();
-    window.addEventListener('hashchange', handleHashRouting);
+    handleRouting();
+    window.addEventListener('popstate', handleRouting);
+    window.addEventListener('hashchange', handleRouting);
 
     const handleKeyDown = (e) => {
       if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
@@ -97,10 +137,20 @@ export default function App() {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener('hashchange', handleHashRouting);
+      window.removeEventListener('popstate', handleRouting);
+      window.removeEventListener('hashchange', handleRouting);
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [blogs, portfolio]);
+
+  // Sync document title with active article or home
+  useEffect(() => {
+    if (selectedReaderItem) {
+      document.title = `${selectedReaderItem.title} | Rohit Curiosity`;
+    } else {
+      document.title = "Rohit Curiosity | rohitcuriosity.com — Market Views, Tech Frontiers & Venture Architecture";
+    }
+  }, [selectedReaderItem]);
 
   // Sync theme with HTML root class
   useEffect(() => {
@@ -120,7 +170,7 @@ export default function App() {
     setSelectedReaderItem(blog);
     setReaderType('blog');
     if (typeof window !== 'undefined') {
-      window.location.hash = `#blogs/${blog.slug}`;
+      window.history.pushState(null, '', `/blogs/${blog.slug}`);
     }
   };
 
@@ -128,14 +178,16 @@ export default function App() {
     setSelectedReaderItem(project);
     setReaderType('portfolio');
     if (typeof window !== 'undefined') {
-      window.location.hash = `#portfolio/${project.slug}`;
+      window.history.pushState(null, '', `/portfolio/${project.slug}`);
     }
   };
 
   const handleCloseReader = () => {
     setSelectedReaderItem(null);
-    if (typeof window !== 'undefined' && (window.location.hash.startsWith('#blogs/') || window.location.hash.startsWith('#portfolio/'))) {
-      window.location.hash = readerType === 'blog' ? '#blogs' : '#portfolio';
+    if (typeof window !== 'undefined') {
+      if (window.location.pathname.startsWith('/blogs/') || window.location.pathname.startsWith('/portfolio/')) {
+        window.history.pushState(null, '', readerType === 'blog' ? '/#blogs' : '/#portfolio');
+      }
     }
   };
 
@@ -166,13 +218,6 @@ export default function App() {
       {/* Main Content Sections */}
       <main>
 
-        {sections.about && (
-          <AboutSection 
-            isDark={isDark} 
-            aboutData={aboutData}
-          />
-        )}
-        
         {sections.blogs && (
           <BlogSection 
             blogs={blogs} 
@@ -188,6 +233,14 @@ export default function App() {
             onSelectProject={handleSelectProject} 
             onOpenStudio={() => setIsStudioOpen(true)}
             isDark={isDark} 
+            isAdmin={isAdmin}
+          />
+        )}
+
+        {sections.about && (
+          <AboutSection 
+            isDark={isDark} 
+            aboutData={aboutData}
           />
         )}
         
@@ -221,7 +274,12 @@ export default function App() {
       {isStudioOpen && (
         <ContentStudioModal 
           isOpen={isStudioOpen} 
-          onClose={() => setIsStudioOpen(false)} 
+          onClose={() => {
+            setIsStudioOpen(false);
+            if (window.location.pathname === '/admin' || window.location.hash === '#admin') {
+              window.history.pushState(null, '', '/');
+            }
+          }} 
           isDark={isDark}
           onAdminStatusChange={setIsAdmin}
           onSectionsChange={setSections}

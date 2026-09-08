@@ -29,9 +29,9 @@ export default function Navbar({ isDark, setIsDark, onOpenStudio, isAdmin, secti
       // Section positions
       const sectionList = [
         { id: 'hero', element: document.querySelector('main') },
-        { id: 'about', element: document.getElementById('about') },
         { id: 'blogs', element: document.getElementById('blogs') },
         { id: 'portfolio', element: document.getElementById('portfolio') },
+        { id: 'about', element: document.getElementById('about') },
         { id: 'contact', element: document.getElementById('contact') }
       ];
 
@@ -53,11 +53,11 @@ export default function Navbar({ isDark, setIsDark, onOpenStudio, isAdmin, secti
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Primary content sections filtered dynamically by section settings (About, Views & Blogs, Portfolio)
+  // Primary content sections filtered dynamically by section settings (Views & Blogs, Portfolio, About)
   const navLinks = [
-    sections.about && { name: 'About', id: 'about', href: '#about', icon: User },
-    sections.blogs && { name: 'Views & Blogs', id: 'blogs', href: '#blogs', icon: BookOpen },
-    sections.portfolio && { name: 'Portfolio', id: 'portfolio', href: '#portfolio', icon: FolderGit2 },
+    sections.blogs && { name: 'Views & Blogs', id: 'blogs', href: '/#blogs', icon: BookOpen },
+    sections.portfolio && { name: 'Portfolio', id: 'portfolio', href: '/#portfolio', icon: FolderGit2 },
+    sections.about && { name: 'About', id: 'about', href: '/#about', icon: User },
   ].filter(Boolean);
 
   return (
@@ -74,7 +74,7 @@ export default function Navbar({ isDark, setIsDark, onOpenStudio, isAdmin, secti
         <div className="flex items-center justify-between h-20">
           
           {/* Brand Logo & Monogram */}
-          <a href="#" className="flex items-center gap-3 group">
+          <a href="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 via-blue-600 to-amber-500 p-0.5 shadow-glow-brand transition-transform group-hover:scale-105">
               <div className={`w-full h-full rounded-[10px] flex items-center justify-center font-black text-sm tracking-tighter ${
                 isDark ? 'bg-[#0B0F17] text-brand-400' : 'bg-white text-brand-600'
@@ -154,7 +154,7 @@ export default function Navbar({ isDark, setIsDark, onOpenStudio, isAdmin, secti
 
             {/* Connect CTA with Live Availability Status */}
             <a
-              href="#contact"
+              href="/#contact"
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 transform hover:-translate-y-0.5 ${
                 activeSection === 'contact'
                   ? 'bg-amber-500 text-slate-950 shadow-glow-amber'
@@ -223,7 +223,7 @@ export default function Navbar({ isDark, setIsDark, onOpenStudio, isAdmin, secti
 
           <div className="pt-3 border-t border-slate-800/60 flex flex-col gap-2">
             <a
-              href="#contact"
+              href="/#contact"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-semibold bg-brand-500 text-white shadow-glow-brand"
             >

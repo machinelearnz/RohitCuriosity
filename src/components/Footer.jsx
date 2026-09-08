@@ -62,10 +62,10 @@ export default function Footer({ isDark, onOpenStudio, sections = { about: true,
               Navigation
             </h4>
             <ul className="space-y-2 text-xs font-medium">
-              {sections.about && <li><a href="#about" className="hover:text-brand-400 transition-colors">About & Core Pillars</a></li>}
-              {sections.blogs && <li><a href="#blogs" className="hover:text-brand-400 transition-colors">Market Views & Insights</a></li>}
-              {sections.portfolio && <li><a href="#portfolio" className="hover:text-brand-400 transition-colors">Portfolio & Ventures</a></li>}
-              {sections.contact && <li><a href="#contact" className="hover:text-brand-400 transition-colors">Direct Inquiries</a></li>}
+              {sections.blogs && <li><a href="/#blogs" className="hover:text-brand-400 transition-colors">Market Views & Insights</a></li>}
+              {sections.portfolio && <li><a href="/#portfolio" className="hover:text-brand-400 transition-colors">Portfolio & Ventures</a></li>}
+              {sections.about && <li><a href="/#about" className="hover:text-brand-400 transition-colors">About & Background</a></li>}
+              {sections.contact && <li><a href="/#contact" className="hover:text-brand-400 transition-colors">Direct Inquiries</a></li>}
             </ul>
           </div>
 

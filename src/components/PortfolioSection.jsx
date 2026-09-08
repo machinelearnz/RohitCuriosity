@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { GithubIcon } from './SocialIcons';
 
-export default function PortfolioSection({ portfolio, onSelectProject, onOpenStudio, isDark }) {
+export default function PortfolioSection({ portfolio, onSelectProject, onOpenStudio, isDark, isAdmin }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   // Extract all categories
@@ -48,17 +48,19 @@ export default function PortfolioSection({ portfolio, onSelectProject, onOpenStu
             </p>
           </div>
 
-          <button
-            onClick={onOpenStudio}
-            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold border transition-all ${
-              isDark 
-                ? 'bg-slate-900/80 border-slate-700 text-slate-300 hover:border-brand-500 hover:text-white' 
-                : 'bg-white border-slate-300 text-slate-700 hover:border-brand-500 hover:text-slate-900 shadow-sm'
-            }`}
-          >
-            <PlusCircle className="w-4 h-4 text-brand-400" />
-            <span>Add Showcase Item</span>
-          </button>
+          {isAdmin && (
+            <button
+              onClick={onOpenStudio}
+              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold border transition-all ${
+                isDark 
+                  ? 'bg-slate-900/80 border-slate-700 text-slate-300 hover:border-brand-500 hover:text-white' 
+                  : 'bg-white border-slate-300 text-slate-700 hover:border-brand-500 hover:text-slate-900 shadow-sm'
+              }`}
+            >
+              <PlusCircle className="w-4 h-4 text-brand-400" />
+              <span>Add Showcase Item</span>
+            </button>
+          )}
         </div>
 
         {/* Category Filters */}
