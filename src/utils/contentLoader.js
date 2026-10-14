@@ -80,6 +80,17 @@ export function calculateReadTime(text) {
 }
 
 /**
+ * Extracts YouTube 11-character video ID from any format URL or raw ID
+ */
+export function extractYouTubeId(urlOrId) {
+  if (!urlOrId || typeof urlOrId !== 'string') return null;
+  const trimmed = urlOrId.trim();
+  if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) return trimmed;
+  const match = trimmed.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+  return match ? match[1] : null;
+}
+
+/**
  * Extracts slug from file path e.g. /src/content/blogs/macro-shifts.md -> macro-shifts
  */
 export function getSlugFromPath(path) {
@@ -309,6 +320,16 @@ export function getAllBlogs() {
         const rawContent = typeof rawModule === 'string' ? rawModule : (rawModule && rawModule.default) || '';
         const { frontmatter, content } = parseMarkdown(rawContent);
         const slug = getSlugFromPath(path);
+        const youtubeId = extractYouTubeId(frontmatter.youtubeId || frontmatter.videoUrl);
+        const videoUrl = frontmatter.videoUrl || (youtubeId ? `https://www.youtube.com/watch?v=${youtubeId}` : null);
+        const format = frontmatter.format || (youtubeId ? 'video' : 'article');
+        const duration = frontmatter.duration || (youtubeId ? 'Video Briefing' : null);
+        const channelUrl = frontmatter.channelUrl || 'https://www.youtube.com/@RohitCurio';
+
+        // Auto-assign high-res YouTube thumbnail if no custom coverImage provided
+        const defaultCover = youtubeId
+          ? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`
+          : 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80';
 
         return {
           slug,
@@ -317,12 +338,17 @@ export function getAllBlogs() {
           date: safeIsoDate(frontmatter.date, '2026-08-01'),
           formattedDate: safeFormatDate(frontmatter.date, 'Aug 2026'),
           excerpt: frontmatter.excerpt || (content ? content.slice(0, 150) + '...' : ''),
-          coverImage: resolveMediaUrl(frontmatter.coverImage || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80'),
-          category: frontmatter.category || 'Market Views',
+          coverImage: resolveMediaUrl(frontmatter.coverImage || defaultCover),
+          category: frontmatter.category || (youtubeId ? 'Risk & Markets' : 'Market Views'),
           tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : (frontmatter.tags ? [frontmatter.tags] : ['Strategy', 'Analysis']),
           author: frontmatter.author || 'Rohit Curiosity',
-          readTime: frontmatter.readTime || calculateReadTime(content),
+          readTime: duration || frontmatter.readTime || calculateReadTime(content),
           featured: Boolean(frontmatter.featured),
+          format,
+          youtubeId,
+          videoUrl,
+          duration,
+          channelUrl,
           content: content || ''
         };
       });
@@ -335,9 +361,15 @@ export function getAllBlogs() {
         const customPosts = JSON.parse(savedCustom);
         if (Array.isArray(customPosts)) {
           customPosts.forEach(cp => {
+            const ytId = extractYouTubeId(cp.youtubeId || cp.videoUrl);
             const compiledPost = {
               ...cp,
-              coverImage: resolveMediaUrl(cp.coverImage),
+              youtubeId: ytId,
+              videoUrl: cp.videoUrl || (ytId ? `https://www.youtube.com/watch?v=${ytId}` : null),
+              format: cp.format || (ytId ? 'video' : 'article'),
+              duration: cp.duration || (ytId ? 'Video Briefing' : cp.readTime),
+              channelUrl: cp.channelUrl || 'https://www.youtube.com/@RohitCurio',
+              coverImage: resolveMediaUrl(cp.coverImage || (ytId ? `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg` : '')),
               content: cp.content || ''
             };
             const idx = blogs.findIndex(b => b.slug === cp.slug);

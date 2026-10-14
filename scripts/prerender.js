@@ -61,6 +61,15 @@ function parseFrontmatter(rawContent) {
 }
 
 /**
+ * Extract YouTube ID helper
+ */
+function extractYouTubeId(url) {
+  if (!url) return null;
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/i);
+  return match ? match[1] : null;
+}
+
+/**
  * Convert relative image path to absolute URL
  */
 function toAbsoluteImageUrl(imagePath) {
@@ -99,7 +108,11 @@ function generatePageHtml(baseTemplate, metadata) {
     type = 'website',
     author = 'Rohit Curiosity',
     publishedTime,
-    tags = []
+    tags = [],
+    youtubeId,
+    videoUrl,
+    duration,
+    isVideo = false
   } = metadata;
 
   const escapedTitle = escapeHtml(title);
@@ -107,6 +120,7 @@ function generatePageHtml(baseTemplate, metadata) {
   const escapedUrl = escapeHtml(url);
   const escapedImage = escapeHtml(imageUrl);
   const escapedAuthor = escapeHtml(author);
+  const escapedYtId = escapeHtml(youtubeId);
 
   let html = baseTemplate;
 
@@ -124,9 +138,9 @@ function generatePageHtml(baseTemplate, metadata) {
   // JSON-LD Structured Data
   let jsonLd = '';
   if (type === 'article') {
-    jsonLd = JSON.stringify({
+    const articleSchema = {
       '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
+      '@type': isVideo ? ['BlogPosting', 'VideoObject'] : 'BlogPosting',
       headline: title,
       description: description,
       image: [imageUrl],
@@ -150,7 +164,16 @@ function generatePageHtml(baseTemplate, metadata) {
         '@id': url
       },
       keywords: tags.join(', ')
-    });
+    };
+
+    if (isVideo && youtubeId) {
+      articleSchema.embedUrl = `https://www.youtube.com/embed/${youtubeId}`;
+      articleSchema.thumbnailUrl = [imageUrl];
+      articleSchema.uploadDate = publishedTime || new Date().toISOString();
+      if (videoUrl) articleSchema.contentUrl = videoUrl;
+    }
+
+    jsonLd = JSON.stringify(articleSchema);
   } else {
     jsonLd = JSON.stringify({
       '@context': 'https://schema.org',
@@ -160,6 +183,17 @@ function generatePageHtml(baseTemplate, metadata) {
       description: description
     });
   }
+
+  const videoMetaTags = (isVideo && youtubeId) ? `
+    <!-- Video Object Open Graph / Twitter Tags -->
+    <meta property="og:video" content="https://www.youtube.com/embed/${escapedYtId}" />
+    <meta property="og:video:secure_url" content="https://www.youtube.com/embed/${escapedYtId}" />
+    <meta property="og:video:type" content="text/html" />
+    <meta property="og:video:width" content="1280" />
+    <meta property="og:video:height" content="720" />
+    <meta name="twitter:player" content="https://www.youtube.com/embed/${escapedYtId}" />
+    <meta name="twitter:player:width" content="1280" />
+    <meta name="twitter:player:height" content="720" />` : '';
 
   // Build meta tags block
   const metaTags = `
@@ -178,7 +212,7 @@ function generatePageHtml(baseTemplate, metadata) {
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="${escapedTitle}" />
-    <meta property="og:url" content="${escapedUrl}" />
+    <meta property="og:url" content="${escapedUrl}" />${videoMetaTags}
 
     <!-- Twitter / X Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -232,9 +266,13 @@ async function prerender() {
       const raw = fs.readFileSync(filePath, 'utf8');
       const { frontmatter, content } = parseFrontmatter(raw);
 
+      const youtubeId = frontmatter.youtubeId || (frontmatter.videoUrl ? extractYouTubeId(frontmatter.videoUrl) : null);
+      const isVideo = frontmatter.format === 'video' || Boolean(youtubeId);
+      const coverImage = frontmatter.coverImage || (youtubeId ? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg` : null);
+
       const title = frontmatter.title || slug.replace(/-/g, ' ');
       const description = frontmatter.excerpt || (content ? content.slice(0, 160).replace(/[#*`]/g, '').trim() + '...' : DEFAULT_DESCRIPTION);
-      const imageUrl = toAbsoluteImageUrl(frontmatter.coverImage);
+      const imageUrl = toAbsoluteImageUrl(coverImage);
       const articleUrl = `${SITE_ORIGIN}/blogs/${slug}`;
 
       const pageHtml = generatePageHtml(baseHtml, {
@@ -245,7 +283,11 @@ async function prerender() {
         type: 'article',
         author: frontmatter.author || 'Rohit Curiosity',
         publishedTime: frontmatter.date ? `${frontmatter.date}T00:00:00Z` : undefined,
-        tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : []
+        tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : [],
+        youtubeId,
+        videoUrl: frontmatter.videoUrl,
+        duration: frontmatter.duration,
+        isVideo
       });
 
       const outDir = path.join(distDir, 'blogs', slug);

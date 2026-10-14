@@ -10,12 +10,15 @@ import {
   PlusCircle,
   Filter,
   Layers,
-  ChevronDown
+  ChevronDown,
+  Play
 } from 'lucide-react';
+import { Youtube } from './SocialIcons';
 import { getYearMonthHierarchy } from '../utils/contentLoader';
 
 export default function BlogSection({ blogs = [], onSelectBlog, onOpenStudio, isDark }) {
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedFormat, setSelectedFormat] = useState('All'); // 'All', 'Articles', 'Videos'
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedYear, setSelectedYear] = useState('All');
   const [selectedMonth, setSelectedMonth] = useState('All');
@@ -50,6 +53,11 @@ export default function BlogSection({ blogs = [], onSelectBlog, onOpenStudio, is
     const sorted = [...blogs].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     return sorted.filter(blog => {
+      // Format filter
+      const isVideo = blog.format === 'video' || Boolean(blog.youtubeId);
+      if (selectedFormat === 'Videos' && !isVideo) return false;
+      if (selectedFormat === 'Articles' && isVideo) return false;
+
       // Category filter
       const matchesCategory = selectedCategory === 'All' || blog.category === selectedCategory;
       
@@ -73,7 +81,7 @@ export default function BlogSection({ blogs = [], onSelectBlog, onOpenStudio, is
 
       return matchesCategory && matchesDate && matchesQuery;
     });
-  }, [blogs, selectedCategory, selectedYear, selectedMonth, searchQuery]);
+  }, [blogs, selectedFormat, selectedCategory, selectedYear, selectedMonth, searchQuery]);
 
   return (
     <section id="blogs" className="pt-32 pb-24 relative">
@@ -99,28 +107,39 @@ export default function BlogSection({ blogs = [], onSelectBlog, onOpenStudio, is
         {/* Search & Category / Date Filter Toolbar */}
         <div className="space-y-4 mb-10 pb-6 border-b border-slate-800/80">
           
-          {/* Top Bar: Categories & Search */}
+          {/* Top Bar: Format Selector & Search */}
           <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
-            {/* Category Filter Pills */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0 no-scrollbar">
-              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider mr-1 flex items-center gap-1">
-                <Filter className="w-3 h-3" /> Topic:
-              </span>
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
-                    selectedCategory === cat
-                      ? 'bg-brand-500 text-white shadow-glow-brand'
-                      : isDark
-                        ? 'bg-slate-900/60 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800'
-                        : 'bg-slate-100 border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
+            
+            {/* Format Segmented Filter */}
+            <div className={`inline-flex items-center p-1 rounded-2xl border ${
+              isDark ? 'bg-slate-900/80 border-slate-800' : 'bg-slate-100 border-slate-200'
+            }`}>
+              {[
+                { id: 'All', label: 'All Content', icon: Layers },
+                { id: 'Articles', label: 'Written Insights', icon: FileText },
+                { id: 'Videos', label: 'Video Briefings', icon: Youtube }
+              ].map((fmt) => {
+                const Icon = fmt.icon;
+                const active = selectedFormat === fmt.id;
+                return (
+                  <button
+                    key={fmt.id}
+                    onClick={() => setSelectedFormat(fmt.id)}
+                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                      active
+                        ? fmt.id === 'Videos'
+                          ? 'bg-red-600 text-white shadow-md shadow-red-600/30'
+                          : 'bg-brand-500 text-white shadow-glow-brand'
+                        : isDark
+                          ? 'text-slate-400 hover:text-white'
+                          : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    <Icon className="w-3.5 h-3.5" />
+                    <span>{fmt.label}</span>
+                  </button>
+                );
+              })}
             </div>
 
             {/* Search Input Box */}
@@ -138,6 +157,28 @@ export default function BlogSection({ blogs = [], onSelectBlog, onOpenStudio, is
                 }`}
               />
             </div>
+          </div>
+
+          {/* Sub Bar: Topic Categories */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar pt-1">
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider mr-1 flex items-center gap-1">
+              <Filter className="w-3 h-3" /> Topic:
+            </span>
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-3 py-1 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
+                  selectedCategory === cat
+                    ? 'bg-brand-500 text-white shadow-glow-brand'
+                    : isDark
+                      ? 'bg-slate-900/60 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800'
+                      : 'bg-slate-100 border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
 
           {/* Sub Bar: Chronological Year > Month Filter */}
@@ -242,13 +283,29 @@ export default function BlogSection({ blogs = [], onSelectBlog, onOpenStudio, is
                     </span>
                   </div>
 
-                  {/* Read Time Pill on Image */}
+                  {/* Read Time / Video Duration Pill on Image */}
                   <div className="absolute top-4 right-4">
-                    <span className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-medium bg-black/60 text-slate-200 backdrop-blur-md border border-white/10">
-                      <Clock className="w-3 h-3 text-brand-400" />
-                      <span>{blog.readTime}</span>
-                    </span>
+                    {(blog.format === 'video' || blog.youtubeId) ? (
+                      <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-red-600/90 text-white backdrop-blur-md shadow-sm border border-red-500/30">
+                        <Play className="w-3 h-3 fill-white" />
+                        <span>{blog.duration || 'Video'}</span>
+                      </span>
+                    ) : (
+                      <span className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-medium bg-black/60 text-slate-200 backdrop-blur-md border border-white/10">
+                        <Clock className="w-3 h-3 text-brand-400" />
+                        <span>{blog.readTime}</span>
+                      </span>
+                    )}
                   </div>
+
+                  {/* Video Play Button Overlay */}
+                  {(blog.format === 'video' || blog.youtubeId) && (
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="w-12 h-12 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-xl shadow-red-600/40 backdrop-blur-sm border border-white/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-red-500">
+                        <Play className="w-5 h-5 fill-white translate-x-0.5" />
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Card Body */}

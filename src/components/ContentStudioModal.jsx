@@ -34,8 +34,10 @@ import {
   Inbox,
   Search,
   MessageSquare,
-  CheckCircle2
+  CheckCircle2,
+  Play
 } from 'lucide-react';
+import { Youtube } from './SocialIcons';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
@@ -44,7 +46,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { saveMediaItem, saveMediaItemAsync, uploadImageToServer, resolveMediaUrl, compileMarkdownWithMedia } from '../utils/mediaStore';
 import { SITE_CONFIG } from '../config/siteConfig';
-import { parseMarkdown, calculateReadTime } from '../utils/contentLoader';
+import { parseMarkdown, calculateReadTime, extractYouTubeId } from '../utils/contentLoader';
 import { computeSha256 } from '../utils/crypto';
 
 function CodeBlock({ language, value }) {
@@ -363,6 +365,8 @@ export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminSta
   const [author, setAuthor] = useState('Rohit Curiosity');
   const [date, setDate] = useState(() => new Date().toISOString().split('T')[0]);
   const [readTime, setReadTime] = useState('5 min read');
+  const [videoUrl, setVideoUrl] = useState('');
+  const [duration, setDuration] = useState('');
   const [coverImage, setCoverImage] = useState('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80');
   const [tags, setTags] = useState('Macroeconomics, Sovereign AI, Venture Strategy');
   const [excerpt, setExcerpt] = useState('A concise exploration of how energy availability and sovereign clusters dictate enterprise valuation models.');
@@ -415,6 +419,16 @@ export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminSta
           } catch {
             setDate(String(frontmatter.date));
           }
+        }
+
+        // Populate Video fields
+        if (frontmatter.videoUrl || frontmatter.youtubeId) {
+          const vUrl = frontmatter.videoUrl || (frontmatter.youtubeId ? `https://www.youtube.com/watch?v=${frontmatter.youtubeId}` : '');
+          setVideoUrl(vUrl);
+          if (frontmatter.duration) setDuration(frontmatter.duration);
+        } else {
+          setVideoUrl('');
+          setDuration('');
         }
 
         // Populate Author
@@ -601,16 +615,26 @@ if __name__ == "__main__":
   const formattedTags = tags.split(',').map(t => t.trim()).filter(Boolean);
   const dateStr = date || new Date().toISOString().split('T')[0];
 
+  const ytId = extractYouTubeId(videoUrl);
+  const isVideo = Boolean(videoUrl && videoUrl.trim());
+
   let fullMarkdown = '';
   if (contentType === 'blog') {
+    const videoFrontmatter = isVideo ? `
+format: "video"
+videoUrl: "${videoUrl.trim()}"${ytId ? `\nyoutubeId: "${ytId}"` : ''}
+duration: "${duration.trim() || readTime}"` : '';
+
+    const effectiveCover = coverImage.trim() || (ytId ? `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg` : '');
+
     fullMarkdown = `---
 title: "${title.replace(/"/g, '\\"')}"
 date: "${dateStr}"
 category: "${category}"
 author: "${author}"
-readTime: "${readTime}"
+readTime: "${readTime}"${videoFrontmatter}
 featured: false
-coverImage: "${coverImage}"
+coverImage: "${effectiveCover}"
 tags: [${formattedTags.map(t => `"${t}"`).join(', ')}]
 excerpt: "${excerpt.replace(/"/g, '\\"')}"
 ---
@@ -650,6 +674,7 @@ ${body}`;
       const customPosts = savedCustom ? JSON.parse(savedCustom) : [];
       const compiledBody = compileMarkdownWithMedia(body);
       const compiledCover = resolveMediaUrl(coverImage);
+      const effectiveCover = compiledCover || (ytId ? `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg` : '');
 
       const newPostObj = {
         slug,
@@ -659,7 +684,13 @@ ${body}`;
         category,
         author,
         readTime,
-        coverImage: compiledCover,
+        format: isVideo ? 'video' : 'article',
+        ...(isVideo ? {
+          videoUrl: videoUrl.trim(),
+          youtubeId: ytId || undefined,
+          duration: duration.trim() || readTime,
+        } : {}),
+        coverImage: effectiveCover,
         tags: formattedTags,
         excerpt,
         content: compiledBody
@@ -1081,6 +1112,72 @@ ${body}`;
                     </div>
                   </div>
 
+                  {contentType === 'blog' && (
+                    <div className={`p-3.5 rounded-2xl border space-y-3 ${
+                      isDark ? 'bg-red-950/20 border-red-500/30' : 'bg-red-50/70 border-red-200'
+                    }`}>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1.5 text-xs font-bold text-red-500">
+                          <Youtube className="w-4 h-4" />
+                          <span>YouTube Video Briefing (Optional)</span>
+                        </div>
+                        {videoUrl.trim() && (
+                          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 border border-red-500/30">
+                            Video Post
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div className="sm:col-span-2">
+                          <label className="block text-[11px] font-semibold text-slate-400 mb-1">YouTube Video Link</label>
+                          <input
+                            type="text"
+                            value={videoUrl}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setVideoUrl(val);
+                              const extracted = extractYouTubeId(val);
+                              if (extracted && (!coverImage || coverImage.includes('unsplash'))) {
+                                setCoverImage(`https://i.ytimg.com/vi/${extracted}/hqdefault.jpg`);
+                              }
+                            }}
+                            placeholder="https://youtu.be/... or youtube.com/watch?v=..."
+                            className={`w-full px-3 py-1.5 rounded-xl text-xs ${
+                              isDark ? 'bg-slate-900 border border-slate-800 text-white' : 'bg-white border border-slate-300 text-slate-900'
+                            }`}
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-[11px] font-semibold text-slate-400 mb-1">Watch Duration</label>
+                          <input
+                            type="text"
+                            value={duration}
+                            onChange={(e) => setDuration(e.target.value)}
+                            placeholder="e.g. 7 min watch"
+                            className={`w-full px-3 py-1.5 rounded-xl text-xs ${
+                              isDark ? 'bg-slate-900 border border-slate-800 text-white' : 'bg-white border border-slate-300 text-slate-900'
+                            }`}
+                          />
+                        </div>
+                      </div>
+
+                      {videoUrl.trim() && extractYouTubeId(videoUrl) && (
+                        <div className="flex items-center justify-between text-[11px] pt-1">
+                          <span className="text-emerald-400 font-medium">✓ YouTube ID: <code className="font-mono text-white">{extractYouTubeId(videoUrl)}</code></span>
+                          <button
+                            type="button"
+                            onClick={() => setCoverImage(`https://i.ytimg.com/vi/${extractYouTubeId(videoUrl)}/hqdefault.jpg`)}
+                            className="text-brand-400 hover:text-brand-300 underline font-medium text-[10px]"
+                          >
+                            Set Cover to Video Thumbnail
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   {contentType === 'portfolio' && (
                     <div className="grid grid-cols-2 gap-3">
                       <div>
@@ -1206,8 +1303,35 @@ ${body}`;
               <div className={`p-8 rounded-3xl border ${
                 isDark ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-200'
               }`}>
-                {/* Header Cover Image */}
-                {coverImage && (
+                {/* Header Media: YouTube embed or Cover Image */}
+                {ytId ? (
+                  <div className="space-y-3 mb-6">
+                    <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-red-500/30 bg-black">
+                      <iframe
+                        src={`https://www.youtube-nocookie.com/embed/${ytId}?rel=0&modestbranding=1`}
+                        title={title}
+                        className="absolute inset-0 w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                    <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 flex flex-wrap items-center justify-between gap-3 text-xs">
+                      <div className="flex items-center gap-2 text-red-400 font-semibold">
+                        <Youtube className="w-4 h-4" />
+                        <span>Executive Video Briefing • {duration.trim() || readTime}</span>
+                      </div>
+                      <a
+                        href={videoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-red-600 hover:bg-red-500 text-white font-medium text-xs transition-colors"
+                      >
+                        <Play className="w-3 h-3 fill-current" />
+                        <span>Watch on YouTube</span>
+                      </a>
+                    </div>
+                  </div>
+                ) : coverImage ? (
                   <div className="relative h-64 sm:h-80 mb-6 rounded-2xl overflow-hidden shadow-lg border border-slate-800">
                     <img
                       src={resolveMediaUrl(coverImage)}
@@ -1216,7 +1340,7 @@ ${body}`;
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F17] via-transparent to-transparent opacity-80 pointer-events-none" />
                   </div>
-                )}
+                ) : null}
 
                 <div className="mb-6">
                   <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400 mb-2">
