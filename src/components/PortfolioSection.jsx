@@ -5,19 +5,45 @@ import {
   ArrowRight, 
   BarChart2, 
   Cpu, 
-  Sparkles,
-  Layers,
-  PlusCircle
+  Sparkles, 
+  Layers, 
+  PlusCircle,
+  FileText,
+  Code2,
+  BookOpen
 } from 'lucide-react';
 import { GithubIcon } from './SocialIcons';
 
-export default function PortfolioSection({ portfolio, onSelectProject, onOpenStudio, isDark, isAdmin }) {
+// The 4 Core Archetypes for Multi-Asset Credential Showcase
+const CORE_CATEGORIES = [
+  'All',
+  'Quantitative Analytics & ML',
+  'Research & Discussion Papers',
+  'Product Specs & Architecture',
+  'Prototypes & Visual Mockups'
+];
+
+const CATEGORY_ICONS = {
+  'All': Layers,
+  'Quantitative Analytics & ML': Cpu,
+  'Research & Discussion Papers': BookOpen,
+  'Product Specs & Architecture': Code2,
+  'Prototypes & Visual Mockups': Sparkles
+};
+
+export default function PortfolioSection({ portfolio = [], onSelectProject, onOpenStudio, isDark, isAdmin }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  // Extract all categories
+  // Extract all categories maintaining the standardized archetype order
   const categories = useMemo(() => {
-    const set = new Set(portfolio.map(p => p.category).filter(Boolean));
-    return ['All', ...Array.from(set)];
+    const existing = new Set(portfolio.map(p => p.category).filter(Boolean));
+    const merged = [...CORE_CATEGORIES];
+    for (const cat of existing) {
+      if (!merged.includes(cat)) {
+        merged.push(cat);
+      }
+    }
+    return merged;
   }, [portfolio]);
 
   // Filtered portfolio items
@@ -36,15 +62,15 @@ export default function PortfolioSection({ portfolio, onSelectProject, onOpenStu
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-3">
               <FolderGit2 className="w-3.5 h-3.5" />
-              <span>Showcase & Case Studies</span>
+              <span>Concepts & Proof of Work</span>
             </div>
             <h2 className={`text-3xl sm:text-5xl font-extrabold tracking-tight ${
               isDark ? 'text-white' : 'text-slate-900'
             }`}>
-              Architected <span className="text-brand-400">Ventures & Systems</span>
+              Concepts & <span className="text-brand-400">Proof of Work</span>
             </h2>
             <p className={`text-sm sm:text-base mt-2 max-w-xl ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-              Selected production systems, institutional dashboards, and algorithmic models built by CuriosityInc.
+              Selected quantitative engines, research papers, requirement specs, and architectural prototypes.
             </p>
           </div>
 
@@ -63,141 +89,161 @@ export default function PortfolioSection({ portfolio, onSelectProject, onOpenStu
           )}
         </div>
 
-        {/* Category Filters */}
+        {/* Standardized Archetype Category Filter Tabs */}
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 no-scrollbar">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
-                selectedCategory === cat
-                  ? 'bg-gradient-to-r from-brand-500 to-blue-600 text-white shadow-glow-brand'
-                  : isDark
-                    ? 'bg-slate-900/60 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800'
-                    : 'bg-slate-100 border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+          {categories.map((cat) => {
+            const Icon = CATEGORY_ICONS[cat] || FolderGit2;
+            const count = cat === 'All' 
+              ? portfolio.length 
+              : portfolio.filter(p => p.category === cat).length;
+
+            return (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
+                  selectedCategory === cat
+                    ? 'bg-gradient-to-r from-brand-500 to-blue-600 text-white shadow-glow-brand'
+                    : isDark
+                      ? 'bg-slate-900/60 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800'
+                      : 'bg-slate-100 border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5" />
+                <span>{cat}</span>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                  selectedCategory === cat
+                    ? 'bg-white/20 text-white'
+                    : isDark ? 'bg-slate-800 text-slate-400' : 'bg-slate-200 text-slate-600'
+                }`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Portfolio Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {filteredPortfolio.map((item) => (
-            <div
-              key={item.slug}
-              className={`group rounded-3xl border overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 ${
-                isDark 
-                  ? 'bg-slate-900/60 border-slate-800/90 hover:border-brand-500/50 shadow-card-dark' 
-                  : 'bg-white border-slate-200 hover:border-brand-400 shadow-sm hover:shadow-md'
-              }`}
-            >
-              {/* Project Cover & Overlay */}
-              <div>
-                <div className="relative h-52 overflow-hidden bg-slate-950">
-                  <img
-                    src={item.coverImage}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F17] via-[#0B0F17]/30 to-transparent" />
-                  
-                  {/* Category Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-lg text-[11px] font-bold uppercase tracking-wider bg-black/60 text-brand-300 border border-brand-500/30 backdrop-blur-md">
-                      {item.category}
-                    </span>
+        {filteredPortfolio.length === 0 ? (
+          <div className="py-20 text-center rounded-3xl border border-dashed border-slate-800 bg-slate-900/20 max-w-2xl mx-auto space-y-3">
+            <div className="w-12 h-12 rounded-2xl bg-brand-500/10 text-brand-400 border border-brand-500/20 flex items-center justify-center mx-auto">
+              <FolderGit2 className="w-6 h-6" />
+            </div>
+            <h3 className="text-base font-bold text-slate-200">
+              No entries in {selectedCategory} yet
+            </h3>
+            <p className="text-xs text-slate-400 max-w-md mx-auto leading-relaxed">
+              New {selectedCategory.toLowerCase()} artifacts and entries are being authored and will appear here shortly.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {filteredPortfolio.map((item) => (
+              <div
+                key={item.slug}
+                className={`group rounded-3xl border overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 ${
+                  isDark 
+                    ? 'bg-slate-900/60 border-slate-800/90 hover:border-brand-500/50 shadow-card-dark' 
+                    : 'bg-white border-slate-200 hover:border-brand-400 shadow-sm hover:shadow-md'
+                }`}
+              >
+                {/* Project Cover & Overlay */}
+                <div>
+                  <div className="relative h-52 overflow-hidden bg-slate-950">
+                    <img
+                      src={item.coverImage}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F17] via-[#0B0F17]/30 to-transparent" />
+                    
+                    {/* Category Badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 rounded-lg text-[11px] font-bold uppercase tracking-wider bg-black/60 text-brand-300 border border-brand-500/30 backdrop-blur-md">
+                        {item.category}
+                      </span>
+                    </div>
+
                   </div>
 
-                  {/* Highlight Stat Pill */}
-                  {item.stats && item.stats.value && (
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="px-3.5 py-2 rounded-xl bg-slate-900/90 border border-slate-700/80 backdrop-blur-md flex items-center justify-between shadow-lg">
-                        <span className="text-[11px] text-slate-400 font-medium">{item.stats.metric}</span>
-                        <span className="text-xs font-extrabold text-amber-400 font-mono">{item.stats.value}</span>
-                      </div>
+                  {/* Content Details */}
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 text-xs text-slate-400 mb-2">
+                      <span className="text-brand-400 font-medium">{item.role}</span>
+                      <span>•</span>
+                      <span>{item.client}</span>
                     </div>
+
+                    <h3 className={`text-xl font-bold tracking-tight mb-2 transition-colors group-hover:text-brand-400 ${
+                      isDark ? 'text-white' : 'text-slate-900'
+                    }`}>
+                      {item.title}
+                    </h3>
+
+                    <p className={`text-xs sm:text-sm leading-relaxed line-clamp-3 mb-6 ${
+                      isDark ? 'text-slate-400' : 'text-slate-600'
+                    }`}>
+                      {item.summary}
+                    </p>
+
+                    {/* Tech Stack Pills */}
+                    <div className="flex flex-wrap gap-1.5 mb-6">
+                      {(item.technologies || []).slice(0, 4).map((tech, idx) => (
+                        <span
+                          key={idx}
+                          className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-slate-800/80 text-slate-300 border border-slate-700/40"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Action Buttons Footer */}
+                <div className="px-6 pb-6 pt-2 flex items-center gap-3">
+                  <button
+                    onClick={() => onSelectProject(item)}
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-semibold bg-brand-500 hover:bg-brand-400 text-white shadow-glow-brand transition-all"
+                  >
+                    <span>View</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+
+                  {item.demoUrl && item.demoUrl !== '#' && (
+                    <a
+                      href={item.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`p-2.5 rounded-xl border transition-colors ${
+                        isDark ? 'border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800' : 'border-slate-200 text-slate-600 hover:bg-slate-100'
+                      }`}
+                      title={item.category === 'Quantitative Analytics & ML' ? 'Launch Live Terminal' : 'Live System'}
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  )}
+
+                  {item.githubUrl && (
+                    <a
+                      href={item.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`p-2.5 rounded-xl border transition-colors ${
+                        isDark ? 'border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800' : 'border-slate-200 text-slate-600 hover:bg-slate-100'
+                      }`}
+                      title="Source Repository"
+                    >
+                      <GithubIcon className="w-4 h-4" />
+                    </a>
                   )}
                 </div>
 
-                {/* Content Details */}
-                <div className="p-6">
-                  <div className="flex items-center gap-2 text-xs text-slate-400 mb-2">
-                    <span className="text-brand-400 font-medium">{item.role}</span>
-                    <span>•</span>
-                    <span>{item.client}</span>
-                  </div>
-
-                  <h3 className={`text-xl font-bold tracking-tight mb-2 transition-colors group-hover:text-brand-400 ${
-                    isDark ? 'text-white' : 'text-slate-900'
-                  }`}>
-                    {item.title}
-                  </h3>
-
-                  <p className={`text-xs sm:text-sm leading-relaxed line-clamp-3 mb-6 ${
-                    isDark ? 'text-slate-400' : 'text-slate-600'
-                  }`}>
-                    {item.summary}
-                  </p>
-
-                  {/* Tech Stack Pills */}
-                  <div className="flex flex-wrap gap-1.5 mb-6">
-                    {item.technologies.slice(0, 4).map((tech, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-slate-800/80 text-slate-300 border border-slate-700/40"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
               </div>
-
-              {/* Action Buttons Footer */}
-              <div className="px-6 pb-6 pt-2 flex items-center gap-3">
-                <button
-                  onClick={() => onSelectProject(item)}
-                  className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-semibold bg-brand-500 hover:bg-brand-400 text-white shadow-glow-brand transition-all"
-                >
-                  <span>Case Study</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-
-                {item.demoUrl && item.demoUrl !== '#' && (
-                  <a
-                    href={item.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`p-2.5 rounded-xl border transition-colors ${
-                      isDark ? 'border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800' : 'border-slate-200 text-slate-600 hover:bg-slate-100'
-                    }`}
-                    title="Live Demo"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                )}
-
-                {item.githubUrl && (
-                  <a
-                    href={item.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`p-2.5 rounded-xl border transition-colors ${
-                      isDark ? 'border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800' : 'border-slate-200 text-slate-600 hover:bg-slate-100'
-                    }`}
-                    title="Source Repository"
-                  >
-                    <GithubIcon className="w-4 h-4" />
-                  </a>
-                )}
-              </div>
-
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
       </div>
     </section>

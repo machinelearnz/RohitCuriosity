@@ -19,7 +19,7 @@ export const SITE_CONFIG = {
   sections: {
     about: true,        // Enabled with updated profile, education, career, and skills
     blogs: true,        // Enabled
-    portfolio: false,   // Disabled — update content before enabling
+    portfolio: true,    // Enabled — Concepts & Proof of Work
     contact: true       // Enabled
   }
 };

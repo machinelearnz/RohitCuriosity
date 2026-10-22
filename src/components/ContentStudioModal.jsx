@@ -372,11 +372,9 @@ export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminSta
   const [excerpt, setExcerpt] = useState('A concise exploration of how energy availability and sovereign clusters dictate enterprise valuation models.');
   const [importMessage, setImportMessage] = useState(null);
 
-  // Portfolio specific
+  // Concepts & Proof of Work specific
   const [client, setClient] = useState('Institutional Desk');
   const [role, setRole] = useState('Lead Architect');
-  const [statMetric, setStatMetric] = useState('AUM Monitored');
-  const [statValue, setStatValue] = useState('$250M+');
   const [demoUrl, setDemoUrl] = useState('https://example.com/demo');
 
   // Markdown File Upload / Importer Handler
@@ -471,14 +469,10 @@ export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminSta
           setExcerpt(frontmatter.summary);
         }
 
-        // Populate Portfolio fields
+        // Populate Concepts & Proof of Work fields
         if (frontmatter.client) setClient(frontmatter.client);
         if (frontmatter.role) setRole(frontmatter.role);
         if (frontmatter.demoUrl) setDemoUrl(frontmatter.demoUrl);
-        if (frontmatter.stats) {
-          if (frontmatter.stats.metric) setStatMetric(frontmatter.stats.metric);
-          if (frontmatter.stats.value) setStatValue(frontmatter.stats.value);
-        }
 
         // Clean body content: strip leading top level "# Title" if present
         let cleanBody = content || '';
@@ -652,9 +646,6 @@ coverImage: "${coverImage}"
 technologies: [${formattedTags.map(t => `"${t}"`).join(', ')}]
 demoUrl: "${demoUrl}"
 githubUrl: ""
-stats:
-  metric: "${statMetric}"
-  value: "${statValue}"
 summary: "${excerpt.replace(/"/g, '\\"')}"
 ---
 
@@ -886,7 +877,7 @@ ${body}`;
                 }`}
               >
                 <FolderGit2 className="w-3.5 h-3.5" />
-                <span>Portfolio Project</span>
+                <span>Concepts & Proof of Work</span>
               </button>
             </div>
 
@@ -1088,13 +1079,26 @@ ${body}`;
                       <label className="block text-xs font-semibold text-slate-400 mb-1">Category</label>
                       <input
                         type="text"
+                        list={contentType === 'portfolio' ? 'portfolio-categories' : 'blog-categories'}
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
-                        placeholder="Market Views, Tech..."
+                        placeholder={contentType === 'portfolio' ? "Quantitative Analytics & ML, Product Specs..." : "Market Views, Tech..."}
                         className={`w-full px-3.5 py-2 rounded-xl text-xs ${
                           isDark ? 'bg-slate-900 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
                         }`}
                       />
+                      <datalist id="portfolio-categories">
+                        <option value="Quantitative Analytics & ML" />
+                        <option value="Research & Discussion Papers" />
+                        <option value="Product Specs & Architecture" />
+                        <option value="Prototypes & Visual Mockups" />
+                      </datalist>
+                      <datalist id="blog-categories">
+                        <option value="Risk Management" />
+                        <option value="Market Views" />
+                        <option value="Technology" />
+                        <option value="Macroeconomics" />
+                      </datalist>
                     </div>
 
                     <div>
@@ -1175,35 +1179,6 @@ ${body}`;
                           </button>
                         </div>
                       )}
-                    </div>
-                  )}
-
-                  {contentType === 'portfolio' && (
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <label className="block text-xs font-semibold text-slate-400 mb-1">Highlight Metric Name</label>
-                        <input
-                          type="text"
-                          value={statMetric}
-                          onChange={(e) => setStatMetric(e.target.value)}
-                          placeholder="e.g. AUM Monitored"
-                          className={`w-full px-3.5 py-2 rounded-xl text-xs ${
-                            isDark ? 'bg-slate-900 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
-                          }`}
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-semibold text-slate-400 mb-1">Metric Value</label>
-                        <input
-                          type="text"
-                          value={statValue}
-                          onChange={(e) => setStatValue(e.target.value)}
-                          placeholder="e.g. $420M+"
-                          className={`w-full px-3.5 py-2 rounded-xl text-xs ${
-                            isDark ? 'bg-slate-900 border border-slate-800 text-white' : 'bg-slate-50 border border-slate-300 text-slate-900'
-                          }`}
-                        />
-                      </div>
                     </div>
                   )}
 
@@ -1720,8 +1695,8 @@ graph TD
                       }`}
                     >
                       <div>
-                        <div className="text-xs font-bold">Portfolio Section</div>
-                        <div className="text-[10px] text-slate-400">Venture Cases</div>
+                        <div className="text-xs font-bold">Concepts & Proof of Work</div>
+                        <div className="text-[10px] text-slate-400">Quantitative & Architecture Showcase</div>
                       </div>
                       {sectionConfig.portfolio ? <CheckSquare className="w-5 h-5 text-brand-400" /> : <Square className="w-5 h-5 text-slate-600" />}
                     </div>

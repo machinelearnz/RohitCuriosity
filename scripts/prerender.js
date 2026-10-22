@@ -334,7 +334,7 @@ async function prerender() {
       const projectUrl = `${SITE_ORIGIN}/portfolio/${slug}`;
 
       const pageHtml = generatePageHtml(baseHtml, {
-        title: `${title} | Portfolio | Rohit Curiosity`,
+        title: `${title} | Concepts & Proof of Work | Rohit Curiosity`,
         description,
         url: projectUrl,
         imageUrl,
@@ -361,8 +361,8 @@ async function prerender() {
     // Also generate /portfolio/index.html
     const portfolioIndexDir = path.join(distDir, 'portfolio');
     const portfolioIndexHtml = generatePageHtml(baseHtml, {
-      title: 'Venture Cases & Technical Systems | Rohit Curiosity',
-      description: 'Production systems, quantitative financial simulators, and autonomous AI architectures designed and shipped.',
+      title: 'Concepts & Proof of Work | Rohit Curiosity',
+      description: 'Quantitative analytics, autonomous financial engines, research papers, system specifications, and interactive prototypes.',
       url: `${SITE_ORIGIN}/portfolio`,
       imageUrl: DEFAULT_IMAGE,
       type: 'website'

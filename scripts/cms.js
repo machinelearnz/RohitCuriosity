@@ -95,15 +95,13 @@ Summarize key actions and strategic perspectives for founders and capital alloca
 }
 
 async function createPortfolio() {
-  console.log('\n💼 --- Create New Portfolio / Venture Showcase ---\n');
+  console.log('\n💼 --- Create New Concepts & Proof of Work Showcase ---\n');
 
   const title = await ask('Project Title', 'SignalCraft: Real-Time Market Intelligence');
   const slug = slugify(title);
-  const category = await ask('Category', 'Fintech & Data');
+  const category = await ask('Category', 'Quantitative Analytics & ML');
   const client = await ask('Client / Organization', 'Global Family Office');
   const role = await ask('Role', 'Lead System Architect');
-  const statMetric = await ask('Highlight Metric Name', 'AUM Monitored');
-  const statValue = await ask('Highlight Metric Value', '$350M+');
   const techInput = await ask('Technologies (comma separated)', 'React, Tailwind CSS, Analytics, WebSockets');
   const summary = await ask('Short Summary', 'An ultra-low latency analytics terminal.');
   const demoUrl = await ask('Demo URL (or #)', '#');
@@ -123,15 +121,12 @@ coverImage: "${coverImage}"
 technologies: [${technologies}]
 demoUrl: "${demoUrl}"
 githubUrl: ""
-stats:
-  metric: "${statMetric}"
-  value: "${statValue}"
 summary: "${summary.replace(/"/g, '\\"')}"
 ---
 
 # ${title}
 
-Executive overview of the venture system and architecture.
+Executive overview of the system and architecture.
 
 ---
 
@@ -146,8 +141,8 @@ Detail the business context and challenges solved.
 
 ---
 
-## 🚀 Quantified Outcomes
-- High measurable impact deliverable.
+## 🚀 Key Takeaways & Demonstration
+- Core implementation outcomes and takeaways.
 `;
 
   const filePath = path.join(portfolioDir, `${slug}.md`);
@@ -160,7 +155,7 @@ Detail the business context and challenges solved.
   }
 
   fs.writeFileSync(filePath, content, 'utf8');
-  console.log(`\n✅ Successfully created portfolio case study: ${path.relative(rootDir, filePath)}`);
+  console.log(`\n✅ Successfully created showcase: ${path.relative(rootDir, filePath)}`);
   console.log(`🚀 The website will automatically showcase your new project!\n`);
 }
 
@@ -172,7 +167,7 @@ async function listContent() {
   blogs.forEach((f, i) => console.log(`  ${i + 1}. ${f}`));
 
   const portfolio = fs.readdirSync(portfolioDir).filter(f => f.endsWith('.md'));
-  console.log(`\n💼 Portfolio Showcases (${portfolio.length}):`);
+  console.log(`\n💼 Concepts & Proof of Work Showcases (${portfolio.length}):`);
   portfolio.forEach((f, i) => console.log(`  ${i + 1}. ${f}`));
   console.log('');
 }
@@ -198,7 +193,7 @@ async function main() {
   console.log('  🌟 CuriosityInc Markdown CMS Wizard  ');
   console.log('=========================================');
   console.log('1. 📝 Create New Blog Article');
-  console.log('2. 💼 Create New Portfolio Item');
+  console.log('2. 💼 Create New Concepts & Proof of Work Item');
   console.log('3. 📚 List All Articles & Projects');
   console.log('4. 🚪 Exit\n');
 

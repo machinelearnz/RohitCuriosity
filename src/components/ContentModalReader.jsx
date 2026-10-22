@@ -516,15 +516,10 @@ ${canonicalUrl}`;
                 </button>
               </div>
 
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between flex-wrap gap-2 pointer-events-none">
+              <div className="absolute bottom-4 left-4 pointer-events-none">
                 <span className="px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-brand-500 text-white backdrop-blur-md">
                   {item.category}
                 </span>
-                {item.stats && item.stats.value && (
-                  <span className="px-3 py-1 rounded-lg text-xs font-mono font-bold bg-black/70 text-amber-400 border border-amber-500/30 backdrop-blur-md">
-                    {item.stats.metric}: {item.stats.value}
-                  </span>
-                )}
               </div>
             </div>
           )}

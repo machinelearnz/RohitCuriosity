@@ -56,7 +56,7 @@ export default function Navbar({ isDark, setIsDark, onOpenStudio, isAdmin, secti
   // Primary content sections filtered dynamically by section settings (Views & Blogs, Portfolio, About)
   const navLinks = [
     sections.blogs && { name: 'Views & Blogs', id: 'blogs', href: '/#blogs', icon: BookOpen },
-    sections.portfolio && { name: 'Portfolio', id: 'portfolio', href: '/#portfolio', icon: FolderGit2 },
+    sections.portfolio && { name: 'Concepts & Proof of Work', id: 'portfolio', href: '/#portfolio', icon: FolderGit2 },
     sections.about && { name: 'About', id: 'about', href: '/#about', icon: User },
   ].filter(Boolean);
 

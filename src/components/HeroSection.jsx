@@ -14,7 +14,7 @@ import { LinkedinIcon, TwitterIcon, GithubIcon } from './SocialIcons';
 export default function HeroSection({ isDark, onOpenStudio, blogCount, portfolioCount, sections = { about: true, blogs: true, portfolio: true, contact: true } }) {
   const metrics = [
     { label: 'Market Briefings', value: `${blogCount}+`, sub: 'Live Analysis', icon: TrendingUp },
-    { label: 'Venture Showcases', value: `${portfolioCount}+`, sub: 'Case Studies', icon: Cpu },
+    { label: 'Proof of Work Showcases', value: `${portfolioCount}+`, sub: 'Proof of Work', icon: Cpu },
     { label: 'Monitored Assets', value: '$420M+', sub: 'AUM Signal Flow', icon: ShieldCheck },
     { label: 'CMS Architecture', value: '100%', sub: 'Local Markdown', icon: Terminal },
   ];
@@ -72,7 +72,7 @@ export default function HeroSection({ isDark, onOpenStudio, blogCount, portfolio
                     : 'border-slate-300 bg-white text-slate-800 hover:bg-slate-50 hover:border-slate-400 shadow-sm'
                 }`}
               >
-                <span>View Portfolio</span>
+                <span>View Concepts & Proof of Work</span>
               </a>
             )}
 
