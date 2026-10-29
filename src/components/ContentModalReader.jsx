@@ -34,6 +34,8 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import mermaid from 'mermaid';
 import confetti from 'canvas-confetti';
 import { resolveMediaUrl, compileMarkdownWithMedia } from '../utils/mediaStore';
+import ZohoIntradayViewer from './ZohoIntradayViewer';
+import PlotlyIntradayDashboard from './PlotlyIntradayDashboard';
 
 /**
  * Robust Markdown Image component with Error Handling & Fallback
@@ -592,6 +594,16 @@ ${canonicalUrl}`;
           </div>
 
           <hr className="border-slate-800" />
+
+          {/* Embedded Interactive Viewer for Zoho Concept Tile */}
+          {item.slug === 'intraday-liquidity-analytics-zoho-concept' && (
+            <ZohoIntradayViewer isDark={isDark} />
+          )}
+
+          {/* Embedded Interactive Cockpit for Plotly Concept Tile */}
+          {item.slug === 'intraday-liquidity-analytics-plotly-concept' && (
+            <PlotlyIntradayDashboard isDark={isDark} />
+          )}
 
           {/* Markdown Body Content Rendered with Rich Media Engines */}
           <div className="markdown-content">

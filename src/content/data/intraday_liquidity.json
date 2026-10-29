@@ -1,0 +1,5387 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "asOfDate": "2026-04-02",
+    "displayDate": "April 02, 2026",
+    "supportedDates": [
+      "2026-04-02"
+    ],
+    "baseCurrency": "USD",
+    "timeZone": "GMT",
+    "entities": [
+      "All",
+      "Global Bank Americas",
+      "Global Bank Germany",
+      "Global Bank Luxembourg",
+      "Global Bank UK"
+    ],
+    "currencies": [
+      "All",
+      "AUD",
+      "CHF",
+      "EUR",
+      "GBP",
+      "JPY",
+      "USD"
+    ],
+    "timeStepMinutes": 30,
+    "generatedAt": "2026-10-29T23:56:23.703216"
+  },
+  "summaryKPIs": {
+    "openingBalance": 400558380.0,
+    "peakIntradayUsage": -571207638.0,
+    "peakUsageTime": "13:30",
+    "totalAvailableBuffer": 3924943112.0,
+    "cashBuffer": 405269956.0,
+    "creditLineHeadroom": 1154695382.0,
+    "availableCollateral": 2364977774.0,
+    "pledgedCollateral": 621401394.0,
+    "totalGrossVolume": 5993198105.0,
+    "totalInflows": 2995248917.0,
+    "totalOutflows": 2997949188.0,
+    "matchedRate": 63.2,
+    "activeAlertCount": 39,
+    "highAlertCount": 20
+  },
+  "trajectories": [
+    {
+      "time": "00:00",
+      "hour": 0,
+      "minute": 0,
+      "dateTime": "2026-04-02T00:00:00",
+      "available": 400558380.0,
+      "projected": 400558380.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 60299046.0,
+          "projected": 60299046.0
+        },
+        "Global Bank UK": {
+          "available": 301884054.0,
+          "projected": 301884054.0
+        },
+        "Global Bank Americas": {
+          "available": 48172188.0,
+          "projected": 48172188.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -9796908.0,
+          "projected": -9796908.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 64025205.0,
+          "projected": 64025205.0
+        },
+        "AUD": {
+          "available": -107659809.0,
+          "projected": -107659809.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 110526318.0,
+          "projected": 110526318.0
+        },
+        "EUR": {
+          "available": 66666666.0,
+          "projected": 66666666.0
+        }
+      }
+    },
+    {
+      "time": "00:30",
+      "hour": 0,
+      "minute": 30,
+      "dateTime": "2026-04-02T00:30:00",
+      "available": 419612805.0,
+      "projected": 419612805.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 53322786.0,
+          "projected": 53322786.0
+        },
+        "Global Bank UK": {
+          "available": 316421622.0,
+          "projected": 316421622.0
+        },
+        "Global Bank Americas": {
+          "available": 57486339.0,
+          "projected": 57486339.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -7617942.0,
+          "projected": -7617942.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 71586513.0,
+          "projected": 71586513.0
+        },
+        "AUD": {
+          "available": -96166692.0,
+          "projected": -96166692.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 110526318.0,
+          "projected": 110526318.0
+        },
+        "EUR": {
+          "available": 66666666.0,
+          "projected": 66666666.0
+        }
+      }
+    },
+    {
+      "time": "01:00",
+      "hour": 1,
+      "minute": 0,
+      "dateTime": "2026-04-02T01:00:00",
+      "available": 416231550.0,
+      "projected": 416231550.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 45796485.0,
+          "projected": 45796485.0
+        },
+        "Global Bank UK": {
+          "available": 321210915.0,
+          "projected": 321210915.0
+        },
+        "Global Bank Americas": {
+          "available": 55747743.0,
+          "projected": 55747743.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -6523593.0,
+          "projected": -6523593.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 68849505.0,
+          "projected": 68849505.0
+        },
+        "AUD": {
+          "available": -96810939.0,
+          "projected": -96810939.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 110526318.0,
+          "projected": 110526318.0
+        },
+        "EUR": {
+          "available": 66666666.0,
+          "projected": 66666666.0
+        }
+      }
+    },
+    {
+      "time": "01:30",
+      "hour": 1,
+      "minute": 30,
+      "dateTime": "2026-04-02T01:30:00",
+      "available": 445690032.0,
+      "projected": 445690032.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 42697788.0,
+          "projected": 42697788.0
+        },
+        "Global Bank UK": {
+          "available": 345137295.0,
+          "projected": 345137295.0
+        },
+        "Global Bank Americas": {
+          "available": 66457896.0,
+          "projected": 66457896.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -8602947.0,
+          "projected": -8602947.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 89677188.0,
+          "projected": 89677188.0
+        },
+        "AUD": {
+          "available": -88180140.0,
+          "projected": -88180140.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 110526318.0,
+          "projected": 110526318.0
+        },
+        "EUR": {
+          "available": 66666666.0,
+          "projected": 66666666.0
+        }
+      }
+    },
+    {
+      "time": "02:00",
+      "hour": 2,
+      "minute": 0,
+      "dateTime": "2026-04-02T02:00:00",
+      "available": 439491381.0,
+      "projected": 439491381.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 39656304.0,
+          "projected": 39656304.0
+        },
+        "Global Bank UK": {
+          "available": 337838061.0,
+          "projected": 337838061.0
+        },
+        "Global Bank Americas": {
+          "available": 70575648.0,
+          "projected": 70575648.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -8578632.0,
+          "projected": -8578632.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 79336470.0,
+          "projected": 79336470.0
+        },
+        "AUD": {
+          "available": -84038073.0,
+          "projected": -84038073.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 110526318.0,
+          "projected": 110526318.0
+        },
+        "EUR": {
+          "available": 66666666.0,
+          "projected": 66666666.0
+        }
+      }
+    },
+    {
+      "time": "02:30",
+      "hour": 2,
+      "minute": 30,
+      "dateTime": "2026-04-02T02:30:00",
+      "available": 425763849.0,
+      "projected": 425763849.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 40575930.0,
+          "projected": 40575930.0
+        },
+        "Global Bank UK": {
+          "available": 320586528.0,
+          "projected": 320586528.0
+        },
+        "Global Bank Americas": {
+          "available": 71991735.0,
+          "projected": 71991735.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -7390344.0,
+          "projected": -7390344.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 63004563.0,
+          "projected": 63004563.0
+        },
+        "AUD": {
+          "available": -81433698.0,
+          "projected": -81433698.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 110526318.0,
+          "projected": 110526318.0
+        },
+        "EUR": {
+          "available": 66666666.0,
+          "projected": 66666666.0
+        }
+      }
+    },
+    {
+      "time": "03:00",
+      "hour": 3,
+      "minute": 0,
+      "dateTime": "2026-04-02T03:00:00",
+      "available": 424833609.0,
+      "projected": 424833612.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 34728702.0,
+          "projected": 34728702.0
+        },
+        "Global Bank UK": {
+          "available": 318859086.0,
+          "projected": 318859086.0
+        },
+        "Global Bank Americas": {
+          "available": 72415137.0,
+          "projected": 72415140.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -1169316.0,
+          "projected": -1169316.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 55429893.0,
+          "projected": 55429893.0
+        },
+        "AUD": {
+          "available": -74789268.0,
+          "projected": -74789265.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 110526318.0,
+          "projected": 110526318.0
+        },
+        "EUR": {
+          "available": 66666666.0,
+          "projected": 66666666.0
+        }
+      }
+    },
+    {
+      "time": "03:30",
+      "hour": 3,
+      "minute": 30,
+      "dateTime": "2026-04-02T03:30:00",
+      "available": 443119476.0,
+      "projected": 443119476.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 32670561.0,
+          "projected": 32670561.0
+        },
+        "Global Bank UK": {
+          "available": 329128107.0,
+          "projected": 329128107.0
+        },
+        "Global Bank Americas": {
+          "available": 83586135.0,
+          "projected": 83586135.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -2265327.0,
+          "projected": -2265327.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 63640773.0,
+          "projected": 63640773.0
+        },
+        "AUD": {
+          "available": -64714281.0,
+          "projected": -64714281.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 110526318.0,
+          "projected": 110526318.0
+        },
+        "EUR": {
+          "available": 66666666.0,
+          "projected": 66666666.0
+        }
+      }
+    },
+    {
+      "time": "04:00",
+      "hour": 4,
+      "minute": 0,
+      "dateTime": "2026-04-02T04:00:00",
+      "available": 434510928.0,
+      "projected": 434510928.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 25053471.0,
+          "projected": 25053471.0
+        },
+        "Global Bank UK": {
+          "available": 326664024.0,
+          "projected": 326664024.0
+        },
+        "Global Bank Americas": {
+          "available": 83977872.0,
+          "projected": 83977872.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -1184439.0,
+          "projected": -1184439.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 53559600.0,
+          "projected": 53559600.0
+        },
+        "AUD": {
+          "available": -63241656.0,
+          "projected": -63241656.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 110526318.0,
+          "projected": 110526318.0
+        },
+        "EUR": {
+          "available": 66666666.0,
+          "projected": 66666666.0
+        }
+      }
+    },
+    {
+      "time": "04:30",
+      "hour": 4,
+      "minute": 30,
+      "dateTime": "2026-04-02T04:30:00",
+      "available": 462935109.0,
+      "projected": 462935109.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 36254538.0,
+          "projected": 36254538.0
+        },
+        "Global Bank UK": {
+          "available": 335476779.0,
+          "projected": 335476779.0
+        },
+        "Global Bank Americas": {
+          "available": 91880244.0,
+          "projected": 91880244.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -676452.0,
+          "projected": -676452.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 73573422.0,
+          "projected": 73573422.0
+        },
+        "AUD": {
+          "available": -54831297.0,
+          "projected": -54831297.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 110526318.0,
+          "projected": 110526318.0
+        },
+        "EUR": {
+          "available": 66666666.0,
+          "projected": 66666666.0
+        }
+      }
+    },
+    {
+      "time": "05:00",
+      "hour": 5,
+      "minute": 0,
+      "dateTime": "2026-04-02T05:00:00",
+      "available": 491087430.0,
+      "projected": 491087430.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 44837382.0,
+          "projected": 44837382.0
+        },
+        "Global Bank UK": {
+          "available": 330984528.0,
+          "projected": 330984528.0
+        },
+        "Global Bank Americas": {
+          "available": 105541122.0,
+          "projected": 105541122.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 9724398.0,
+          "projected": 9724398.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 77664015.0,
+          "projected": 77664015.0
+        },
+        "AUD": {
+          "available": -30769569.0,
+          "projected": -30769569.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 110526318.0,
+          "projected": 110526318.0
+        },
+        "EUR": {
+          "available": 66666666.0,
+          "projected": 66666666.0
+        }
+      }
+    },
+    {
+      "time": "05:30",
+      "hour": 5,
+      "minute": 30,
+      "dateTime": "2026-04-02T05:30:00",
+      "available": 518707299.0,
+      "projected": 518707299.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 34141482.0,
+          "projected": 34141482.0
+        },
+        "Global Bank UK": {
+          "available": 336828885.0,
+          "projected": 336828885.0
+        },
+        "Global Bank Americas": {
+          "available": 103165065.0,
+          "projected": 103165065.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 44571867.0,
+          "projected": 44571867.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 72812472.0,
+          "projected": 72812472.0
+        },
+        "AUD": {
+          "available": 1701843.0,
+          "projected": 1701843.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 110526318.0,
+          "projected": 110526318.0
+        },
+        "EUR": {
+          "available": 66666666.0,
+          "projected": 66666666.0
+        }
+      }
+    },
+    {
+      "time": "06:00",
+      "hour": 6,
+      "minute": 0,
+      "dateTime": "2026-04-02T06:00:00",
+      "available": 532240779.0,
+      "projected": 532240779.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 25851798.0,
+          "projected": 25851798.0
+        },
+        "Global Bank UK": {
+          "available": 344076372.0,
+          "projected": 344076372.0
+        },
+        "Global Bank Americas": {
+          "available": 94185267.0,
+          "projected": 94185267.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 68127342.0,
+          "projected": 68127342.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 71770275.0,
+          "projected": 71770275.0
+        },
+        "AUD": {
+          "available": 16277520.0,
+          "projected": 16277520.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 110526318.0,
+          "projected": 110526318.0
+        },
+        "EUR": {
+          "available": 66666666.0,
+          "projected": 66666666.0
+        }
+      }
+    },
+    {
+      "time": "06:30",
+      "hour": 6,
+      "minute": 30,
+      "dateTime": "2026-04-02T06:30:00",
+      "available": 572224821.0,
+      "projected": 579546171.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 25810533.0,
+          "projected": 25810533.0
+        },
+        "Global Bank UK": {
+          "available": 337937733.0,
+          "projected": 337937733.0
+        },
+        "Global Bank Americas": {
+          "available": 91916988.0,
+          "projected": 99238338.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 116559567.0,
+          "projected": 116559567.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 65590371.0,
+          "projected": 65590371.0
+        },
+        "AUD": {
+          "available": 62441466.0,
+          "projected": 69762816.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 110526318.0,
+          "projected": 110526318.0
+        },
+        "EUR": {
+          "available": 66666666.0,
+          "projected": 66666666.0
+        }
+      }
+    },
+    {
+      "time": "07:00",
+      "hour": 7,
+      "minute": 0,
+      "dateTime": "2026-04-02T07:00:00",
+      "available": 540315669.0,
+      "projected": 547637019.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 26099082.0,
+          "projected": 26099082.0
+        },
+        "Global Bank UK": {
+          "available": 336384087.0,
+          "projected": 336384087.0
+        },
+        "Global Bank Americas": {
+          "available": 66345318.0,
+          "projected": 73666668.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 111487182.0,
+          "projected": 111487182.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 61798032.0,
+          "projected": 61798032.0
+        },
+        "AUD": {
+          "available": 65595318.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 102243180.0,
+          "projected": 102243180.0
+        },
+        "EUR": {
+          "available": 43679139.0,
+          "projected": 43679139.0
+        }
+      }
+    },
+    {
+      "time": "07:30",
+      "hour": 7,
+      "minute": 30,
+      "dateTime": "2026-04-02T07:30:00",
+      "available": 432974427.0,
+      "projected": 440295777.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 23313582.0,
+          "projected": 23313582.0
+        },
+        "Global Bank UK": {
+          "available": 318668106.0,
+          "projected": 318668106.0
+        },
+        "Global Bank Americas": {
+          "available": 66345318.0,
+          "projected": 73666668.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 24647421.0,
+          "projected": 24647421.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 60000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 70730109.0,
+          "projected": 70730109.0
+        },
+        "AUD": {
+          "available": 65595318.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 207000000.0,
+          "projected": 207000000.0
+        },
+        "CHF": {
+          "available": 22867428.0,
+          "projected": 22867428.0
+        },
+        "EUR": {
+          "available": 6781572.0,
+          "projected": 6781572.0
+        }
+      }
+    },
+    {
+      "time": "08:00",
+      "hour": 8,
+      "minute": 0,
+      "dateTime": "2026-04-02T08:00:00",
+      "available": 159410436.0,
+      "projected": 246437004.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 7363646.0,
+          "projected": 11045469.0
+        },
+        "Global Bank UK": {
+          "available": 162378846.0,
+          "projected": 243568269.0
+        },
+        "Global Bank Americas": {
+          "available": 41540576.0,
+          "projected": 69632214.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -51872632.0,
+          "projected": -77808948.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 40000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 38440032.0,
+          "projected": 57660048.0
+        },
+        "AUD": {
+          "available": 43730212.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 119646418.0,
+          "projected": 179469627.0
+        },
+        "CHF": {
+          "available": -43393842.0,
+          "projected": -65090763.0
+        },
+        "EUR": {
+          "available": -39012384.0,
+          "projected": -58518576.0
+        }
+      }
+    },
+    {
+      "time": "08:30",
+      "hour": 8,
+      "minute": 30,
+      "dateTime": "2026-04-02T08:30:00",
+      "available": -13722606.0,
+      "projected": -13262559.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 16597494.0,
+          "projected": 24896241.0
+        },
+        "Global Bank UK": {
+          "available": 84420558.0,
+          "projected": 126630837.0
+        },
+        "Global Bank Americas": {
+          "available": 34525962.0,
+          "projected": 59110293.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -149266620.0,
+          "projected": -223899930.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 40000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 40108146.0,
+          "projected": 60162219.0
+        },
+        "AUD": {
+          "available": 43730212.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 77402010.0,
+          "projected": 116103015.0
+        },
+        "CHF": {
+          "available": -120919552.0,
+          "projected": -181379328.0
+        },
+        "EUR": {
+          "available": -94043422.0,
+          "projected": -141065133.0
+        }
+      }
+    },
+    {
+      "time": "09:00",
+      "hour": 9,
+      "minute": 0,
+      "dateTime": "2026-04-02T09:00:00",
+      "available": -95225810.0,
+      "projected": -135517365.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 36363636.0,
+          "projected": 54545454.0
+        },
+        "Global Bank UK": {
+          "available": 57229850.0,
+          "projected": 85844775.0
+        },
+        "Global Bank Americas": {
+          "available": 41538312.0,
+          "projected": 69628818.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -230357608.0,
+          "projected": -345536412.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 40000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 34545454.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 43730212.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 112620748.0,
+          "projected": 168931122.0
+        },
+        "CHF": {
+          "available": -192025724.0,
+          "projected": -288038586.0
+        },
+        "EUR": {
+          "available": -134096500.0,
+          "projected": -201144750.0
+        }
+      }
+    },
+    {
+      "time": "09:30",
+      "hour": 9,
+      "minute": 30,
+      "dateTime": "2026-04-02T09:30:00",
+      "available": -262010450.0,
+      "projected": -385694325.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 36363636.0,
+          "projected": 54545454.0
+        },
+        "Global Bank UK": {
+          "available": -41983326.0,
+          "projected": -62974989.0
+        },
+        "Global Bank Americas": {
+          "available": 33772908.0,
+          "projected": 57980712.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -290163668.0,
+          "projected": -435245502.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 40000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 34545454.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 43730212.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 58027640.0,
+          "projected": 87041460.0
+        },
+        "CHF": {
+          "available": -283211678.0,
+          "projected": -424817517.0
+        },
+        "EUR": {
+          "available": -155102078.0,
+          "projected": -232653117.0
+        }
+      }
+    },
+    {
+      "time": "10:00",
+      "hour": 10,
+      "minute": 0,
+      "dateTime": "2026-04-02T10:00:00",
+      "available": -345548746.0,
+      "projected": -511001769.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 36363636.0,
+          "projected": 54545454.0
+        },
+        "Global Bank UK": {
+          "available": -72451672.0,
+          "projected": -108677508.0
+        },
+        "Global Bank Americas": {
+          "available": 32364952.0,
+          "projected": 55868778.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -341825662.0,
+          "projected": -512738493.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 40000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 34545454.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 43730212.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 43028824.0,
+          "projected": 64543236.0
+        },
+        "CHF": {
+          "available": -305392542.0,
+          "projected": -458088813.0
+        },
+        "EUR": {
+          "available": -201460694.0,
+          "projected": -302191041.0
+        }
+      }
+    },
+    {
+      "time": "10:30",
+      "hour": 10,
+      "minute": 30,
+      "dateTime": "2026-04-02T10:30:00",
+      "available": -321560760.0,
+      "projected": -475019793.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 36363636.0,
+          "projected": 54545454.0
+        },
+        "Global Bank UK": {
+          "available": -52201612.0,
+          "projected": -78302418.0
+        },
+        "Global Bank Americas": {
+          "available": 36819398.0,
+          "projected": 62550447.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -342542182.0,
+          "projected": -513813276.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 40000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 34545454.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 43730212.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 64442140.0,
+          "projected": 96663210.0
+        },
+        "CHF": {
+          "available": -303496758.0,
+          "projected": -455245137.0
+        },
+        "EUR": {
+          "available": -200781808.0,
+          "projected": -301172715.0
+        }
+      }
+    },
+    {
+      "time": "11:00",
+      "hour": 11,
+      "minute": 0,
+      "dateTime": "2026-04-02T11:00:00",
+      "available": -266290038.0,
+      "projected": -392113707.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 36363636.0,
+          "projected": 54545454.0
+        },
+        "Global Bank UK": {
+          "available": -10323534.0,
+          "projected": -15485301.0
+        },
+        "Global Bank Americas": {
+          "available": 46645174.0,
+          "projected": 77289111.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -338975314.0,
+          "projected": -508462971.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 40000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 34545454.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 43730212.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 117411524.0,
+          "projected": 176117286.0
+        },
+        "CHF": {
+          "available": -302600750.0,
+          "projected": -453901125.0
+        },
+        "EUR": {
+          "available": -199376478.0,
+          "projected": -299064717.0
+        }
+      }
+    },
+    {
+      "time": "11:30",
+      "hour": 11,
+      "minute": 30,
+      "dateTime": "2026-04-02T11:30:00",
+      "available": -248911484.0,
+      "projected": -366045876.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 36363636.0,
+          "projected": 54545454.0
+        },
+        "Global Bank UK": {
+          "available": -1277568.0,
+          "projected": -1916352.0
+        },
+        "Global Bank Americas": {
+          "available": 48606726.0,
+          "projected": 80231439.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -332604278.0,
+          "projected": -498906417.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 40000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 34545454.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 43730212.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 129286258.0,
+          "projected": 193929387.0
+        },
+        "CHF": {
+          "available": -303507808.0,
+          "projected": -455261712.0
+        },
+        "EUR": {
+          "available": -192965600.0,
+          "projected": -289448400.0
+        }
+      }
+    },
+    {
+      "time": "12:00",
+      "hour": 12,
+      "minute": 0,
+      "dateTime": "2026-04-02T12:00:00",
+      "available": -291209252.0,
+      "projected": -429492525.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 36363636.0,
+          "projected": 54545454.0
+        },
+        "Global Bank UK": {
+          "available": -41727758.0,
+          "projected": -62591634.0
+        },
+        "Global Bank Americas": {
+          "available": 40785424.0,
+          "projected": 68499486.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -326630554.0,
+          "projected": -489945831.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 40000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 34545454.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 43730212.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 83418666.0,
+          "projected": 125127999.0
+        },
+        "CHF": {
+          "available": -304657632.0,
+          "projected": -456986445.0
+        },
+        "EUR": {
+          "available": -188245952.0,
+          "projected": -282368928.0
+        }
+      }
+    },
+    {
+      "time": "12:30",
+      "hour": 12,
+      "minute": 30,
+      "dateTime": "2026-04-02T12:30:00",
+      "available": -324329370.0,
+      "projected": -479172705.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 36363636.0,
+          "projected": 54545454.0
+        },
+        "Global Bank UK": {
+          "available": -68401820.0,
+          "projected": -102602730.0
+        },
+        "Global Bank Americas": {
+          "available": 35901892.0,
+          "projected": 61174188.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -328193078.0,
+          "projected": -492289617.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 40000000.0,
+          "projected": 60000000.0
+        },
+        "JPY": {
+          "available": 34545454.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 43730212.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 55164036.0,
+          "projected": 82746054.0
+        },
+        "CHF": {
+          "available": -307601240.0,
+          "projected": -461401860.0
+        },
+        "EUR": {
+          "available": -190167832.0,
+          "projected": -285251748.0
+        }
+      }
+    },
+    {
+      "time": "13:00",
+      "hour": 13,
+      "minute": 0,
+      "dateTime": "2026-04-02T13:00:00",
+      "available": -366988418.0,
+      "projected": -543161277.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 36905892.0,
+          "projected": 55358838.0
+        },
+        "Global Bank UK": {
+          "available": -99205608.0,
+          "projected": -148808412.0
+        },
+        "Global Bank Americas": {
+          "available": 29307284.0,
+          "projected": 51282276.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -333995986.0,
+          "projected": -500993979.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 39723362.0,
+          "projected": 59585043.0
+        },
+        "JPY": {
+          "available": 34545454.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 43730212.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 16459252.0,
+          "projected": 24688878.0
+        },
+        "CHF": {
+          "available": -305436936.0,
+          "projected": -458155404.0
+        },
+        "EUR": {
+          "available": -196009762.0,
+          "projected": -294014643.0
+        }
+      }
+    },
+    {
+      "time": "13:30",
+      "hour": 13,
+      "minute": 30,
+      "dateTime": "2026-04-02T13:30:00",
+      "available": -390056546.0,
+      "projected": -571207638.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 53215410.0,
+          "projected": 86378946.0
+        },
+        "Global Bank UK": {
+          "available": -137041264.0,
+          "projected": -205561896.0
+        },
+        "Global Bank Americas": {
+          "available": 26489670.0,
+          "projected": 47055855.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -332720362.0,
+          "projected": -499080543.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 39169412.0,
+          "projected": 65309949.0
+        },
+        "JPY": {
+          "available": 34545454.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 43730212.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": -1857598.0,
+          "projected": -2786397.0
+        },
+        "CHF": {
+          "available": -308078180.0,
+          "projected": -462117270.0
+        },
+        "EUR": {
+          "available": -197565846.0,
+          "projected": -296348769.0
+        }
+      }
+    },
+    {
+      "time": "14:00",
+      "hour": 14,
+      "minute": 0,
+      "dateTime": "2026-04-02T14:00:00",
+      "available": -383847856.0,
+      "projected": -561894606.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 50924218.0,
+          "projected": 82942155.0
+        },
+        "Global Bank UK": {
+          "available": -135468286.0,
+          "projected": -203202429.0
+        },
+        "Global Bank Americas": {
+          "available": 29831338.0,
+          "projected": 52068357.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -329135126.0,
+          "projected": -493702689.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 19391540.0,
+          "projected": 35643138.0
+        },
+        "JPY": {
+          "available": 34545454.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 43730212.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 17171796.0,
+          "projected": 25757694.0
+        },
+        "CHF": {
+          "available": -303973056.0,
+          "projected": -455959584.0
+        },
+        "EUR": {
+          "available": -194713802.0,
+          "projected": -292070703.0
+        }
+      }
+    },
+    {
+      "time": "14:30",
+      "hour": 14,
+      "minute": 30,
+      "dateTime": "2026-04-02T14:30:00",
+      "available": -380120642.0,
+      "projected": -556303785.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 52846794.0,
+          "projected": 85826019.0
+        },
+        "Global Bank UK": {
+          "available": -132380112.0,
+          "projected": -198570168.0
+        },
+        "Global Bank Americas": {
+          "available": 31677106.0,
+          "projected": 54837009.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -332264430.0,
+          "projected": -498396645.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 12474968.0,
+          "projected": 25268280.0
+        },
+        "JPY": {
+          "available": 34545454.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 43730212.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 26328140.0,
+          "projected": 39492210.0
+        },
+        "CHF": {
+          "available": -299055220.0,
+          "projected": -448582830.0
+        },
+        "EUR": {
+          "available": -198144196.0,
+          "projected": -297216294.0
+        }
+      }
+    },
+    {
+      "time": "15:00",
+      "hour": 15,
+      "minute": 0,
+      "dateTime": "2026-04-02T15:00:00",
+      "available": -280851238.0,
+      "projected": -406147335.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 49361036.0,
+          "projected": 80597382.0
+        },
+        "Global Bank UK": {
+          "available": -68198938.0,
+          "projected": -102298407.0
+        },
+        "Global Bank Americas": {
+          "available": 42814710.0,
+          "projected": 72795759.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -304828046.0,
+          "projected": -457242069.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": -6542434.0,
+          "projected": -3257823.0
+        },
+        "JPY": {
+          "available": 34545454.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 43730212.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 98340288.0,
+          "projected": 148762776.0
+        },
+        "CHF": {
+          "available": -266950600.0,
+          "projected": -400425900.0
+        },
+        "EUR": {
+          "available": -183974158.0,
+          "projected": -275961237.0
+        }
+      }
+    },
+    {
+      "time": "15:30",
+      "hour": 15,
+      "minute": 30,
+      "dateTime": "2026-04-02T15:30:00",
+      "available": -86868241.0,
+      "projected": -245475195.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 18009393.0,
+          "projected": 60584007.0
+        },
+        "Global Bank UK": {
+          "available": -23466981.0,
+          "projected": -70400943.0
+        },
+        "Global Bank Americas": {
+          "available": 21483881.0,
+          "projected": 73025340.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -102894534.0,
+          "projected": -308683599.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": -14590442.0,
+          "projected": -37215498.0
+        },
+        "JPY": {
+          "available": 17272727.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 21865106.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 48421892.0,
+          "projected": 146518023.0
+        },
+        "CHF": {
+          "available": -94493078.0,
+          "projected": -283479234.0
+        },
+        "EUR": {
+          "available": -65344446.0,
+          "projected": -196033335.0
+        }
+      }
+    },
+    {
+      "time": "16:00",
+      "hour": 16,
+      "minute": 0,
+      "dateTime": "2026-04-02T16:00:00",
+      "available": 2761133.0,
+      "projected": 23412927.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 20906118.0,
+          "projected": 69274182.0
+        },
+        "Global Bank UK": {
+          "available": 10805378.0,
+          "projected": 32416137.0
+        },
+        "Global Bank Americas": {
+          "available": 24001699.0,
+          "projected": 80578794.0
+        },
+        "Global Bank Luxembourg": {
+          "available": -52952062.0,
+          "projected": -158856186.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": -16735539.0,
+          "projected": -43650789.0
+        },
+        "JPY": {
+          "available": 17272727.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 21865106.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 65127389.0,
+          "projected": 196634517.0
+        },
+        "CHF": {
+          "available": -55839124.0,
+          "projected": -167517372.0
+        },
+        "EUR": {
+          "available": -28929426.0,
+          "projected": -86788278.0
+        }
+      }
+    },
+    {
+      "time": "16:30",
+      "hour": 16,
+      "minute": 30,
+      "dateTime": "2026-04-02T16:30:00",
+      "available": 55311408.0,
+      "projected": 181063746.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 21067279.0,
+          "projected": 69757665.0
+        },
+        "Global Bank UK": {
+          "available": 4602169.0,
+          "projected": 13806507.0
+        },
+        "Global Bank Americas": {
+          "available": 17280944.0,
+          "projected": 60416526.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 12361016.0,
+          "projected": 37083048.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": -16471146.0,
+          "projected": -42857610.0
+        },
+        "JPY": {
+          "available": 17272727.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 21865106.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 28163381.0,
+          "projected": 85742487.0
+        },
+        "CHF": {
+          "available": -3280993.0,
+          "projected": -9842979.0
+        },
+        "EUR": {
+          "available": 7762333.0,
+          "projected": 23286999.0
+        }
+      }
+    },
+    {
+      "time": "17:00",
+      "hour": 17,
+      "minute": 0,
+      "dateTime": "2026-04-02T17:00:00",
+      "available": 129099804.0,
+      "projected": 419780805.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 23784307.0,
+          "projected": 77908749.0
+        },
+        "Global Bank UK": {
+          "available": 43185640.0,
+          "projected": 129556920.0
+        },
+        "Global Bank Americas": {
+          "available": 19952883.0,
+          "projected": 68432346.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 42176974.0,
+          "projected": 143882790.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": -12732749.0,
+          "projected": -31642419.0
+        },
+        "JPY": {
+          "available": 17272727.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 21865106.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 50121744.0,
+          "projected": 151617579.0
+        },
+        "CHF": {
+          "available": 36322110.0,
+          "projected": 108966330.0
+        },
+        "EUR": {
+          "available": 16250866.0,
+          "projected": 66104466.0
+        }
+      }
+    },
+    {
+      "time": "17:30",
+      "hour": 17,
+      "minute": 30,
+      "dateTime": "2026-04-02T17:30:00",
+      "available": 131426582.0,
+      "projected": 432689481.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 22248544.0,
+          "projected": 79229805.0
+        },
+        "Global Bank UK": {
+          "available": 47425032.0,
+          "projected": 142275096.0
+        },
+        "Global Bank Americas": {
+          "available": 19576032.0,
+          "projected": 67301790.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 42176974.0,
+          "projected": 143882790.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": -14110268.0,
+          "projected": -29846631.0
+        },
+        "JPY": {
+          "available": 17272727.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 21865106.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 53826041.0,
+          "projected": 162730467.0
+        },
+        "CHF": {
+          "available": 36322110.0,
+          "projected": 108966330.0
+        },
+        "EUR": {
+          "available": 16250866.0,
+          "projected": 66104466.0
+        }
+      }
+    },
+    {
+      "time": "18:00",
+      "hour": 18,
+      "minute": 0,
+      "dateTime": "2026-04-02T18:00:00",
+      "available": 145756779.0,
+      "projected": 475680078.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 22856573.0,
+          "projected": 81053892.0
+        },
+        "Global Bank UK": {
+          "available": 59092705.0,
+          "projected": 177278118.0
+        },
+        "Global Bank Americas": {
+          "available": 21630527.0,
+          "projected": 73465278.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 42176974.0,
+          "projected": 143882790.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": -13967959.0,
+          "projected": -29419704.0
+        },
+        "JPY": {
+          "available": 17272727.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 21865106.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 68013929.0,
+          "projected": 205294137.0
+        },
+        "CHF": {
+          "available": 36322110.0,
+          "projected": 108966330.0
+        },
+        "EUR": {
+          "available": 16250866.0,
+          "projected": 66104466.0
+        }
+      }
+    },
+    {
+      "time": "18:30",
+      "hour": 18,
+      "minute": 30,
+      "dateTime": "2026-04-02T18:30:00",
+      "available": 141231850.0,
+      "projected": 462105291.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 19523893.0,
+          "projected": 71055852.0
+        },
+        "Global Bank UK": {
+          "available": 57900456.0,
+          "projected": 173701371.0
+        },
+        "Global Bank Americas": {
+          "available": 21630527.0,
+          "projected": 73465278.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 42176974.0,
+          "projected": 143882790.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": -18492888.0,
+          "projected": -42994491.0
+        },
+        "JPY": {
+          "available": 17272727.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 21865106.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 68013929.0,
+          "projected": 205294137.0
+        },
+        "CHF": {
+          "available": 36322110.0,
+          "projected": 108966330.0
+        },
+        "EUR": {
+          "available": 16250866.0,
+          "projected": 66104466.0
+        }
+      }
+    },
+    {
+      "time": "19:00",
+      "hour": 19,
+      "minute": 0,
+      "dateTime": "2026-04-02T19:00:00",
+      "available": 141128501.0,
+      "projected": 461795244.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 19192712.0,
+          "projected": 70062309.0
+        },
+        "Global Bank UK": {
+          "available": 58128288.0,
+          "projected": 174384867.0
+        },
+        "Global Bank Americas": {
+          "available": 21630527.0,
+          "projected": 73465278.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 42176974.0,
+          "projected": 143882790.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": -18596237.0,
+          "projected": -43304538.0
+        },
+        "JPY": {
+          "available": 17272727.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 21865106.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 68013929.0,
+          "projected": 205294137.0
+        },
+        "CHF": {
+          "available": 36322110.0,
+          "projected": 108966330.0
+        },
+        "EUR": {
+          "available": 16250866.0,
+          "projected": 66104466.0
+        }
+      }
+    },
+    {
+      "time": "19:30",
+      "hour": 19,
+      "minute": 30,
+      "dateTime": "2026-04-02T19:30:00",
+      "available": 136292259.0,
+      "projected": 447286518.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 14147132.0,
+          "projected": 54925569.0
+        },
+        "Global Bank UK": {
+          "available": 58337626.0,
+          "projected": 175012881.0
+        },
+        "Global Bank Americas": {
+          "available": 21630527.0,
+          "projected": 73465278.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 42176974.0,
+          "projected": 143882790.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": -23432479.0,
+          "projected": -57813264.0
+        },
+        "JPY": {
+          "available": 17272727.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 21865106.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 68013929.0,
+          "projected": 205294137.0
+        },
+        "CHF": {
+          "available": 36322110.0,
+          "projected": 108966330.0
+        },
+        "EUR": {
+          "available": 16250866.0,
+          "projected": 66104466.0
+        }
+      }
+    },
+    {
+      "time": "20:00",
+      "hour": 20,
+      "minute": 0,
+      "dateTime": "2026-04-02T20:00:00",
+      "available": 136986395.0,
+      "projected": 449368926.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 15731219.0,
+          "projected": 59677830.0
+        },
+        "Global Bank UK": {
+          "available": 57447675.0,
+          "projected": 172343028.0
+        },
+        "Global Bank Americas": {
+          "available": 21630527.0,
+          "projected": 73465278.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 42176974.0,
+          "projected": 143882790.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": -22738343.0,
+          "projected": -55730856.0
+        },
+        "JPY": {
+          "available": 17272727.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 21865106.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 68013929.0,
+          "projected": 205294137.0
+        },
+        "CHF": {
+          "available": 36322110.0,
+          "projected": 108966330.0
+        },
+        "EUR": {
+          "available": 16250866.0,
+          "projected": 66104466.0
+        }
+      }
+    },
+    {
+      "time": "20:30",
+      "hour": 20,
+      "minute": 30,
+      "dateTime": "2026-04-02T20:30:00",
+      "available": 130918734.0,
+      "projected": 431165943.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 10074873.0,
+          "projected": 42708792.0
+        },
+        "Global Bank UK": {
+          "available": 57036360.0,
+          "projected": 171109083.0
+        },
+        "Global Bank Americas": {
+          "available": 21630527.0,
+          "projected": 73465278.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 42176974.0,
+          "projected": 143882790.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": -28806004.0,
+          "projected": -73933839.0
+        },
+        "JPY": {
+          "available": 17272727.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 21865106.0,
+          "projected": 72916668.0
+        },
+        "GBP": {
+          "available": 68013929.0,
+          "projected": 205294137.0
+        },
+        "CHF": {
+          "available": 36322110.0,
+          "projected": 108966330.0
+        },
+        "EUR": {
+          "available": 16250866.0,
+          "projected": 66104466.0
+        }
+      }
+    },
+    {
+      "time": "21:00",
+      "hour": 21,
+      "minute": 0,
+      "dateTime": "2026-04-02T21:00:00",
+      "available": 130040816.0,
+      "projected": 428532189.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 13193887.0,
+          "projected": 52065834.0
+        },
+        "Global Bank UK": {
+          "available": 59808891.0,
+          "projected": 179426676.0
+        },
+        "Global Bank Americas": {
+          "available": 18760864.0,
+          "projected": 64856289.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 38277174.0,
+          "projected": 132183390.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": -22914459.0,
+          "projected": -56259204.0
+        },
+        "JPY": {
+          "available": 17272727.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 15095643.0,
+          "projected": 52608279.0
+        },
+        "GBP": {
+          "available": 68013929.0,
+          "projected": 205294137.0
+        },
+        "CHF": {
+          "available": 36322110.0,
+          "projected": 108966330.0
+        },
+        "EUR": {
+          "available": 16250866.0,
+          "projected": 66104466.0
+        }
+      }
+    },
+    {
+      "time": "21:30",
+      "hour": 21,
+      "minute": 30,
+      "dateTime": "2026-04-02T21:30:00",
+      "available": 129979097.0,
+      "projected": 428347032.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 8897860.0,
+          "projected": 39177753.0
+        },
+        "Global Bank UK": {
+          "available": 71467264.0,
+          "projected": 214401795.0
+        },
+        "Global Bank Americas": {
+          "available": 18586234.0,
+          "projected": 64332399.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 31027739.0,
+          "projected": 110435085.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": -15552113.0,
+          "projected": -34172166.0
+        },
+        "JPY": {
+          "available": 17272727.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": 7671578.0,
+          "projected": 30336084.0
+        },
+        "GBP": {
+          "available": 68013929.0,
+          "projected": 205294137.0
+        },
+        "CHF": {
+          "available": 36322110.0,
+          "projected": 108966330.0
+        },
+        "EUR": {
+          "available": 16250866.0,
+          "projected": 66104466.0
+        }
+      }
+    },
+    {
+      "time": "22:00",
+      "hour": 22,
+      "minute": 0,
+      "dateTime": "2026-04-02T22:00:00",
+      "available": 134276738.0,
+      "projected": 442632723.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 12452547.0,
+          "projected": 49841814.0
+        },
+        "Global Bank UK": {
+          "available": 82923725.0,
+          "projected": 248771178.0
+        },
+        "Global Bank Americas": {
+          "available": 14088165.0,
+          "projected": 51289347.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 24812301.0,
+          "projected": 92730384.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": -540965.0,
+          "projected": 10861278.0
+        },
+        "JPY": {
+          "available": 17272727.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": -3041929.0,
+          "projected": -411669.0
+        },
+        "GBP": {
+          "available": 68013929.0,
+          "projected": 205294137.0
+        },
+        "CHF": {
+          "available": 36322110.0,
+          "projected": 108966330.0
+        },
+        "EUR": {
+          "available": 16250866.0,
+          "projected": 66104466.0
+        }
+      }
+    },
+    {
+      "time": "22:30",
+      "hour": 22,
+      "minute": 30,
+      "dateTime": "2026-04-02T22:30:00",
+      "available": 146573985.0,
+      "projected": 479524470.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 15643007.0,
+          "projected": 59413194.0
+        },
+        "Global Bank UK": {
+          "available": 96872809.0,
+          "projected": 290618433.0
+        },
+        "Global Bank Americas": {
+          "available": 17429830.0,
+          "projected": 61314342.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 16628339.0,
+          "projected": 68178501.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 16598579.0,
+          "projected": 62279913.0
+        },
+        "JPY": {
+          "available": 17272727.0,
+          "projected": 51818181.0
+        },
+        "AUD": {
+          "available": -7884226.0,
+          "projected": -14938557.0
+        },
+        "GBP": {
+          "available": 68013929.0,
+          "projected": 205294137.0
+        },
+        "CHF": {
+          "available": 36322110.0,
+          "projected": 108966330.0
+        },
+        "EUR": {
+          "available": 16250866.0,
+          "projected": 66104466.0
+        }
+      }
+    },
+    {
+      "time": "23:00",
+      "hour": 23,
+      "minute": 0,
+      "dateTime": "2026-04-02T23:00:00",
+      "available": 135155832.0,
+      "projected": 445270005.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 16058375.0,
+          "projected": 60659298.0
+        },
+        "Global Bank UK": {
+          "available": 99152133.0,
+          "projected": 297456402.0
+        },
+        "Global Bank Americas": {
+          "available": 14542362.0,
+          "projected": 52651938.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 5402962.0,
+          "projected": 34502367.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 15878769.0,
+          "projected": 60120480.0
+        },
+        "JPY": {
+          "available": 20687229.0,
+          "projected": 62061687.0
+        },
+        "AUD": {
+          "available": -21997071.0,
+          "projected": -57277095.0
+        },
+        "GBP": {
+          "available": 68013929.0,
+          "projected": 205294137.0
+        },
+        "CHF": {
+          "available": 36322110.0,
+          "projected": 108966330.0
+        },
+        "EUR": {
+          "available": 16250866.0,
+          "projected": 66104466.0
+        }
+      }
+    },
+    {
+      "time": "23:30",
+      "hour": 23,
+      "minute": 30,
+      "dateTime": "2026-04-02T23:30:00",
+      "available": 0.0,
+      "projected": 403586718.0,
+      "byEntity": {
+        "Global Bank Germany": {
+          "available": 0.0,
+          "projected": 64951122.0
+        },
+        "Global Bank UK": {
+          "available": 0.0,
+          "projected": 297646428.0
+        },
+        "Global Bank Americas": {
+          "available": 0.0,
+          "projected": 54054753.0
+        },
+        "Global Bank Luxembourg": {
+          "available": 0.0,
+          "projected": -13065585.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "available": 0.0,
+          "projected": 60120480.0
+        },
+        "JPY": {
+          "available": 0.0,
+          "projected": 66543537.0
+        },
+        "AUD": {
+          "available": 0.0,
+          "projected": -103442232.0
+        },
+        "GBP": {
+          "available": 0.0,
+          "projected": 205294137.0
+        },
+        "CHF": {
+          "available": 0.0,
+          "projected": 108966330.0
+        },
+        "EUR": {
+          "available": 0.0,
+          "projected": 66104466.0
+        }
+      }
+    }
+  ],
+  "hourlyCashFlows": [
+    {
+      "hour": "00:00",
+      "dateTime": "2026-04-02T00:00:00",
+      "matchedCredits": 56180394.0,
+      "unmatchedCredits": 0.0,
+      "matchedDebits": -42282274.0,
+      "unmatchedDebits": -0.0,
+      "netFlow": 13898120.0,
+      "txCount": 80,
+      "byEntity": {
+        "Global Bank Luxembourg": {
+          "matchedCredits": 3749522.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -1302740.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 22799364.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -3633630.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 25169954.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -18571292.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 4461554.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -18774612.0,
+          "unmatchedDebits": -0.0
+        }
+      }
+    },
+    {
+      "hour": "01:00",
+      "dateTime": "2026-04-02T01:00:00",
+      "matchedCredits": 52830468.0,
+      "unmatchedCredits": 0.0,
+      "matchedDebits": -34825866.0,
+      "unmatchedDebits": -0.0,
+      "netFlow": 18004602.0,
+      "txCount": 80,
+      "byEntity": {
+        "Global Bank Luxembourg": {
+          "matchedCredits": 2380582.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -2880896.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 24577444.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -15001830.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 18867352.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -8872886.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 7005090.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -8070254.0,
+          "unmatchedDebits": -0.0
+        }
+      }
+    },
+    {
+      "hour": "02:00",
+      "dateTime": "2026-04-02T02:00:00",
+      "matchedCredits": 38654650.0,
+      "unmatchedCredits": 0.0,
+      "matchedDebits": -48710698.0,
+      "unmatchedDebits": -0.0,
+      "netFlow": -10056048.0,
+      "txCount": 80,
+      "byEntity": {
+        "Global Bank Luxembourg": {
+          "matchedCredits": 4742206.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -927412.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 3846830.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -20652776.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 18271184.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -13363630.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 11794430.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -13766880.0,
+          "unmatchedDebits": -0.0
+        }
+      }
+    },
+    {
+      "hour": "03:00",
+      "dateTime": "2026-04-02T03:00:00",
+      "matchedCredits": 50817222.0,
+      "unmatchedCredits": 0.0,
+      "matchedDebits": -34462944.0,
+      "unmatchedDebits": -0.0,
+      "netFlow": 16354278.0,
+      "txCount": 80,
+      "byEntity": {
+        "Global Bank Americas": {
+          "matchedCredits": 20808050.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -9725686.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 19202154.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -7672558.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 8015632.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -15294488.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Luxembourg": {
+          "matchedCredits": 2791386.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -1770212.0,
+          "unmatchedDebits": -0.0
+        }
+      }
+    },
+    {
+      "hour": "04:00",
+      "dateTime": "2026-04-02T04:00:00",
+      "matchedCredits": 57299886.0,
+      "unmatchedCredits": 0.0,
+      "matchedDebits": -36240522.0,
+      "unmatchedDebits": -0.0,
+      "netFlow": 21059364.0,
+      "txCount": 80,
+      "byEntity": {
+        "Global Bank Americas": {
+          "matchedCredits": 24763972.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -13958474.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 18566790.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -6155246.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Luxembourg": {
+          "matchedCredits": 1645658.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -3170384.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 12323466.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -12956418.0,
+          "unmatchedDebits": -0.0
+        }
+      }
+    },
+    {
+      "hour": "05:00",
+      "dateTime": "2026-04-02T05:00:00",
+      "matchedCredits": 75730952.0,
+      "unmatchedCredits": 0.0,
+      "matchedDebits": -43479960.0,
+      "unmatchedDebits": -1602700.0,
+      "netFlow": 30648292.0,
+      "txCount": 80,
+      "byEntity": {
+        "Global Bank Luxembourg": {
+          "matchedCredits": 43948664.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -98068.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 4157528.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -14624420.0,
+          "unmatchedDebits": -1602700.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 13495598.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -19325420.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 14129162.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -9432052.0,
+          "unmatchedDebits": -0.0
+        }
+      }
+    },
+    {
+      "hour": "06:00",
+      "dateTime": "2026-04-02T06:00:00",
+      "matchedCredits": 84641526.0,
+      "unmatchedCredits": 4880900.0,
+      "matchedDebits": -49085864.0,
+      "unmatchedDebits": -0.0,
+      "netFlow": 40436562.0,
+      "txCount": 80,
+      "byEntity": {
+        "Global Bank Luxembourg": {
+          "matchedCredits": 52531660.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 8790186.0,
+          "unmatchedCredits": 4880900.0,
+          "matchedDebits": -24487336.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 10102802.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -9698380.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 13216878.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -14900148.0,
+          "unmatchedDebits": -0.0
+        }
+      }
+    },
+    {
+      "hour": "07:00",
+      "dateTime": "2026-04-02T07:00:00",
+      "matchedCredits": 27532313.0,
+      "unmatchedCredits": 0.0,
+      "matchedDebits": -252538442.0,
+      "unmatchedDebits": -1870348.0,
+      "netFlow": -226876477.0,
+      "txCount": 121,
+      "byEntity": {
+        "Global Bank Germany": {
+          "matchedCredits": 4973262.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -13163586.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 16796094.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -53708538.0,
+          "unmatchedDebits": -1870348.0
+        },
+        "Global Bank Luxembourg": {
+          "matchedCredits": 5762957.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -180653074.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 0.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -5013244.0,
+          "unmatchedDebits": -0.0
+        }
+      }
+    },
+    {
+      "hour": "08:00",
+      "dateTime": "2026-04-02T08:00:00",
+      "matchedCredits": 142063130.0,
+      "unmatchedCredits": 53825908.0,
+      "matchedDebits": -404311016.0,
+      "unmatchedDebits": -128442879.0,
+      "netFlow": -336864857.0,
+      "txCount": 242,
+      "byEntity": {
+        "Global Bank Americas": {
+          "matchedCredits": 16519866.0,
+          "unmatchedCredits": 8259933.0,
+          "matchedDebits": -20623914.0,
+          "unmatchedDebits": -10311957.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 96029208.0,
+          "unmatchedCredits": 43698722.0,
+          "matchedDebits": -204674036.0,
+          "unmatchedDebits": -73143502.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 25779550.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -5423216.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Luxembourg": {
+          "matchedCredits": 3734506.0,
+          "unmatchedCredits": 1867253.0,
+          "matchedDebits": -173589850.0,
+          "unmatchedDebits": -44987420.0
+        }
+      }
+    },
+    {
+      "hour": "09:00",
+      "dateTime": "2026-04-02T09:00:00",
+      "matchedCredits": 69807798.0,
+      "unmatchedCredits": 27868980.0,
+      "matchedDebits": -307745894.0,
+      "unmatchedDebits": -86713608.0,
+      "netFlow": -296782724.0,
+      "txCount": 194,
+      "byEntity": {
+        "Global Bank Americas": {
+          "matchedCredits": 8602926.0,
+          "unmatchedCredits": 4301463.0,
+          "matchedDebits": -12089404.0,
+          "unmatchedDebits": -6044702.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 48778690.0,
+          "unmatchedCredits": 22556399.0,
+          "matchedDebits": -158589710.0,
+          "unmatchedDebits": -37881604.0
+        },
+        "Global Bank Luxembourg": {
+          "matchedCredits": 6613548.0,
+          "unmatchedCredits": 1011118.0,
+          "matchedDebits": -137066780.0,
+          "unmatchedDebits": -42787302.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 5812634.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -0.0
+        }
+      }
+    },
+    {
+      "hour": "10:00",
+      "dateTime": "2026-04-02T10:00:00",
+      "matchedCredits": 126678886.0,
+      "unmatchedCredits": 59370751.0,
+      "matchedDebits": -98665628.0,
+      "unmatchedDebits": -46798300.0,
+      "netFlow": 40585709.0,
+      "txCount": 190,
+      "byEntity": {
+        "Global Bank Luxembourg": {
+          "matchedCredits": 9392280.0,
+          "unmatchedCredits": 3318905.0,
+          "matchedDebits": -9072670.0,
+          "unmatchedDebits": -2594037.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 98918856.0,
+          "unmatchedCredits": 46867971.0,
+          "matchedDebits": -77671448.0,
+          "unmatchedDebits": -38243508.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 18367750.0,
+          "unmatchedCredits": 9183875.0,
+          "matchedDebits": -11921510.0,
+          "unmatchedDebits": -5960755.0
+        }
+      }
+    },
+    {
+      "hour": "11:00",
+      "dateTime": "2026-04-02T11:00:00",
+      "matchedCredits": 90609604.0,
+      "unmatchedCredits": 41358853.0,
+      "matchedDebits": -84241566.0,
+      "unmatchedDebits": -37981956.0,
+      "netFlow": 9744935.0,
+      "txCount": 190,
+      "byEntity": {
+        "Global Bank Luxembourg": {
+          "matchedCredits": 17375338.0,
+          "unmatchedCredits": 6088230.0,
+          "matchedDebits": -3908082.0,
+          "unmatchedDebits": -586055.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 62078156.0,
+          "unmatchedCredits": 29692568.0,
+          "matchedDebits": -68257878.0,
+          "unmatchedDebits": -31358098.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 11156110.0,
+          "unmatchedCredits": 5578055.0,
+          "matchedDebits": -12075606.0,
+          "unmatchedDebits": -6037803.0
+        }
+      }
+    },
+    {
+      "hour": "12:00",
+      "dateTime": "2026-04-02T12:00:00",
+      "matchedCredits": 75530024.0,
+      "unmatchedCredits": 33554622.0,
+      "matchedDebits": -149013196.0,
+      "unmatchedDebits": -68232154.0,
+      "netFlow": -108160704.0,
+      "txCount": 190,
+      "byEntity": {
+        "Global Bank UK": {
+          "matchedCredits": 57478088.0,
+          "unmatchedCredits": 26458113.0,
+          "matchedDebits": -114567070.0,
+          "unmatchedDebits": -53203373.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 9813834.0,
+          "unmatchedCredits": 4906917.0,
+          "matchedDebits": -21095674.0,
+          "unmatchedDebits": -10547837.0
+        },
+        "Global Bank Luxembourg": {
+          "matchedCredits": 8238102.0,
+          "unmatchedCredits": 2189592.0,
+          "matchedDebits": -13350452.0,
+          "unmatchedDebits": -4480944.0
+        }
+      }
+    },
+    {
+      "hour": "13:00",
+      "dateTime": "2026-04-02T13:00:00",
+      "matchedCredits": 104201764.0,
+      "unmatchedCredits": 52511701.0,
+      "matchedDebits": -120800248.0,
+      "unmatchedDebits": -56329086.0,
+      "netFlow": -20415869.0,
+      "txCount": 256,
+      "byEntity": {
+        "Global Bank Luxembourg": {
+          "matchedCredits": 10866280.0,
+          "unmatchedCredits": 2192803.0,
+          "matchedDebits": -7019858.0,
+          "unmatchedDebits": -2341343.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 23654248.0,
+          "unmatchedCredits": 18382952.0,
+          "matchedDebits": -5172502.0,
+          "unmatchedDebits": -2586251.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 9983818.0,
+          "unmatchedCredits": 4991909.0,
+          "matchedDebits": -9964764.0,
+          "unmatchedDebits": -4982382.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 59697418.0,
+          "unmatchedCredits": 26944037.0,
+          "matchedDebits": -98643124.0,
+          "unmatchedDebits": -46419110.0
+        }
+      }
+    },
+    {
+      "hour": "14:00",
+      "dateTime": "2026-04-02T14:00:00",
+      "matchedCredits": 143447886.0,
+      "unmatchedCredits": 66022825.0,
+      "matchedDebits": -88409656.0,
+      "unmatchedDebits": -42015824.0,
+      "netFlow": 79045231.0,
+      "txCount": 250,
+      "byEntity": {
+        "Global Bank Germany": {
+          "matchedCredits": 9303078.0,
+          "unmatchedCredits": 4651539.0,
+          "matchedDebits": -11484884.0,
+          "unmatchedDebits": -5742442.0
+        },
+        "Global Bank Luxembourg": {
+          "matchedCredits": 11914274.0,
+          "unmatchedCredits": 3536669.0,
+          "matchedDebits": -8830236.0,
+          "unmatchedDebits": -4106571.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 103610070.0,
+          "unmatchedCredits": 48524385.0,
+          "matchedDebits": -61385142.0,
+          "unmatchedDebits": -28812114.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 18620464.0,
+          "unmatchedCredits": 9310232.0,
+          "matchedDebits": -6709394.0,
+          "unmatchedDebits": -3354697.0
+        }
+      }
+    },
+    {
+      "hour": "15:00",
+      "dateTime": "2026-04-02T15:00:00",
+      "matchedCredits": 212031268.0,
+      "unmatchedCredits": 277818900.0,
+      "matchedDebits": -55815960.0,
+      "unmatchedDebits": -100621698.0,
+      "netFlow": 333412510.0,
+      "txCount": 250,
+      "byEntity": {
+        "Global Bank Luxembourg": {
+          "matchedCredits": 110659612.0,
+          "unmatchedCredits": 150601140.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 90126428.0,
+          "unmatchedCredits": 103474957.0,
+          "matchedDebits": -37761693.0,
+          "unmatchedDebits": -69466977.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 4648813.0,
+          "unmatchedCredits": 9297626.0,
+          "matchedDebits": -13721012.0,
+          "unmatchedDebits": -22488211.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 6596415.0,
+          "unmatchedCredits": 14445177.0,
+          "matchedDebits": -4333255.0,
+          "unmatchedDebits": -8666510.0
+        }
+      }
+    },
+    {
+      "hour": "16:00",
+      "dateTime": "2026-04-02T16:00:00",
+      "matchedCredits": 196678860.0,
+      "unmatchedCredits": 307305446.0,
+      "matchedDebits": -65156464.0,
+      "unmatchedDebits": -130312928.0,
+      "netFlow": 308514914.0,
+      "txCount": 250,
+      "byEntity": {
+        "Global Bank Luxembourg": {
+          "matchedCredits": 102521072.0,
+          "unmatchedCredits": 168531357.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 3869460.0,
+          "unmatchedCredits": 7738920.0,
+          "matchedDebits": -9702738.0,
+          "unmatchedDebits": -19405476.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 82251818.0,
+          "unmatchedCredits": 114962149.0,
+          "matchedDebits": -50832156.0,
+          "unmatchedDebits": -101664312.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 8036510.0,
+          "unmatchedCredits": 16073020.0,
+          "matchedDebits": -4621570.0,
+          "unmatchedDebits": -9243140.0
+        }
+      }
+    },
+    {
+      "hour": "17:00",
+      "dateTime": "2026-04-02T17:00:00",
+      "matchedCredits": 56365636.0,
+      "unmatchedCredits": 113979659.0,
+      "matchedDebits": -21023123.0,
+      "unmatchedDebits": -42046246.0,
+      "netFlow": 107275926.0,
+      "txCount": 187,
+      "byEntity": {
+        "Global Bank Luxembourg": {
+          "matchedCredits": 4206896.0,
+          "unmatchedCredits": 5893498.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 4374430.0,
+          "unmatchedCredits": 14677205.0,
+          "matchedDebits": -2209850.0,
+          "unmatchedDebits": -4419700.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 5942960.0,
+          "unmatchedCredits": 11885920.0,
+          "matchedDebits": -2753837.0,
+          "unmatchedDebits": -5507674.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 41841350.0,
+          "unmatchedCredits": 81523036.0,
+          "matchedDebits": -16059436.0,
+          "unmatchedDebits": -32118872.0
+        }
+      }
+    },
+    {
+      "hour": "18:00",
+      "dateTime": "2026-04-02T18:00:00",
+      "matchedCredits": 8484440.0,
+      "unmatchedCredits": 16968880.0,
+      "matchedDebits": -12245128.0,
+      "unmatchedDebits": -24490256.0,
+      "netFlow": -11282064.0,
+      "txCount": 72,
+      "byEntity": {
+        "Global Bank Germany": {
+          "matchedCredits": 3940288.0,
+          "unmatchedCredits": 7880576.0,
+          "matchedDebits": -10006355.0,
+          "unmatchedDebits": -20012710.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 3939986.0,
+          "unmatchedCredits": 7879972.0,
+          "matchedDebits": -2238773.0,
+          "unmatchedDebits": -4477546.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 604166.0,
+          "unmatchedCredits": 1208332.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -0.0
+        }
+      }
+    },
+    {
+      "hour": "19:00",
+      "dateTime": "2026-04-02T19:00:00",
+      "matchedCredits": 7472729.0,
+      "unmatchedCredits": 14945458.0,
+      "matchedDebits": -7815162.0,
+      "unmatchedDebits": -15794577.0,
+      "netFlow": -1191552.0,
+      "txCount": 60,
+      "byEntity": {
+        "Global Bank UK": {
+          "matchedCredits": 1037559.0,
+          "unmatchedCredits": 2075118.0,
+          "matchedDebits": -1045467.0,
+          "unmatchedDebits": -2255187.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 6435170.0,
+          "unmatchedCredits": 12870340.0,
+          "matchedDebits": -6769695.0,
+          "unmatchedDebits": -13539390.0
+        }
+      }
+    },
+    {
+      "hour": "20:00",
+      "dateTime": "2026-04-02T20:00:00",
+      "matchedCredits": 2489499.0,
+      "unmatchedCredits": 4978998.0,
+      "matchedDebits": -10103972.0,
+      "unmatchedDebits": -22534042.0,
+      "netFlow": -25169517.0,
+      "txCount": 60,
+      "byEntity": {
+        "Global Bank Germany": {
+          "matchedCredits": 1811922.0,
+          "unmatchedCredits": 3623844.0,
+          "matchedDebits": -8257964.0,
+          "unmatchedDebits": -18842026.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 677577.0,
+          "unmatchedCredits": 1355154.0,
+          "matchedDebits": -1846008.0,
+          "unmatchedDebits": -3692016.0
+        }
+      }
+    },
+    {
+      "hour": "21:00",
+      "dateTime": "2026-04-02T21:00:00",
+      "matchedCredits": 37966995.0,
+      "unmatchedCredits": 71248614.0,
+      "matchedDebits": -32952030.0,
+      "unmatchedDebits": -46460159.0,
+      "netFlow": 29803420.0,
+      "txCount": 104,
+      "byEntity": {
+        "Global Bank Luxembourg": {
+          "matchedCredits": 120977.0,
+          "unmatchedCredits": 748719.0,
+          "matchedDebits": -13762979.0,
+          "unmatchedDebits": -17486439.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 5192141.0,
+          "unmatchedCredits": 5192141.0,
+          "matchedDebits": -11624462.0,
+          "unmatchedDebits": -13844542.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 9035483.0,
+          "unmatchedCredits": 18070966.0,
+          "matchedDebits": -7564589.0,
+          "unmatchedDebits": -15129178.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 23618394.0,
+          "unmatchedCredits": 47236788.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -0.0
+        }
+      }
+    },
+    {
+      "hour": "22:00",
+      "dateTime": "2026-04-02T22:00:00",
+      "matchedCredits": 32937477.0,
+      "unmatchedCredits": 56139024.0,
+      "matchedDebits": -30237398.0,
+      "unmatchedDebits": -33352007.0,
+      "netFlow": 25487096.0,
+      "txCount": 100,
+      "byEntity": {
+        "Global Bank Americas": {
+          "matchedCredits": 9851184.0,
+          "unmatchedCredits": 10151952.0,
+          "matchedDebits": -8417207.0,
+          "unmatchedDebits": -8417207.0
+        },
+        "Global Bank Luxembourg": {
+          "matchedCredits": 185514.0,
+          "unmatchedCredits": 185514.0,
+          "matchedDebits": -18705582.0,
+          "unmatchedDebits": -18705582.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 17591626.0,
+          "unmatchedCredits": 35183252.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -0.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 5309153.0,
+          "unmatchedCredits": 10618306.0,
+          "matchedDebits": -3114609.0,
+          "unmatchedDebits": -6229218.0
+        }
+      }
+    },
+    {
+      "hour": "23:00",
+      "dateTime": "2026-04-02T23:00:00",
+      "matchedCredits": 3515117.0,
+      "unmatchedCredits": 38500874.0,
+      "matchedDebits": -4192048.0,
+      "unmatchedDebits": -77995361.0,
+      "netFlow": -40171418.0,
+      "txCount": 90,
+      "byEntity": {
+        "Global Bank Luxembourg": {
+          "matchedCredits": 0.0,
+          "unmatchedCredits": 3829992.0,
+          "matchedDebits": -2750213.0,
+          "unmatchedDebits": -37814357.0
+        },
+        "Global Bank Americas": {
+          "matchedCredits": 0.0,
+          "unmatchedCredits": 10438028.0,
+          "matchedDebits": -979780.0,
+          "unmatchedDebits": -18295606.0
+        },
+        "Global Bank UK": {
+          "matchedCredits": 1528508.0,
+          "unmatchedCredits": 12166733.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -12167228.0
+        },
+        "Global Bank Germany": {
+          "matchedCredits": 1986609.0,
+          "unmatchedCredits": 12066121.0,
+          "matchedDebits": -462055.0,
+          "unmatchedDebits": -9718170.0
+        }
+      }
+    }
+  ],
+  "fundingSources": [
+    {
+      "type": "Avail. Collateral",
+      "currency": "USD",
+      "baseValue": 32320000.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Client"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "USD",
+      "baseValue": 44880000.0,
+      "entity": "Global Bank UK",
+      "location": "BONY",
+      "ownership": "Client"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "USD",
+      "baseValue": 25480000.0,
+      "entity": "Global Bank UK",
+      "location": "BONY",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "USD",
+      "baseValue": 37620000.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "USD",
+      "baseValue": 14140000.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "AUD",
+      "baseValue": 87266666.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Client"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "AUD",
+      "baseValue": 17286111.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "AUD",
+      "baseValue": 73150000.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "EUR",
+      "baseValue": 17506666.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "EUR",
+      "baseValue": 36720000.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "EUR",
+      "baseValue": 19382222.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "EUR",
+      "baseValue": 28380000.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "GBP",
+      "baseValue": 44440000.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "GBP",
+      "baseValue": 23120000.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "GBP",
+      "baseValue": 37240000.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "EUR",
+      "baseValue": 24464444.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "JPY",
+      "baseValue": 44880000.0,
+      "entity": "Global Bank Germany",
+      "location": "TSE",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "JPY",
+      "baseValue": 35280000.0,
+      "entity": "Global Bank Germany",
+      "location": "TSE",
+      "ownership": "Client"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "JPY",
+      "baseValue": 54943636.0,
+      "entity": "Global Bank UK",
+      "location": "TSE",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "CHF",
+      "baseValue": 25622105.0,
+      "entity": "Global Bank UK",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "CHF",
+      "baseValue": 21366315.0,
+      "entity": "Global Bank UK",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "CHF",
+      "baseValue": 37240000.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "BONY",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "USD",
+      "baseValue": 10000000.0,
+      "entity": "Global Bank Germany",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "JPY",
+      "baseValue": 25248568.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "AUD",
+      "baseValue": 11448438.0,
+      "entity": "Global Bank Americas",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "JPY",
+      "baseValue": 0.0,
+      "entity": "Global Bank Germany",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "GBP",
+      "baseValue": 10666666.0,
+      "entity": "Global Bank Americas",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "CHF",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "AUD",
+      "baseValue": 10416666.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "CHF",
+      "baseValue": 0.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "USD",
+      "baseValue": 10000000.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "EUR",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "USD",
+      "baseValue": 1000000.0,
+      "entity": "Global Bank Germany",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "JPY",
+      "baseValue": 7700000.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "AUD",
+      "baseValue": 9027777.0,
+      "entity": "Global Bank Americas",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "JPY",
+      "baseValue": 6097334.0,
+      "entity": "Global Bank Germany",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "GBP",
+      "baseValue": 8000000.0,
+      "entity": "Global Bank Americas",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "CHF",
+      "baseValue": 79625453.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "AUD",
+      "baseValue": 111111111.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "CHF",
+      "baseValue": 83045756.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "USD",
+      "baseValue": 50000000.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "EUR",
+      "baseValue": 94882858.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "USD",
+      "baseValue": 0.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Client"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "USD",
+      "baseValue": 0.0,
+      "entity": "Global Bank UK",
+      "location": "BONY",
+      "ownership": "Client"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "USD",
+      "baseValue": 15680000.0,
+      "entity": "Global Bank UK",
+      "location": "BONY",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "USD",
+      "baseValue": 0.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "USD",
+      "baseValue": 20200000.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "AUD",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Client"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "AUD",
+      "baseValue": 43555555.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "AUD",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "EUR",
+      "baseValue": 26933333.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "EUR",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "EUR",
+      "baseValue": 21777777.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "EUR",
+      "baseValue": 13200000.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "GBP",
+      "baseValue": 0.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "GBP",
+      "baseValue": 13600000.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "GBP",
+      "baseValue": 0.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "EUR",
+      "baseValue": 17955555.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "JPY",
+      "baseValue": 0.0,
+      "entity": "Global Bank Germany",
+      "location": "TSE",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "JPY",
+      "baseValue": 0.0,
+      "entity": "Global Bank Germany",
+      "location": "TSE",
+      "ownership": "Client"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "JPY",
+      "baseValue": 0.0,
+      "entity": "Global Bank UK",
+      "location": "TSE",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "CHF",
+      "baseValue": 12757894.0,
+      "entity": "Global Bank UK",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "CHF",
+      "baseValue": 21473684.0,
+      "entity": "Global Bank UK",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "CHF",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "BONY",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "USD",
+      "baseValue": 32320000.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Client"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "USD",
+      "baseValue": 44880000.0,
+      "entity": "Global Bank UK",
+      "location": "BONY",
+      "ownership": "Client"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "USD",
+      "baseValue": 25480000.0,
+      "entity": "Global Bank UK",
+      "location": "BONY",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "USD",
+      "baseValue": 37620000.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "USD",
+      "baseValue": 14140000.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "AUD",
+      "baseValue": 87266666.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Client"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "AUD",
+      "baseValue": 17286111.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "AUD",
+      "baseValue": 73150000.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "EUR",
+      "baseValue": 17506666.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "EUR",
+      "baseValue": 36720000.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "EUR",
+      "baseValue": 8493333.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "EUR",
+      "baseValue": 28380000.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "GBP",
+      "baseValue": 44440000.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "GBP",
+      "baseValue": 27200000.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "GBP",
+      "baseValue": 37240000.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "EUR",
+      "baseValue": 24464444.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "JPY",
+      "baseValue": 44880000.0,
+      "entity": "Global Bank Germany",
+      "location": "TSE",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "JPY",
+      "baseValue": 35280000.0,
+      "entity": "Global Bank Germany",
+      "location": "TSE",
+      "ownership": "Client"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "JPY",
+      "baseValue": 50934545.0,
+      "entity": "Global Bank UK",
+      "location": "TSE",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "CHF",
+      "baseValue": 34127368.0,
+      "entity": "Global Bank UK",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "CHF",
+      "baseValue": 21366315.0,
+      "entity": "Global Bank UK",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "CHF",
+      "baseValue": 37240000.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "BONY",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "USD",
+      "baseValue": 16498699.0,
+      "entity": "Global Bank Germany",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "JPY",
+      "baseValue": 9090909.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "AUD",
+      "baseValue": 11448438.0,
+      "entity": "Global Bank Americas",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "JPY",
+      "baseValue": 8181818.0,
+      "entity": "Global Bank Germany",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "GBP",
+      "baseValue": 9958915.0,
+      "entity": "Global Bank Americas",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "CHF",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "AUD",
+      "baseValue": 10416666.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "CHF",
+      "baseValue": 0.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "USD",
+      "baseValue": 0.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "EUR",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "USD",
+      "baseValue": 1000000.0,
+      "entity": "Global Bank Germany",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "JPY",
+      "baseValue": 7700000.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "AUD",
+      "baseValue": 9027777.0,
+      "entity": "Global Bank Americas",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "JPY",
+      "baseValue": 11000000.0,
+      "entity": "Global Bank Germany",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "GBP",
+      "baseValue": 8000000.0,
+      "entity": "Global Bank Americas",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "CHF",
+      "baseValue": 23893231.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "AUD",
+      "baseValue": 111111111.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "CHF",
+      "baseValue": 21578837.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "USD",
+      "baseValue": 30230083.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "EUR",
+      "baseValue": 19124032.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "USD",
+      "baseValue": 0.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Client"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "USD",
+      "baseValue": 0.0,
+      "entity": "Global Bank UK",
+      "location": "BONY",
+      "ownership": "Client"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "USD",
+      "baseValue": 15680000.0,
+      "entity": "Global Bank UK",
+      "location": "BONY",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "USD",
+      "baseValue": 0.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "USD",
+      "baseValue": 20200000.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "AUD",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Client"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "AUD",
+      "baseValue": 43555555.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "AUD",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "EUR",
+      "baseValue": 26933333.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "EUR",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "EUR",
+      "baseValue": 21777777.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "EUR",
+      "baseValue": 13200000.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "GBP",
+      "baseValue": 0.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "GBP",
+      "baseValue": 13600000.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "GBP",
+      "baseValue": 0.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "EUR",
+      "baseValue": 17955555.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "JPY",
+      "baseValue": 0.0,
+      "entity": "Global Bank Germany",
+      "location": "TSE",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "JPY",
+      "baseValue": 0.0,
+      "entity": "Global Bank Germany",
+      "location": "TSE",
+      "ownership": "Client"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "JPY",
+      "baseValue": 0.0,
+      "entity": "Global Bank UK",
+      "location": "TSE",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "CHF",
+      "baseValue": 12757894.0,
+      "entity": "Global Bank UK",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "CHF",
+      "baseValue": 21473684.0,
+      "entity": "Global Bank UK",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "CHF",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "BONY",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "USD",
+      "baseValue": 32320000.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Client"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "USD",
+      "baseValue": 44880000.0,
+      "entity": "Global Bank UK",
+      "location": "BONY",
+      "ownership": "Client"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "USD",
+      "baseValue": 43120000.0,
+      "entity": "Global Bank UK",
+      "location": "BONY",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "USD",
+      "baseValue": 37620000.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "USD",
+      "baseValue": 14140000.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "AUD",
+      "baseValue": 87266666.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Client"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "AUD",
+      "baseValue": 17286111.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "AUD",
+      "baseValue": 73150000.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "EUR",
+      "baseValue": 17506666.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "EUR",
+      "baseValue": 36720000.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "EUR",
+      "baseValue": 3048888.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "EUR",
+      "baseValue": 28380000.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "GBP",
+      "baseValue": 44440000.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "GBP",
+      "baseValue": 35360000.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "GBP",
+      "baseValue": 37240000.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "EUR",
+      "baseValue": 24464444.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "JPY",
+      "baseValue": 44880000.0,
+      "entity": "Global Bank Germany",
+      "location": "TSE",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "JPY",
+      "baseValue": 35280000.0,
+      "entity": "Global Bank Germany",
+      "location": "TSE",
+      "ownership": "Client"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "JPY",
+      "baseValue": 50934545.0,
+      "entity": "Global Bank UK",
+      "location": "TSE",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "CHF",
+      "baseValue": 35190526.0,
+      "entity": "Global Bank UK",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "CHF",
+      "baseValue": 21366315.0,
+      "entity": "Global Bank UK",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Avail. Collateral",
+      "currency": "CHF",
+      "baseValue": 37240000.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "BONY",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "USD",
+      "baseValue": 5889948.0,
+      "entity": "Global Bank Germany",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "JPY",
+      "baseValue": 10518802.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "AUD",
+      "baseValue": 4360274.0,
+      "entity": "Global Bank Americas",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "JPY",
+      "baseValue": 10168427.0,
+      "entity": "Global Bank Germany",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "GBP",
+      "baseValue": 10182088.0,
+      "entity": "Global Bank Americas",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "CHF",
+      "baseValue": 15509441.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "AUD",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "CHF",
+      "baseValue": 20812668.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "USD",
+      "baseValue": 9988820.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "EUR",
+      "baseValue": 16250866.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "USD",
+      "baseValue": 1000000.0,
+      "entity": "Global Bank Germany",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "JPY",
+      "baseValue": 7700000.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "AUD",
+      "baseValue": 9027777.0,
+      "entity": "Global Bank Americas",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "JPY",
+      "baseValue": 11000000.0,
+      "entity": "Global Bank Germany",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "GBP",
+      "baseValue": 8000000.0,
+      "entity": "Global Bank Americas",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "CHF",
+      "baseValue": 94736842.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "AUD",
+      "baseValue": 84753766.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "CHF",
+      "baseValue": 84210526.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "USD",
+      "baseValue": 50000000.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Credit Line",
+      "currency": "EUR",
+      "baseValue": 111111111.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "USD",
+      "baseValue": 0.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Client"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "USD",
+      "baseValue": 0.0,
+      "entity": "Global Bank UK",
+      "location": "BONY",
+      "ownership": "Client"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "USD",
+      "baseValue": 15680000.0,
+      "entity": "Global Bank UK",
+      "location": "BONY",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "USD",
+      "baseValue": 0.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "USD",
+      "baseValue": 20200000.0,
+      "entity": "Global Bank Germany",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "AUD",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Client"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "AUD",
+      "baseValue": 43555555.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "AUD",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "ASX",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "EUR",
+      "baseValue": 26933333.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "EUR",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "EUR",
+      "baseValue": 21777777.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "EUR",
+      "baseValue": 13200000.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "GBP",
+      "baseValue": 0.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "GBP",
+      "baseValue": 13600000.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "GBP",
+      "baseValue": 0.0,
+      "entity": "Global Bank Americas",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "EUR",
+      "baseValue": 17955555.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "JPY",
+      "baseValue": 0.0,
+      "entity": "Global Bank Germany",
+      "location": "TSE",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "JPY",
+      "baseValue": 0.0,
+      "entity": "Global Bank Germany",
+      "location": "TSE",
+      "ownership": "Client"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "JPY",
+      "baseValue": 0.0,
+      "entity": "Global Bank UK",
+      "location": "TSE",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "CHF",
+      "baseValue": 12757894.0,
+      "entity": "Global Bank UK",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "CHF",
+      "baseValue": 21473684.0,
+      "entity": "Global Bank UK",
+      "location": "EuroClear",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Pledged Collateral",
+      "currency": "CHF",
+      "baseValue": 0.0,
+      "entity": "Global Bank Luxembourg",
+      "location": "BONY",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "GBP",
+      "baseValue": 53333333.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "GBP",
+      "baseValue": 51881821.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    },
+    {
+      "type": "Cash",
+      "currency": "GBP",
+      "baseValue": 52997685.0,
+      "entity": "Global Bank UK",
+      "location": "Global",
+      "ownership": "Owned"
+    }
+  ],
+  "fundingTotals": {
+    "Avail. Collateral": 2364977774.0,
+    "Cash": 405269956.0,
+    "Credit Line": 1154695382.0,
+    "Pledged Collateral": 621401394.0
+  },
+  "alerts": [
+    {
+      "time": "21:30",
+      "dateTime": "2026-04-02T21:30:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "USD",
+      "account": "110000099",
+      "entity": "Global Bank Germany",
+      "correspondent": "Standard Chartered, New York",
+      "origin": "System Alert"
+    },
+    {
+      "time": "21:24",
+      "dateTime": "2026-04-02T21:24:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "AUD",
+      "account": "119000096",
+      "entity": "Global Bank Luxemboug",
+      "correspondent": "ANZ Sydney",
+      "origin": "System Alert"
+    },
+    {
+      "time": "21:18",
+      "dateTime": "2026-04-02T21:18:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "USD",
+      "account": "110000099",
+      "entity": "Global Bank Germany",
+      "correspondent": "Standard Chartered, New York",
+      "origin": "System Alert"
+    },
+    {
+      "time": "14:42",
+      "dateTime": "2026-04-02T14:42:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "USD",
+      "account": "110000099",
+      "entity": "Global Bank Germany",
+      "correspondent": "Standard Chartered, New York",
+      "origin": "System Alert"
+    },
+    {
+      "time": "13:48",
+      "dateTime": "2026-04-02T13:48:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "USD",
+      "account": "110000099",
+      "entity": "Global Bank Germany",
+      "correspondent": "Standard Chartered, New York",
+      "origin": "System Alert"
+    },
+    {
+      "time": "13:24",
+      "dateTime": "2026-04-02T13:24:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "USD",
+      "account": "110000072",
+      "entity": "Global Bank UK",
+      "correspondent": "HSBC , New York",
+      "origin": "System Alert"
+    },
+    {
+      "time": "07:48",
+      "dateTime": "2026-04-02T07:48:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "CHF",
+      "account": "119000096",
+      "entity": "Global Bank UK",
+      "correspondent": "ANZ Sydney",
+      "origin": "System Alert"
+    },
+    {
+      "time": "07:36",
+      "dateTime": "2026-04-02T07:36:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "EUR",
+      "account": "110000124",
+      "entity": "Global Bank Luxemboug",
+      "correspondent": "Standard Chartered, Paris",
+      "origin": "System Alert"
+    },
+    {
+      "time": "07:18",
+      "dateTime": "2026-04-02T07:18:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "CHF",
+      "account": "119000095",
+      "entity": "Global Bank Luxemboug",
+      "correspondent": "UBS Zurich",
+      "origin": "System Alert"
+    },
+    {
+      "time": "05:36",
+      "dateTime": "2026-04-02T05:36:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "JPY",
+      "account": "119000093",
+      "entity": "Global Bank Germany",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "04:36",
+      "dateTime": "2026-04-02T04:36:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "AUD",
+      "account": "119000092",
+      "entity": "Global Bank Americas",
+      "correspondent": "ANZ Perth",
+      "origin": "System Alert"
+    },
+    {
+      "time": "04:18",
+      "dateTime": "2026-04-02T04:18:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "JPY",
+      "account": "119000091",
+      "entity": "Global Bank UK",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "03:54",
+      "dateTime": "2026-04-02T03:54:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "JPY",
+      "account": "119000091",
+      "entity": "Global Bank UK",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "03:30",
+      "dateTime": "2026-04-02T03:30:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "JPY",
+      "account": "119000093",
+      "entity": "Global Bank Germany",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "03:24",
+      "dateTime": "2026-04-02T03:24:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "JPY",
+      "account": "119000091",
+      "entity": "Global Bank UK",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "01:12",
+      "dateTime": "2026-04-02T01:12:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "JPY",
+      "account": "119000091",
+      "entity": "Global Bank UK",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "14:42",
+      "dateTime": "2026-04-02T14:42:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "USD",
+      "account": "110000099",
+      "entity": "Global Bank Germany",
+      "correspondent": "Standard Chartered, New York",
+      "origin": "System Alert"
+    },
+    {
+      "time": "13:48",
+      "dateTime": "2026-04-02T13:48:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "USD",
+      "account": "110000099",
+      "entity": "Global Bank Germany",
+      "correspondent": "Standard Chartered, New York",
+      "origin": "System Alert"
+    },
+    {
+      "time": "13:24",
+      "dateTime": "2026-04-02T13:24:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "USD",
+      "account": "110000072",
+      "entity": "Global Bank UK",
+      "correspondent": "HSBC , New York",
+      "origin": "System Alert"
+    },
+    {
+      "time": "07:48",
+      "dateTime": "2026-04-02T07:48:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "CHF",
+      "account": "119000096",
+      "entity": "Global Bank UK",
+      "correspondent": "ANZ Sydney",
+      "origin": "System Alert"
+    },
+    {
+      "time": "07:36",
+      "dateTime": "2026-04-02T07:36:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "EUR",
+      "account": "110000124",
+      "entity": "Global Bank Luxemboug",
+      "correspondent": "Standard Chartered, Paris",
+      "origin": "System Alert"
+    },
+    {
+      "time": "07:18",
+      "dateTime": "2026-04-02T07:18:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "CHF",
+      "account": "119000095",
+      "entity": "Global Bank Luxemboug",
+      "correspondent": "UBS Zurich",
+      "origin": "System Alert"
+    },
+    {
+      "time": "05:36",
+      "dateTime": "2026-04-02T05:36:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "JPY",
+      "account": "119000093",
+      "entity": "Global Bank Germany",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "04:36",
+      "dateTime": "2026-04-02T04:36:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "AUD",
+      "account": "119000092",
+      "entity": "Global Bank Americas",
+      "correspondent": "ANZ Perth",
+      "origin": "System Alert"
+    },
+    {
+      "time": "04:18",
+      "dateTime": "2026-04-02T04:18:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "JPY",
+      "account": "119000091",
+      "entity": "Global Bank UK",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "03:54",
+      "dateTime": "2026-04-02T03:54:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "JPY",
+      "account": "119000091",
+      "entity": "Global Bank UK",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "03:30",
+      "dateTime": "2026-04-02T03:30:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "JPY",
+      "account": "119000093",
+      "entity": "Global Bank Germany",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "03:24",
+      "dateTime": "2026-04-02T03:24:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "JPY",
+      "account": "119000091",
+      "entity": "Global Bank UK",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "01:12",
+      "dateTime": "2026-04-02T01:12:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "JPY",
+      "account": "119000091",
+      "entity": "Global Bank UK",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "07:48",
+      "dateTime": "2026-04-02T07:48:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "CHF",
+      "account": "119000096",
+      "entity": "Global Bank UK",
+      "correspondent": "ANZ Sydney",
+      "origin": "System Alert"
+    },
+    {
+      "time": "07:36",
+      "dateTime": "2026-04-02T07:36:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "EUR",
+      "account": "110000124",
+      "entity": "Global Bank Luxemboug",
+      "correspondent": "Standard Chartered, Paris",
+      "origin": "System Alert"
+    },
+    {
+      "time": "07:18",
+      "dateTime": "2026-04-02T07:18:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "CHF",
+      "account": "119000095",
+      "entity": "Global Bank Luxemboug",
+      "correspondent": "UBS Zurich",
+      "origin": "System Alert"
+    },
+    {
+      "time": "05:36",
+      "dateTime": "2026-04-02T05:36:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "JPY",
+      "account": "119000093",
+      "entity": "Global Bank Germany",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "04:36",
+      "dateTime": "2026-04-02T04:36:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "AUD",
+      "account": "119000092",
+      "entity": "Global Bank Americas",
+      "correspondent": "ANZ Perth",
+      "origin": "System Alert"
+    },
+    {
+      "time": "04:18",
+      "dateTime": "2026-04-02T04:18:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "JPY",
+      "account": "119000091",
+      "entity": "Global Bank UK",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "03:54",
+      "dateTime": "2026-04-02T03:54:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "JPY",
+      "account": "119000091",
+      "entity": "Global Bank UK",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "03:30",
+      "dateTime": "2026-04-02T03:30:00",
+      "severity": "High",
+      "type": "LBAL",
+      "currency": "JPY",
+      "account": "119000093",
+      "entity": "Global Bank Germany",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "03:24",
+      "dateTime": "2026-04-02T03:24:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "JPY",
+      "account": "119000091",
+      "entity": "Global Bank UK",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    },
+    {
+      "time": "01:12",
+      "dateTime": "2026-04-02T01:12:00",
+      "severity": "Low",
+      "type": "HBAL",
+      "currency": "JPY",
+      "account": "119000091",
+      "entity": "Global Bank UK",
+      "correspondent": "Nomura Tokyo",
+      "origin": "System Alert"
+    }
+  ],
+  "topCounterparties": [
+    {
+      "name": "LSE",
+      "volume": 962974899.0
+    },
+    {
+      "name": "Global Bank Luxembourg",
+      "volume": 754749538.0
+    },
+    {
+      "name": "Global Bank UK",
+      "volume": 506841666.0
+    },
+    {
+      "name": "Global Bank Germany",
+      "volume": 307909303.0
+    },
+    {
+      "name": "Commerz Bank",
+      "volume": 298243791.0
+    },
+    {
+      "name": "Global Bank Americas",
+      "volume": 213568120.0
+    }
+  ]
+}
