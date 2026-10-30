@@ -187,20 +187,12 @@ export default function ZohoIntradayViewer({ isDark }) {
                   </p>
                 </div>
 
-                <div className="mt-3 pt-2 border-t border-slate-800/40 flex items-center justify-between text-[11px]">
-                  <a
-                    href={dash.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="inline-flex items-center gap-1 text-brand-400 hover:text-brand-300 font-semibold transition-colors"
-                  >
-                    <span>Direct Link</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                  <span className="text-[10px] text-slate-500 font-medium flex items-center gap-1">
+                <div className="mt-3 pt-2 border-t border-slate-800/40 flex items-center justify-end text-[11px]">
+                  <span className={`text-[10px] font-medium flex items-center gap-1 ${
+                    isSelected ? 'text-brand-400 font-bold' : 'text-slate-500 group-hover:text-slate-300'
+                  }`}>
                     <span>{isSelected ? 'Active' : 'Details'}</span>
-                    <ChevronRight className={`w-3.5 h-3.5 transition-transform ${isSelected ? 'text-brand-400 translate-x-0.5' : 'text-slate-600'}`} />
+                    <ChevronRight className={`w-3.5 h-3.5 transition-transform ${isSelected ? 'text-brand-400 translate-x-0.5' : 'text-slate-600 group-hover:translate-x-0.5'}`} />
                   </span>
                 </div>
               </button>
