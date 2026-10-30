@@ -19,7 +19,7 @@ const ZOHO_DASHBOARDS = [
     title: "Cash Movement & Expectations",
     category: "Cash & Liquidity",
     url: "https://analytics.zoho.in/open-view/139442000000241658",
-    sourceFile: "MUL-BAL short.xlsx & MUL-TXN short.xlsx",
+    dataStream: "Nostro Statements (MT940) & Scheduled Payment Feeds",
     summary: "Time-series view of intraday cash movements comparing opening balances, expected credit/debit flows, and actual net balances throughout the business day.",
     keyMetrics: ["Projected vs Available Balance", "Expected vs Settled Debits", "Hourly Net Inflows/Outflows"],
     icon: BarChart3
@@ -29,7 +29,7 @@ const ZOHO_DASHBOARDS = [
     title: "IDL - Cash Movement Dashboard",
     category: "Intraday Monitoring",
     url: "https://analytics.zoho.in/open-view/139442000000241779",
-    sourceFile: "MUL-BAL short.xlsx",
+    dataStream: "Multi-Entity Intraday Nostro Balance Feeds",
     summary: "Detailed 30-minute step trajectory tracking intraday base currency balances (USD) across entities (Germany, UK, Luxembourg, Americas) and key nostro accounts.",
     keyMetrics: ["BC_AVA_BAL (Available)", "BC_PRJ_BAL (Projected)", "30-min Step Trajectory"],
     icon: Clock
@@ -39,7 +39,7 @@ const ZOHO_DASHBOARDS = [
     title: "IDL - Funding Sources",
     category: "Collateral & Buffers",
     url: "https://analytics.zoho.in/open-view/139442000000261137",
-    sourceFile: "MUL-IDL-FUN-SRC-SUMM.xlsx",
+    dataStream: "Central Bank Facilities & Depository Collateral Feeds",
     summary: "Visual breakdown of multi-tiered intraday funding buffers including Cash, Committed Credit Lines, Free Collateral, and Pledged Collateral by depository location.",
     keyMetrics: ["Available Collateral ($2.36B)", "Credit Line Headroom ($1.15B)", "Cash Buffer ($405M)"],
     icon: Coins
@@ -49,7 +49,7 @@ const ZOHO_DASHBOARDS = [
     title: "Unmatched Transaction Monitor",
     category: "Reconciliation",
     url: "https://analytics.zoho.in/open-view/139442000000239233",
-    sourceFile: "MUL-TXN short.xlsx",
+    dataStream: "RTGS Clearing & Real-Time Settlement Queue Feeds",
     summary: "Real-time surveillance of unmatched debits (UMD) and credits (UMC) against completed settlements to prevent settlement bottlenecks and cutoff breaches.",
     keyMetrics: ["Unmatched Debit Volume ($1.1B+)", "Matched vs Pending Count", "Cutoff Horizon Warnings"],
     icon: CheckCircle2
@@ -59,7 +59,7 @@ const ZOHO_DASHBOARDS = [
     title: "Alerts Dashboard",
     category: "Risk & Governance",
     url: "https://analytics.zoho.in/open-view/139442000000508238",
-    sourceFile: "ALERTS.xlsx",
+    dataStream: "Nostro Threshold Monitoring & Exception Feeds",
     summary: "Real-time exception logging for Low-Balance breaches (LBAL) and High-Balance surplus traps (HBAL) across nostro accounts and correspondent legal entities.",
     keyMetrics: ["39 Active Incidents", "20 High-Severity Breaches", "Target Balance Threshold Spreads"],
     icon: ShieldAlert
@@ -69,7 +69,7 @@ const ZOHO_DASHBOARDS = [
     title: "IDL - Securities Movement Dashboard",
     category: "Securities & Custody",
     url: "https://analytics.zoho.in/open-view/139442000000256603",
-    sourceFile: "MUL-SEC-BAL short.xlsx & MUL-SEC-TXN.xlsx",
+    dataStream: "Custodial Securities Ledgers & ISIN Settlement Feeds",
     summary: "Intraday position tracking of security ISINs, settlement statuses, and market values across custodian depositories (EuroClear, BONY, ASX, TSE).",
     keyMetrics: ["ISIN Balance Trajectories", "Trade Buy/Sell Executions", "Depository Custody Balances"],
     icon: Layers
@@ -79,7 +79,7 @@ const ZOHO_DASHBOARDS = [
     title: "Pivot View - Cash Movements & Alerts",
     category: "Cross-Entity Matrix",
     url: "https://analytics.zoho.in/open-view/139442000000267241",
-    sourceFile: "MUL-BAL short.xlsx & ALERTS.xlsx",
+    dataStream: "Consolidated Multi-Jurisdiction Nostro Matrix",
     summary: "Multi-dimensional pivot matrix aggregating cash positions, alert severities, and transaction flows grouped by jurisdiction, legal entity, and currency.",
     keyMetrics: ["Cross-Currency Matrix", "Jurisdiction Grouping", "Alert Density by Nostro"],
     icon: FileSpreadsheet
@@ -89,7 +89,7 @@ const ZOHO_DASHBOARDS = [
     title: "InterDay Projection / Stress Scenarios",
     category: "Stress Testing",
     url: "https://analytics.zoho.in/open-view/139442000000258352",
-    sourceFile: "CASH-MGMT-DRCR1 short.xlsx & MUL-BAL short.xlsx",
+    dataStream: "Counterparty Delay Profiles & Forward Liquidity Shocks",
     summary: "Scenario modeling simulating counterparty delay stress, credit line haircut scenarios, and interday forward expectations under liquidity shocks.",
     keyMetrics: ["Simulated Liquidity Deficit", "Counterparty Delay Impact", "Intraday Stress Absorption Buffer"],
     icon: BarChart3
@@ -99,7 +99,7 @@ const ZOHO_DASHBOARDS = [
     title: "Pivot View - Securities Movement",
     category: "Cross-Entity Matrix",
     url: "https://analytics.zoho.in/open-view/139442000000255221",
-    sourceFile: "MUL-SEC-BAL short.xlsx",
+    dataStream: "Custodial Segregation & Depository Allocation Feeds",
     summary: "Custodial pivot view breaking down owned vs client-pledged securities holdings by geography, currency, and settlement timing.",
     keyMetrics: ["Client vs Owned Ownership", "Geographic Custody Split", "ISIN Settlement Values"],
     icon: FileSpreadsheet
@@ -108,10 +108,8 @@ const ZOHO_DASHBOARDS = [
 
 export default function ZohoIntradayViewer({ isDark }) {
   const [activeDashboardId, setActiveDashboardId] = useState(ZOHO_DASHBOARDS[0].id);
-  const [embedMode, setEmbedMode] = useState(true);
 
   const selectedDashboard = ZOHO_DASHBOARDS.find(d => d.id === activeDashboardId) || ZOHO_DASHBOARDS[0];
-  const embedUrl = `${selectedDashboard.url}?STANDALONE=true&INCLUDETITLE=false&INCLUDEDESC=false`;
 
   return (
     <div className="space-y-8 my-6">
@@ -129,7 +127,7 @@ export default function ZohoIntradayViewer({ isDark }) {
               Zoho Analytics Production Dashboards (9 Interactive Views)
             </h4>
             <p className="text-xs text-slate-400 mt-0.5">
-              Select any dashboard below to view its functional description, underlying Excel dataset, and explore the embedded live report.
+              Select any dashboard below to view its functional description, key liquidity dimensions, and open the direct live report in Zoho Analytics.
             </p>
           </div>
         </div>
@@ -189,9 +187,21 @@ export default function ZohoIntradayViewer({ isDark }) {
                   </p>
                 </div>
 
-                <div className="mt-3 pt-2 border-t border-slate-800/40 flex items-center justify-between text-[10px] text-slate-400">
-                  <span className="font-mono text-slate-500 truncate max-w-[170px]">{dash.sourceFile}</span>
-                  <ChevronRight className={`w-3.5 h-3.5 transition-transform ${isSelected ? 'text-brand-400 translate-x-0.5' : 'text-slate-600'}`} />
+                <div className="mt-3 pt-2 border-t border-slate-800/40 flex items-center justify-between text-[11px]">
+                  <a
+                    href={dash.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-1 text-brand-400 hover:text-brand-300 font-semibold transition-colors"
+                  >
+                    <span>Direct Link</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                  <span className="text-[10px] text-slate-500 font-medium flex items-center gap-1">
+                    <span>{isSelected ? 'Active' : 'Details'}</span>
+                    <ChevronRight className={`w-3.5 h-3.5 transition-transform ${isSelected ? 'text-brand-400 translate-x-0.5' : 'text-slate-600'}`} />
+                  </span>
                 </div>
               </button>
             );
@@ -219,71 +229,48 @@ export default function ZohoIntradayViewer({ isDark }) {
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setEmbedMode(!embedMode)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
-                embedMode
-                  ? 'bg-brand-500/20 border-brand-500/50 text-brand-300'
-                  : 'border-slate-700 text-slate-400 hover:text-white'
-              }`}
-            >
-              <Maximize2 className="w-3.5 h-3.5" />
-              <span>{embedMode ? 'Hide Embedded Frame' : 'Show Embedded Frame'}</span>
-            </button>
-
-            <a
-              href={selectedDashboard.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-brand-500 hover:bg-brand-400 text-white shadow-glow-brand"
-            >
-              <span>Direct Link</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          </div>
+          <a
+            href={selectedDashboard.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-brand-500 to-blue-600 hover:from-brand-400 hover:to-blue-500 text-white shadow-glow-brand transition-all transform hover:-translate-y-0.5 whitespace-nowrap"
+          >
+            <span>Launch in Zoho Analytics</span>
+            <ExternalLink className="w-4 h-4" />
+          </a>
         </div>
 
         {/* Dashboard Metadata Pill Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4 text-xs">
-          <div className="p-3 rounded-xl bg-slate-950/40 border border-slate-800/80">
-            <span className="text-[10px] uppercase font-bold text-slate-500 block">Underlying Data Source</span>
-            <span className="font-mono text-brand-300 font-semibold mt-0.5 block">{selectedDashboard.sourceFile}</span>
+          <div className="p-3.5 rounded-xl bg-slate-950/40 border border-slate-800/80">
+            <span className="text-[10px] uppercase font-bold text-slate-500 block">Operational Data Stream</span>
+            <span className="text-slate-200 font-semibold mt-0.5 block">{selectedDashboard.dataStream}</span>
           </div>
-          <div className="p-3 rounded-xl bg-slate-950/40 border border-slate-800/80">
+          <div className="p-3.5 rounded-xl bg-slate-950/40 border border-slate-800/80">
             <span className="text-[10px] uppercase font-bold text-slate-500 block">Core Liquidity Concepts</span>
             <span className="text-slate-300 font-medium mt-0.5 block">{selectedDashboard.keyMetrics.join(' • ')}</span>
           </div>
-          <div className="p-3 rounded-xl bg-slate-950/40 border border-slate-800/80">
+          <div className="p-3.5 rounded-xl bg-slate-950/40 border border-slate-800/80">
             <span className="text-[10px] uppercase font-bold text-slate-500 block">Compliance Alignment</span>
             <span className="text-emerald-400 font-medium mt-0.5 block">BCBS 248 Intraday Monitoring</span>
           </div>
         </div>
 
-        {/* Live Iframe Embed Viewport */}
-        {embedMode && (
-          <div className="mt-4 rounded-2xl overflow-hidden border border-slate-800 bg-white shadow-2xl relative">
-            <div className="px-4 py-2 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400 font-mono">
-              <span className="truncate max-w-sm sm:max-w-md">{embedUrl}</span>
-              <span className="text-emerald-400 flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                Live Zoho Embed
-              </span>
-            </div>
-            
-            <iframe
-              key={selectedDashboard.id}
-              src={embedUrl}
-              title={selectedDashboard.title}
-              width="100%"
-              height="650"
-              frameBorder="0"
-              loading="lazy"
-              className="w-full min-h-[600px] border-0"
-              allowFullScreen
-            />
+        {/* Direct Link Cloud Access Notice */}
+        <div className="mt-2 p-4 rounded-2xl bg-brand-500/5 border border-brand-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-2 text-slate-300">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Interactive multi-currency dashboard hosted live on Zoho Analytics cloud with full native filtering and table drill-down.</span>
           </div>
-        )}
+          <a
+            href={selectedDashboard.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand-400 hover:text-brand-300 font-bold inline-flex items-center gap-1 whitespace-nowrap"
+          >
+            <span>Direct Link ↗</span>
+          </a>
+        </div>
       </div>
 
     </div>

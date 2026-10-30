@@ -25,7 +25,7 @@ This proof-of-work recreates the multi-entity intraday liquidity suite as a nati
 ```mermaid
 graph LR
     subgraph Data Pipeline
-        Excel["Raw Excel Transaction Feeds"] -->|Python ETL| JSON["Date-Flexible Normalized JSON"]
+        Ingestion["Nostro Core Banking Feeds"] -->|Python ETL| JSON["Date-Flexible Normalized JSON"]
     end
     
     subgraph Client Application
@@ -43,7 +43,7 @@ A central challenge in intraday financial visualization is date flexibility. Sta
 Our Plotly implementation solves this with a **Date-Agnostic JSON Schema**:
 - **Normalized Time Steps:** Every trajectory point is indexed by normalized intraday time intervals (`00:00`, `00:30`, ..., `23:30`) and minute offsets.
 - **Dynamic As-Of Date Binding:** The top cockpit header features an interactive **As-Of Date Selector**. Modifying the date dynamically rebinds all timestamps, hover cards, and axis labels across every chart in real time.
-- **Automated Python Exporter:** An included automated ETL script (`scripts/export_idl_json.py --date YYYY-MM-DD`) allows re-indexing any incoming daily Excel feed with a single command:
+- **Automated Python Exporter:** An included automated ETL script (`scripts/export_idl_json.py --date YYYY-MM-DD`) allows re-indexing any incoming daily transaction feed with a single command:
   ```bash
   python scripts/export_idl_json.py --date 2026-05-15
   ```
