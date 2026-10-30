@@ -1,10 +1,14 @@
 {
   "metadata": {
-    "version": "1.0.0",
+    "version": "2.0.0",
     "asOfDate": "2026-04-02",
     "displayDate": "April 02, 2026",
     "supportedDates": [
-      "2026-04-02"
+      "2026-04-02",
+      "2026-04-08",
+      "2026-04-14",
+      "2026-04-17",
+      "2026-04-29"
     ],
     "baseCurrency": "USD",
     "timeZone": "GMT",
@@ -24,8 +28,15 @@
       "JPY",
       "USD"
     ],
+    "depositories": [
+      "All",
+      "EuroClear",
+      "BONY",
+      "ASX",
+      "TSE"
+    ],
     "timeStepMinutes": 30,
-    "generatedAt": "2026-10-29T23:56:23.703216"
+    "generatedAt": "2026-10-30T23:34:50.333261"
   },
   "summaryKPIs": {
     "openingBalance": 400558380.0,
@@ -41,7 +52,11 @@
     "totalOutflows": 2997949188.0,
     "matchedRate": 63.2,
     "activeAlertCount": 39,
-    "highAlertCount": 20
+    "highAlertCount": 20,
+    "totalSecuritiesValue": 35673886140.0,
+    "totalBuyTrades": 5408640000.0,
+    "totalSellTrades": 2390310000.0,
+    "tradeCount": 168
   },
   "trajectories": [
     {
@@ -2576,6 +2591,20 @@
           "matchedDebits": -18774612.0,
           "unmatchedDebits": -0.0
         }
+      },
+      "byCurrency": {
+        "AUD": {
+          "matchedCredits": 28919476.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -19874032.0,
+          "unmatchedDebits": -0.0
+        },
+        "JPY": {
+          "matchedCredits": 27260918.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -22408242.0,
+          "unmatchedDebits": -0.0
+        }
       }
     },
     {
@@ -2610,6 +2639,20 @@
           "matchedCredits": 7005090.0,
           "unmatchedCredits": 0.0,
           "matchedDebits": -8070254.0,
+          "unmatchedDebits": -0.0
+        }
+      },
+      "byCurrency": {
+        "AUD": {
+          "matchedCredits": 26958026.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -17882726.0,
+          "unmatchedDebits": -0.0
+        },
+        "JPY": {
+          "matchedCredits": 25872442.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -16943140.0,
           "unmatchedDebits": -0.0
         }
       }
@@ -2648,6 +2691,20 @@
           "matchedDebits": -13766880.0,
           "unmatchedDebits": -0.0
         }
+      },
+      "byCurrency": {
+        "AUD": {
+          "matchedCredits": 23013390.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -14291042.0,
+          "unmatchedDebits": -0.0
+        },
+        "JPY": {
+          "matchedCredits": 15641260.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -34419656.0,
+          "unmatchedDebits": -0.0
+        }
       }
     },
     {
@@ -2682,6 +2739,20 @@
           "matchedCredits": 2791386.0,
           "unmatchedCredits": 0.0,
           "matchedDebits": -1770212.0,
+          "unmatchedDebits": -0.0
+        }
+      },
+      "byCurrency": {
+        "AUD": {
+          "matchedCredits": 23599436.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -11495898.0,
+          "unmatchedDebits": -0.0
+        },
+        "JPY": {
+          "matchedCredits": 27217786.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -22967046.0,
           "unmatchedDebits": -0.0
         }
       }
@@ -2720,6 +2791,20 @@
           "matchedDebits": -12956418.0,
           "unmatchedDebits": -0.0
         }
+      },
+      "byCurrency": {
+        "AUD": {
+          "matchedCredits": 26409630.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -17128858.0,
+          "unmatchedDebits": -0.0
+        },
+        "JPY": {
+          "matchedCredits": 30890256.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -19111664.0,
+          "unmatchedDebits": -0.0
+        }
       }
     },
     {
@@ -2755,6 +2840,20 @@
           "unmatchedCredits": 0.0,
           "matchedDebits": -9432052.0,
           "unmatchedDebits": -0.0
+        }
+      },
+      "byCurrency": {
+        "AUD": {
+          "matchedCredits": 57444262.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -19423488.0,
+          "unmatchedDebits": -0.0
+        },
+        "JPY": {
+          "matchedCredits": 18286690.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -24056472.0,
+          "unmatchedDebits": -1602700.0
         }
       }
     },
@@ -2792,6 +2891,20 @@
           "matchedDebits": -14900148.0,
           "unmatchedDebits": -0.0
         }
+      },
+      "byCurrency": {
+        "AUD": {
+          "matchedCredits": 61321846.0,
+          "unmatchedCredits": 4880900.0,
+          "matchedDebits": -24487336.0,
+          "unmatchedDebits": -0.0
+        },
+        "JPY": {
+          "matchedCredits": 23319680.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -24598528.0,
+          "unmatchedDebits": -0.0
+        }
       }
     },
     {
@@ -2824,6 +2937,32 @@
         },
         "Global Bank Americas": {
           "matchedCredits": 0.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -5013244.0,
+          "unmatchedDebits": -0.0
+        }
+      },
+      "byCurrency": {
+        "JPY": {
+          "matchedCredits": 16257432.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -16925396.0,
+          "unmatchedDebits": -1870348.0
+        },
+        "EUR": {
+          "matchedCredits": 1087209.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -116438628.0,
+          "unmatchedDebits": -0.0
+        },
+        "CHF": {
+          "matchedCredits": 7924646.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -114161174.0,
+          "unmatchedDebits": -0.0
+        },
+        "AUD": {
+          "matchedCredits": 2263026.0,
           "unmatchedCredits": 0.0,
           "matchedDebits": -5013244.0,
           "unmatchedDebits": -0.0
@@ -2864,6 +3003,32 @@
           "matchedDebits": -173589850.0,
           "unmatchedDebits": -44987420.0
         }
+      },
+      "byCurrency": {
+        "GBP": {
+          "matchedCredits": 103917310.0,
+          "unmatchedCredits": 51958655.0,
+          "matchedDebits": -136193618.0,
+          "unmatchedDebits": -68096809.0
+        },
+        "JPY": {
+          "matchedCredits": 33688488.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -38199020.0,
+          "unmatchedDebits": -0.0
+        },
+        "EUR": {
+          "matchedCredits": 3734506.0,
+          "unmatchedCredits": 1867253.0,
+          "matchedDebits": -89974840.0,
+          "unmatchedDebits": -44987420.0
+        },
+        "CHF": {
+          "matchedCredits": 722826.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -139943538.0,
+          "unmatchedDebits": -15358650.0
+        }
       }
     },
     {
@@ -2900,6 +3065,32 @@
           "matchedDebits": -0.0,
           "unmatchedDebits": -0.0
         }
+      },
+      "byCurrency": {
+        "GBP": {
+          "matchedCredits": 53715724.0,
+          "unmatchedCredits": 26857862.0,
+          "matchedDebits": -87852612.0,
+          "unmatchedDebits": -43926306.0
+        },
+        "CHF": {
+          "matchedCredits": 8257204.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -126870224.0,
+          "unmatchedDebits": -0.0
+        },
+        "EUR": {
+          "matchedCredits": 2022236.0,
+          "unmatchedCredits": 1011118.0,
+          "matchedDebits": -85574604.0,
+          "unmatchedDebits": -42787302.0
+        },
+        "JPY": {
+          "matchedCredits": 5812634.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -7448454.0,
+          "unmatchedDebits": -0.0
+        }
       }
     },
     {
@@ -2929,6 +3120,26 @@
           "unmatchedCredits": 9183875.0,
           "matchedDebits": -11921510.0,
           "unmatchedDebits": -5960755.0
+        }
+      },
+      "byCurrency": {
+        "EUR": {
+          "matchedCredits": 6637810.0,
+          "unmatchedCredits": 3318905.0,
+          "matchedDebits": -5188074.0,
+          "unmatchedDebits": -2594037.0
+        },
+        "CHF": {
+          "matchedCredits": 7937384.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -5069028.0,
+          "unmatchedDebits": -0.0
+        },
+        "GBP": {
+          "matchedCredits": 112103692.0,
+          "unmatchedCredits": 56051846.0,
+          "matchedDebits": -88408526.0,
+          "unmatchedDebits": -44204263.0
         }
       }
     },
@@ -2960,6 +3171,26 @@
           "matchedDebits": -12075606.0,
           "unmatchedDebits": -6037803.0
         }
+      },
+      "byCurrency": {
+        "CHF": {
+          "matchedCredits": 7891898.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -8277654.0,
+          "unmatchedDebits": -0.0
+        },
+        "EUR": {
+          "matchedCredits": 12176460.0,
+          "unmatchedCredits": 6088230.0,
+          "matchedDebits": -1172110.0,
+          "unmatchedDebits": -586055.0
+        },
+        "GBP": {
+          "matchedCredits": 70541246.0,
+          "unmatchedCredits": 35270623.0,
+          "matchedDebits": -74791802.0,
+          "unmatchedDebits": -37395901.0
+        }
       }
     },
     {
@@ -2988,6 +3219,26 @@
           "matchedCredits": 8238102.0,
           "unmatchedCredits": 2189592.0,
           "matchedDebits": -13350452.0,
+          "unmatchedDebits": -4480944.0
+        }
+      },
+      "byCurrency": {
+        "CHF": {
+          "matchedCredits": 8420780.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -12548888.0,
+          "unmatchedDebits": -0.0
+        },
+        "GBP": {
+          "matchedCredits": 62730060.0,
+          "unmatchedCredits": 31365030.0,
+          "matchedDebits": -127502420.0,
+          "unmatchedDebits": -63751210.0
+        },
+        "EUR": {
+          "matchedCredits": 4379184.0,
+          "unmatchedCredits": 2189592.0,
+          "matchedDebits": -8961888.0,
           "unmatchedDebits": -4480944.0
         }
       }
@@ -3026,6 +3277,32 @@
           "matchedDebits": -98643124.0,
           "unmatchedDebits": -46419110.0
         }
+      },
+      "byCurrency": {
+        "EUR": {
+          "matchedCredits": 4385606.0,
+          "unmatchedCredits": 2192803.0,
+          "matchedDebits": -4682686.0,
+          "unmatchedDebits": -2341343.0
+        },
+        "USD": {
+          "matchedCredits": 25646942.0,
+          "unmatchedCredits": 19379299.0,
+          "matchedDebits": -43421360.0,
+          "unmatchedDebits": -21710680.0
+        },
+        "GBP": {
+          "matchedCredits": 61879198.0,
+          "unmatchedCredits": 30939599.0,
+          "matchedDebits": -64554126.0,
+          "unmatchedDebits": -32277063.0
+        },
+        "CHF": {
+          "matchedCredits": 12290018.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -8142076.0,
+          "unmatchedDebits": -0.0
+        }
       }
     },
     {
@@ -3061,6 +3338,32 @@
           "unmatchedCredits": 9310232.0,
           "matchedDebits": -6709394.0,
           "unmatchedDebits": -3354697.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "matchedCredits": 10412668.0,
+          "unmatchedCredits": 5206334.0,
+          "matchedDebits": -32613666.0,
+          "unmatchedDebits": -16306833.0
+        },
+        "CHF": {
+          "matchedCredits": 11402236.0,
+          "unmatchedCredits": 0.0,
+          "matchedDebits": -6528180.0,
+          "unmatchedDebits": -1075086.0
+        },
+        "GBP": {
+          "matchedCredits": 114559644.0,
+          "unmatchedCredits": 57279822.0,
+          "matchedDebits": -43204840.0,
+          "unmatchedDebits": -21602420.0
+        },
+        "EUR": {
+          "matchedCredits": 7073338.0,
+          "unmatchedCredits": 3536669.0,
+          "matchedDebits": -6062970.0,
+          "unmatchedDebits": -3031485.0
         }
       }
     },
@@ -3098,6 +3401,32 @@
           "matchedDebits": -4333255.0,
           "unmatchedDebits": -8666510.0
         }
+      },
+      "byCurrency": {
+        "CHF": {
+          "matchedCredits": 94206004.0,
+          "unmatchedCredits": 61713312.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -0.0
+        },
+        "EUR": {
+          "matchedCredits": 67583296.0,
+          "unmatchedCredits": 120631034.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -0.0
+        },
+        "USD": {
+          "matchedCredits": 5647034.0,
+          "unmatchedCredits": 11294068.0,
+          "matchedDebits": -27468845.0,
+          "unmatchedDebits": -45087163.0
+        },
+        "GBP": {
+          "matchedCredits": 44594934.0,
+          "unmatchedCredits": 84180486.0,
+          "matchedDebits": -28347115.0,
+          "unmatchedDebits": -55534535.0
+        }
       }
     },
     {
@@ -3133,6 +3462,32 @@
           "unmatchedCredits": 16073020.0,
           "matchedDebits": -4621570.0,
           "unmatchedDebits": -9243140.0
+        }
+      },
+      "byCurrency": {
+        "CHF": {
+          "matchedCredits": 103404142.0,
+          "unmatchedCredits": 103404142.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -0.0
+        },
+        "EUR": {
+          "matchedCredits": 48658417.0,
+          "unmatchedCredits": 114668702.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -0.0
+        },
+        "GBP": {
+          "matchedCredits": 34098342.0,
+          "unmatchedCredits": 68196684.0,
+          "matchedDebits": -59468578.0,
+          "unmatchedDebits": -118937156.0
+        },
+        "USD": {
+          "matchedCredits": 10517959.0,
+          "unmatchedCredits": 21035918.0,
+          "matchedDebits": -5687886.0,
+          "unmatchedDebits": -11375772.0
         }
       }
     },
@@ -3170,6 +3525,32 @@
           "matchedDebits": -16059436.0,
           "unmatchedDebits": -32118872.0
         }
+      },
+      "byCurrency": {
+        "EUR": {
+          "matchedCredits": 1686602.0,
+          "unmatchedCredits": 3373204.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -0.0
+        },
+        "USD": {
+          "matchedCredits": 5377025.0,
+          "unmatchedCredits": 16682395.0,
+          "matchedDebits": -3977958.0,
+          "unmatchedDebits": -7955916.0
+        },
+        "GBP": {
+          "matchedCredits": 44622051.0,
+          "unmatchedCredits": 89244102.0,
+          "matchedDebits": -17045165.0,
+          "unmatchedDebits": -34090330.0
+        },
+        "CHF": {
+          "matchedCredits": 4679958.0,
+          "unmatchedCredits": 4679958.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -0.0
+        }
       }
     },
     {
@@ -3200,6 +3581,20 @@
           "matchedDebits": -0.0,
           "unmatchedDebits": -0.0
         }
+      },
+      "byCurrency": {
+        "USD": {
+          "matchedCredits": 4614379.0,
+          "unmatchedCredits": 9228758.0,
+          "matchedDebits": -12165738.0,
+          "unmatchedDebits": -24331476.0
+        },
+        "GBP": {
+          "matchedCredits": 3870061.0,
+          "unmatchedCredits": 7740122.0,
+          "matchedDebits": -79390.0,
+          "unmatchedDebits": -158780.0
+        }
       }
     },
     {
@@ -3224,6 +3619,14 @@
           "matchedDebits": -6769695.0,
           "unmatchedDebits": -13539390.0
         }
+      },
+      "byCurrency": {
+        "USD": {
+          "matchedCredits": 7472729.0,
+          "unmatchedCredits": 14945458.0,
+          "matchedDebits": -7815162.0,
+          "unmatchedDebits": -15794577.0
+        }
       }
     },
     {
@@ -3247,6 +3650,14 @@
           "unmatchedCredits": 1355154.0,
           "matchedDebits": -1846008.0,
           "unmatchedDebits": -3692016.0
+        }
+      },
+      "byCurrency": {
+        "USD": {
+          "matchedCredits": 2489499.0,
+          "unmatchedCredits": 4978998.0,
+          "matchedDebits": -10103972.0,
+          "unmatchedDebits": -22534042.0
         }
       }
     },
@@ -3284,6 +3695,20 @@
           "matchedDebits": -0.0,
           "unmatchedDebits": -0.0
         }
+      },
+      "byCurrency": {
+        "AUD": {
+          "matchedCredits": 5313118.0,
+          "unmatchedCredits": 5940860.0,
+          "matchedDebits": -25387441.0,
+          "unmatchedDebits": -31330981.0
+        },
+        "USD": {
+          "matchedCredits": 32653877.0,
+          "unmatchedCredits": 65307754.0,
+          "matchedDebits": -7564589.0,
+          "unmatchedDebits": -15129178.0
+        }
       }
     },
     {
@@ -3317,6 +3742,20 @@
         "Global Bank Germany": {
           "matchedCredits": 5309153.0,
           "unmatchedCredits": 10618306.0,
+          "matchedDebits": -3114609.0,
+          "unmatchedDebits": -6229218.0
+        }
+      },
+      "byCurrency": {
+        "AUD": {
+          "matchedCredits": 10036698.0,
+          "unmatchedCredits": 10337466.0,
+          "matchedDebits": -27122789.0,
+          "unmatchedDebits": -27122789.0
+        },
+        "USD": {
+          "matchedCredits": 22900779.0,
+          "unmatchedCredits": 45801558.0,
           "matchedDebits": -3114609.0,
           "unmatchedDebits": -6229218.0
         }
@@ -3356,7 +3795,341 @@
           "matchedDebits": -462055.0,
           "unmatchedDebits": -9718170.0
         }
+      },
+      "byCurrency": {
+        "AUD": {
+          "matchedCredits": 0.0,
+          "unmatchedCredits": 14268020.0,
+          "matchedDebits": -3729993.0,
+          "unmatchedDebits": -56109963.0
+        },
+        "JPY": {
+          "matchedCredits": 3414502.0,
+          "unmatchedCredits": 24031624.0,
+          "matchedDebits": -0.0,
+          "unmatchedDebits": -20961288.0
+        },
+        "USD": {
+          "matchedCredits": 100615.0,
+          "unmatchedCredits": 201230.0,
+          "matchedDebits": -462055.0,
+          "unmatchedDebits": -924110.0
+        }
       }
+    }
+  ],
+  "cashExpectations": [
+    {
+      "hour": "00:00",
+      "expectedInflow": 58989413.7,
+      "expectedOutflow": -41436628.52,
+      "settledInflow": 56180394.0,
+      "settledOutflow": -42282274.0,
+      "cumExpectedInflow": 58989413.7,
+      "cumExpectedOutflow": -41436628.52,
+      "cumSettledInflow": 56180394.0,
+      "cumSettledOutflow": -42282274.0,
+      "netExpectedTrajectory": 418111165.18,
+      "netSettledTrajectory": 414456500.0
+    },
+    {
+      "hour": "01:00",
+      "expectedInflow": 55471991.4,
+      "expectedOutflow": -34129348.68,
+      "settledInflow": 52830468.0,
+      "settledOutflow": -34825866.0,
+      "cumExpectedInflow": 114461405.1,
+      "cumExpectedOutflow": -75565977.2,
+      "cumSettledInflow": 109010862.0,
+      "cumSettledOutflow": -77108140.0,
+      "netExpectedTrajectory": 439453807.9,
+      "netSettledTrajectory": 432461102.0
+    },
+    {
+      "hour": "02:00",
+      "expectedInflow": 40587382.5,
+      "expectedOutflow": -47736484.04,
+      "settledInflow": 38654650.0,
+      "settledOutflow": -48710698.0,
+      "cumExpectedInflow": 155048787.6,
+      "cumExpectedOutflow": -123302461.24,
+      "cumSettledInflow": 147665512.0,
+      "cumSettledOutflow": -125818838.0,
+      "netExpectedTrajectory": 432304706.36,
+      "netSettledTrajectory": 422405054.0
+    },
+    {
+      "hour": "03:00",
+      "expectedInflow": 53358083.1,
+      "expectedOutflow": -33773685.12,
+      "settledInflow": 50817222.0,
+      "settledOutflow": -34462944.0,
+      "cumExpectedInflow": 208406870.7,
+      "cumExpectedOutflow": -157076146.36,
+      "cumSettledInflow": 198482734.0,
+      "cumSettledOutflow": -160281782.0,
+      "netExpectedTrajectory": 451889104.34,
+      "netSettledTrajectory": 438759332.0
+    },
+    {
+      "hour": "04:00",
+      "expectedInflow": 60164880.3,
+      "expectedOutflow": -35515711.56,
+      "settledInflow": 57299886.0,
+      "settledOutflow": -36240522.0,
+      "cumExpectedInflow": 268571751.0,
+      "cumExpectedOutflow": -192591857.92,
+      "cumSettledInflow": 255782620.0,
+      "cumSettledOutflow": -196522304.0,
+      "netExpectedTrajectory": 476538273.08,
+      "netSettledTrajectory": 459818696.0
+    },
+    {
+      "hour": "05:00",
+      "expectedInflow": 79517499.6,
+      "expectedOutflow": -44181006.8,
+      "settledInflow": 75730952.0,
+      "settledOutflow": -45082660.0,
+      "cumExpectedInflow": 348089250.6,
+      "cumExpectedOutflow": -236772864.72,
+      "cumSettledInflow": 331513572.0,
+      "cumSettledOutflow": -241604964.0,
+      "netExpectedTrajectory": 511874765.88,
+      "netSettledTrajectory": 490466988.0
+    },
+    {
+      "hour": "06:00",
+      "expectedInflow": 93998547.3,
+      "expectedOutflow": -48104146.72,
+      "settledInflow": 89522426.0,
+      "settledOutflow": -49085864.0,
+      "cumExpectedInflow": 442087797.9,
+      "cumExpectedOutflow": -284877011.44,
+      "cumSettledInflow": 421035998.0,
+      "cumSettledOutflow": -290690828.0,
+      "netExpectedTrajectory": 557769166.46,
+      "netSettledTrajectory": 530903550.0
+    },
+    {
+      "hour": "07:00",
+      "expectedInflow": 15647829957.0,
+      "expectedOutflow": -12393192192.0,
+      "settledInflow": 27532313.0,
+      "settledOutflow": -254408790.0,
+      "cumExpectedInflow": 16089917754.9,
+      "cumExpectedOutflow": -12678069203.44,
+      "cumSettledInflow": 448568311.0,
+      "cumSettledOutflow": -545099618.0,
+      "netExpectedTrajectory": 3812406931.46,
+      "netSettledTrajectory": 304027073.0
+    },
+    {
+      "hour": "08:00",
+      "expectedInflow": 12241008838.0,
+      "expectedOutflow": -11711503695.0,
+      "settledInflow": 195889038.0,
+      "settledOutflow": -532753895.0,
+      "cumExpectedInflow": 28330926592.9,
+      "cumExpectedOutflow": -24389572898.44,
+      "cumSettledInflow": 644457349.0,
+      "cumSettledOutflow": -1077853513.0,
+      "netExpectedTrajectory": 4341912074.46,
+      "netSettledTrajectory": -32837784.0
+    },
+    {
+      "hour": "09:00",
+      "expectedInflow": 13644611969.0,
+      "expectedOutflow": -13407919188.0,
+      "settledInflow": 97676778.0,
+      "settledOutflow": -394459502.0,
+      "cumExpectedInflow": 41975538561.9,
+      "cumExpectedOutflow": -37797492086.44,
+      "cumSettledInflow": 742134127.0,
+      "cumSettledOutflow": -1472313015.0,
+      "netExpectedTrajectory": 4578604855.46,
+      "netSettledTrajectory": -329620508.0
+    },
+    {
+      "hour": "10:00",
+      "expectedInflow": 15447564323.0,
+      "expectedOutflow": -19789120909.0,
+      "settledInflow": 186049637.0,
+      "settledOutflow": -145463928.0,
+      "cumExpectedInflow": 57423102884.9,
+      "cumExpectedOutflow": -57586612995.44,
+      "cumSettledInflow": 928183764.0,
+      "cumSettledOutflow": -1617776943.0,
+      "netExpectedTrajectory": 237048269.46,
+      "netSettledTrajectory": -289034799.0
+    },
+    {
+      "hour": "11:00",
+      "expectedInflow": 14210455823.0,
+      "expectedOutflow": -15709436519.0,
+      "settledInflow": 131968457.0,
+      "settledOutflow": -122223522.0,
+      "cumExpectedInflow": 71633558707.9,
+      "cumExpectedOutflow": -73296049514.44,
+      "cumSettledInflow": 1060152221.0,
+      "cumSettledOutflow": -1740000465.0,
+      "netExpectedTrajectory": -1261932426.54,
+      "netSettledTrajectory": -279289864.0
+    },
+    {
+      "hour": "12:00",
+      "expectedInflow": 12569063164.0,
+      "expectedOutflow": -12283773705.0,
+      "settledInflow": 109084646.0,
+      "settledOutflow": -217245350.0,
+      "cumExpectedInflow": 84202621871.9,
+      "cumExpectedOutflow": -85579823219.44,
+      "cumSettledInflow": 1169236867.0,
+      "cumSettledOutflow": -1957245815.0,
+      "netExpectedTrajectory": -976642967.54,
+      "netSettledTrajectory": -387450568.0
+    },
+    {
+      "hour": "13:00",
+      "expectedInflow": 19301025842.0,
+      "expectedOutflow": -12443192534.0,
+      "settledInflow": 156713465.0,
+      "settledOutflow": -177129334.0,
+      "cumExpectedInflow": 103503647713.9,
+      "cumExpectedOutflow": -98023015753.44,
+      "cumSettledInflow": 1325950332.0,
+      "cumSettledOutflow": -2134375149.0,
+      "netExpectedTrajectory": 5881190340.46,
+      "netSettledTrajectory": -407866437.0
+    },
+    {
+      "hour": "14:00",
+      "expectedInflow": 13173910884.0,
+      "expectedOutflow": -13949673140.0,
+      "settledInflow": 209470711.0,
+      "settledOutflow": -130425480.0,
+      "cumExpectedInflow": 116677558597.9,
+      "cumExpectedOutflow": -111972688893.44,
+      "cumSettledInflow": 1535421043.0,
+      "cumSettledOutflow": -2264800629.0,
+      "netExpectedTrajectory": 5105428084.46,
+      "netSettledTrajectory": -328821206.0
+    },
+    {
+      "hour": "15:00",
+      "expectedInflow": 10550598881.0,
+      "expectedOutflow": -15603252973.0,
+      "settledInflow": 489850168.0,
+      "settledOutflow": -156437658.0,
+      "cumExpectedInflow": 127228157478.9,
+      "cumExpectedOutflow": -127575941866.44,
+      "cumSettledInflow": 2025271211.0,
+      "cumSettledOutflow": -2421238287.0,
+      "netExpectedTrajectory": 52773992.46,
+      "netSettledTrajectory": 4591304.0
+    },
+    {
+      "hour": "16:00",
+      "expectedInflow": 12843719487.0,
+      "expectedOutflow": -11810452858.0,
+      "settledInflow": 503984306.0,
+      "settledOutflow": -195469392.0,
+      "cumExpectedInflow": 140071876965.9,
+      "cumExpectedOutflow": -139386394724.44,
+      "cumSettledInflow": 2529255517.0,
+      "cumSettledOutflow": -2616707679.0,
+      "netExpectedTrajectory": 1086040621.46,
+      "netSettledTrajectory": 313106218.0
+    },
+    {
+      "hour": "17:00",
+      "expectedInflow": 13911850471.0,
+      "expectedOutflow": -14968906630.0,
+      "settledInflow": 170345295.0,
+      "settledOutflow": -63069369.0,
+      "cumExpectedInflow": 153983727436.9,
+      "cumExpectedOutflow": -154355301354.44,
+      "cumSettledInflow": 2699600812.0,
+      "cumSettledOutflow": -2679777048.0,
+      "netExpectedTrajectory": 28984462.46,
+      "netSettledTrajectory": 420382144.0
+    },
+    {
+      "hour": "18:00",
+      "expectedInflow": 26725986.0,
+      "expectedOutflow": -36000676.32,
+      "settledInflow": 25453320.0,
+      "settledOutflow": -36735384.0,
+      "cumExpectedInflow": 154010453422.9,
+      "cumExpectedOutflow": -154391302030.76,
+      "cumSettledInflow": 2725054132.0,
+      "cumSettledOutflow": -2716512432.0,
+      "netExpectedTrajectory": 19709772.14,
+      "netSettledTrajectory": 409100080.0
+    },
+    {
+      "hour": "19:00",
+      "expectedInflow": 23539096.35,
+      "expectedOutflow": -23137544.22,
+      "settledInflow": 22418187.0,
+      "settledOutflow": -23609739.0,
+      "cumExpectedInflow": 154033992519.25,
+      "cumExpectedOutflow": -154414439574.98,
+      "cumSettledInflow": 2747472319.0,
+      "cumSettledOutflow": -2740122171.0,
+      "netExpectedTrajectory": 20111324.27,
+      "netSettledTrajectory": 407908528.0
+    },
+    {
+      "hour": "20:00",
+      "expectedInflow": 7841921.85,
+      "expectedOutflow": -31985253.72,
+      "settledInflow": 7468497.0,
+      "settledOutflow": -32638014.0,
+      "cumExpectedInflow": 154041834441.1,
+      "cumExpectedOutflow": -154446424828.7,
+      "cumSettledInflow": 2754940816.0,
+      "cumSettledOutflow": -2772760185.0,
+      "netExpectedTrajectory": -4032007.6,
+      "netSettledTrajectory": 382739011.0
+    },
+    {
+      "hour": "21:00",
+      "expectedInflow": 114676389.45,
+      "expectedOutflow": -77823945.22,
+      "settledInflow": 109215609.0,
+      "settledOutflow": -79412189.0,
+      "cumExpectedInflow": 154156510830.55,
+      "cumExpectedOutflow": -154524248773.92,
+      "cumSettledInflow": 2864156425.0,
+      "cumSettledOutflow": -2852172374.0,
+      "netExpectedTrajectory": 32820436.63,
+      "netSettledTrajectory": 412542431.0
+    },
+    {
+      "hour": "22:00",
+      "expectedInflow": 93530326.05,
+      "expectedOutflow": -62317616.9,
+      "settledInflow": 89076501.0,
+      "settledOutflow": -63589405.0,
+      "cumExpectedInflow": 154250041156.6,
+      "cumExpectedOutflow": -154586566390.82,
+      "cumSettledInflow": 2953232926.0,
+      "cumSettledOutflow": -2915761779.0,
+      "netExpectedTrajectory": 64033145.78,
+      "netSettledTrajectory": 438029527.0
+    },
+    {
+      "hour": "23:00",
+      "expectedInflow": 44116790.55,
+      "expectedOutflow": -80543660.82,
+      "settledInflow": 42015991.0,
+      "settledOutflow": -82187409.0,
+      "cumExpectedInflow": 154294157947.15,
+      "cumExpectedOutflow": -154667110051.64,
+      "cumSettledInflow": 2995248917.0,
+      "cumSettledOutflow": -2997949188.0,
+      "netExpectedTrajectory": 27606275.51,
+      "netSettledTrajectory": 397858109.0
     }
   ],
   "fundingSources": [
@@ -3366,7 +4139,8 @@
       "baseValue": 32320000.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3374,7 +4148,8 @@
       "baseValue": 44880000.0,
       "entity": "Global Bank UK",
       "location": "BONY",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3382,7 +4157,8 @@
       "baseValue": 25480000.0,
       "entity": "Global Bank UK",
       "location": "BONY",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3390,7 +4166,8 @@
       "baseValue": 37620000.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3398,7 +4175,8 @@
       "baseValue": 14140000.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3406,7 +4184,8 @@
       "baseValue": 87266666.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3414,7 +4193,8 @@
       "baseValue": 17286111.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3422,7 +4202,8 @@
       "baseValue": 73150000.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3430,7 +4211,8 @@
       "baseValue": 17506666.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3438,7 +4220,8 @@
       "baseValue": 36720000.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3446,7 +4229,8 @@
       "baseValue": 19382222.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3454,7 +4238,8 @@
       "baseValue": 28380000.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3462,7 +4247,8 @@
       "baseValue": 44440000.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3470,7 +4256,8 @@
       "baseValue": 23120000.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3478,7 +4265,8 @@
       "baseValue": 37240000.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3486,7 +4274,8 @@
       "baseValue": 24464444.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3494,7 +4283,8 @@
       "baseValue": 44880000.0,
       "entity": "Global Bank Germany",
       "location": "TSE",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3502,7 +4292,8 @@
       "baseValue": 35280000.0,
       "entity": "Global Bank Germany",
       "location": "TSE",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3510,7 +4301,8 @@
       "baseValue": 54943636.0,
       "entity": "Global Bank UK",
       "location": "TSE",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3518,7 +4310,8 @@
       "baseValue": 25622105.0,
       "entity": "Global Bank UK",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3526,7 +4319,8 @@
       "baseValue": 21366315.0,
       "entity": "Global Bank UK",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3534,167 +4328,188 @@
       "baseValue": 37240000.0,
       "entity": "Global Bank Luxembourg",
       "location": "BONY",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "USD",
       "baseValue": 10000000.0,
       "entity": "Global Bank Germany",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "JPY",
       "baseValue": 25248568.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "AUD",
       "baseValue": 11448438.0,
       "entity": "Global Bank Americas",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "JPY",
       "baseValue": 0.0,
       "entity": "Global Bank Germany",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "GBP",
       "baseValue": 10666666.0,
       "entity": "Global Bank Americas",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "CHF",
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "AUD",
       "baseValue": 10416666.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "CHF",
       "baseValue": 0.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "USD",
       "baseValue": 10000000.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "EUR",
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "USD",
       "baseValue": 1000000.0,
       "entity": "Global Bank Germany",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "JPY",
       "baseValue": 7700000.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "AUD",
       "baseValue": 9027777.0,
       "entity": "Global Bank Americas",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "JPY",
       "baseValue": 6097334.0,
       "entity": "Global Bank Germany",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.4457
     },
     {
       "type": "Credit Line",
       "currency": "GBP",
       "baseValue": 8000000.0,
       "entity": "Global Bank Americas",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "CHF",
       "baseValue": 79625453.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.1595
     },
     {
       "type": "Credit Line",
       "currency": "AUD",
       "baseValue": 111111111.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "CHF",
       "baseValue": 83045756.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0138
     },
     {
       "type": "Credit Line",
       "currency": "USD",
       "baseValue": 50000000.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "EUR",
       "baseValue": 94882858.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.1461
     },
     {
       "type": "Pledged Collateral",
@@ -3702,7 +4517,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3710,7 +4526,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank UK",
       "location": "BONY",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3718,7 +4535,8 @@
       "baseValue": 15680000.0,
       "entity": "Global Bank UK",
       "location": "BONY",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3726,7 +4544,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3734,7 +4553,8 @@
       "baseValue": 20200000.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3742,7 +4562,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3750,7 +4571,8 @@
       "baseValue": 43555555.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3758,7 +4580,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3766,7 +4589,8 @@
       "baseValue": 26933333.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3774,7 +4598,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3782,7 +4607,8 @@
       "baseValue": 21777777.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3790,7 +4616,8 @@
       "baseValue": 13200000.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3798,7 +4625,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3806,7 +4634,8 @@
       "baseValue": 13600000.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3814,7 +4643,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3822,7 +4652,8 @@
       "baseValue": 17955555.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3830,7 +4661,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Germany",
       "location": "TSE",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3838,7 +4670,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Germany",
       "location": "TSE",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3846,7 +4679,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank UK",
       "location": "TSE",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3854,7 +4688,8 @@
       "baseValue": 12757894.0,
       "entity": "Global Bank UK",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3862,7 +4697,8 @@
       "baseValue": 21473684.0,
       "entity": "Global Bank UK",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -3870,7 +4706,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
       "location": "BONY",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3878,7 +4715,8 @@
       "baseValue": 32320000.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3886,7 +4724,8 @@
       "baseValue": 44880000.0,
       "entity": "Global Bank UK",
       "location": "BONY",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3894,7 +4733,8 @@
       "baseValue": 25480000.0,
       "entity": "Global Bank UK",
       "location": "BONY",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3902,7 +4742,8 @@
       "baseValue": 37620000.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3910,7 +4751,8 @@
       "baseValue": 14140000.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3918,7 +4760,8 @@
       "baseValue": 87266666.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3926,7 +4769,8 @@
       "baseValue": 17286111.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3934,7 +4778,8 @@
       "baseValue": 73150000.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3942,7 +4787,8 @@
       "baseValue": 17506666.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3950,7 +4796,8 @@
       "baseValue": 36720000.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3958,7 +4805,8 @@
       "baseValue": 8493333.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3966,7 +4814,8 @@
       "baseValue": 28380000.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3974,7 +4823,8 @@
       "baseValue": 44440000.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3982,7 +4832,8 @@
       "baseValue": 27200000.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3990,7 +4841,8 @@
       "baseValue": 37240000.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -3998,7 +4850,8 @@
       "baseValue": 24464444.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4006,7 +4859,8 @@
       "baseValue": 44880000.0,
       "entity": "Global Bank Germany",
       "location": "TSE",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4014,7 +4868,8 @@
       "baseValue": 35280000.0,
       "entity": "Global Bank Germany",
       "location": "TSE",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4022,7 +4877,8 @@
       "baseValue": 50934545.0,
       "entity": "Global Bank UK",
       "location": "TSE",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4030,7 +4886,8 @@
       "baseValue": 34127368.0,
       "entity": "Global Bank UK",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4038,7 +4895,8 @@
       "baseValue": 21366315.0,
       "entity": "Global Bank UK",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4046,167 +4904,188 @@
       "baseValue": 37240000.0,
       "entity": "Global Bank Luxembourg",
       "location": "BONY",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "USD",
       "baseValue": 16498699.0,
       "entity": "Global Bank Germany",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "JPY",
       "baseValue": 9090909.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "AUD",
       "baseValue": 11448438.0,
       "entity": "Global Bank Americas",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "JPY",
       "baseValue": 8181818.0,
       "entity": "Global Bank Germany",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "GBP",
       "baseValue": 9958915.0,
       "entity": "Global Bank Americas",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "CHF",
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "AUD",
       "baseValue": 10416666.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "CHF",
       "baseValue": 0.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "USD",
       "baseValue": 0.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "EUR",
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "USD",
       "baseValue": 1000000.0,
       "entity": "Global Bank Germany",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "JPY",
       "baseValue": 7700000.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "AUD",
       "baseValue": 9027777.0,
       "entity": "Global Bank Americas",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "JPY",
       "baseValue": 11000000.0,
       "entity": "Global Bank Germany",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "GBP",
       "baseValue": 8000000.0,
       "entity": "Global Bank Americas",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "CHF",
       "baseValue": 23893231.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.7478
     },
     {
       "type": "Credit Line",
       "currency": "AUD",
       "baseValue": 111111111.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "CHF",
       "baseValue": 21578837.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.7437999999999999
     },
     {
       "type": "Credit Line",
       "currency": "USD",
       "baseValue": 30230083.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.3954
     },
     {
       "type": "Credit Line",
       "currency": "EUR",
       "baseValue": 19124032.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.8279000000000001
     },
     {
       "type": "Pledged Collateral",
@@ -4214,7 +5093,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4222,7 +5102,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank UK",
       "location": "BONY",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4230,7 +5111,8 @@
       "baseValue": 15680000.0,
       "entity": "Global Bank UK",
       "location": "BONY",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4238,7 +5120,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4246,7 +5129,8 @@
       "baseValue": 20200000.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4254,7 +5138,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4262,7 +5147,8 @@
       "baseValue": 43555555.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4270,7 +5156,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4278,7 +5165,8 @@
       "baseValue": 26933333.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4286,7 +5174,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4294,7 +5183,8 @@
       "baseValue": 21777777.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4302,7 +5192,8 @@
       "baseValue": 13200000.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4310,7 +5201,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4318,7 +5210,8 @@
       "baseValue": 13600000.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4326,7 +5219,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4334,7 +5228,8 @@
       "baseValue": 17955555.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4342,7 +5237,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Germany",
       "location": "TSE",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4350,7 +5246,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Germany",
       "location": "TSE",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4358,7 +5255,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank UK",
       "location": "TSE",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4366,7 +5264,8 @@
       "baseValue": 12757894.0,
       "entity": "Global Bank UK",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4374,7 +5273,8 @@
       "baseValue": 21473684.0,
       "entity": "Global Bank UK",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4382,7 +5282,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
       "location": "BONY",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4390,7 +5291,8 @@
       "baseValue": 32320000.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4398,7 +5300,8 @@
       "baseValue": 44880000.0,
       "entity": "Global Bank UK",
       "location": "BONY",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4406,7 +5309,8 @@
       "baseValue": 43120000.0,
       "entity": "Global Bank UK",
       "location": "BONY",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4414,7 +5318,8 @@
       "baseValue": 37620000.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4422,7 +5327,8 @@
       "baseValue": 14140000.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4430,7 +5336,8 @@
       "baseValue": 87266666.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4438,7 +5345,8 @@
       "baseValue": 17286111.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4446,7 +5354,8 @@
       "baseValue": 73150000.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4454,7 +5363,8 @@
       "baseValue": 17506666.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4462,7 +5372,8 @@
       "baseValue": 36720000.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4470,7 +5381,8 @@
       "baseValue": 3048888.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4478,7 +5390,8 @@
       "baseValue": 28380000.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4486,7 +5399,8 @@
       "baseValue": 44440000.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4494,7 +5408,8 @@
       "baseValue": 35360000.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4502,7 +5417,8 @@
       "baseValue": 37240000.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4510,7 +5426,8 @@
       "baseValue": 24464444.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4518,7 +5435,8 @@
       "baseValue": 44880000.0,
       "entity": "Global Bank Germany",
       "location": "TSE",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4526,7 +5444,8 @@
       "baseValue": 35280000.0,
       "entity": "Global Bank Germany",
       "location": "TSE",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4534,7 +5453,8 @@
       "baseValue": 50934545.0,
       "entity": "Global Bank UK",
       "location": "TSE",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4542,7 +5462,8 @@
       "baseValue": 35190526.0,
       "entity": "Global Bank UK",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4550,7 +5471,8 @@
       "baseValue": 21366315.0,
       "entity": "Global Bank UK",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Avail. Collateral",
@@ -4558,167 +5480,188 @@
       "baseValue": 37240000.0,
       "entity": "Global Bank Luxembourg",
       "location": "BONY",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "USD",
       "baseValue": 5889948.0,
       "entity": "Global Bank Germany",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "JPY",
       "baseValue": 10518802.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "AUD",
       "baseValue": 4360274.0,
       "entity": "Global Bank Americas",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "JPY",
       "baseValue": 10168427.0,
       "entity": "Global Bank Germany",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "GBP",
       "baseValue": 10182088.0,
       "entity": "Global Bank Americas",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "CHF",
       "baseValue": 15509441.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "AUD",
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "CHF",
       "baseValue": 20812668.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "USD",
       "baseValue": 9988820.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "EUR",
       "baseValue": 16250866.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "USD",
       "baseValue": 1000000.0,
       "entity": "Global Bank Germany",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "JPY",
       "baseValue": 7700000.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "AUD",
       "baseValue": 9027777.0,
       "entity": "Global Bank Americas",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "JPY",
       "baseValue": 11000000.0,
       "entity": "Global Bank Germany",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "GBP",
       "baseValue": 8000000.0,
       "entity": "Global Bank Americas",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "CHF",
       "baseValue": 94736842.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "AUD",
       "baseValue": 84753766.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.2372
     },
     {
       "type": "Credit Line",
       "currency": "CHF",
       "baseValue": 84210526.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "USD",
       "baseValue": 50000000.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Credit Line",
       "currency": "EUR",
       "baseValue": 111111111.0,
       "entity": "Global Bank Luxembourg",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4726,7 +5669,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4734,7 +5678,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank UK",
       "location": "BONY",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4742,7 +5687,8 @@
       "baseValue": 15680000.0,
       "entity": "Global Bank UK",
       "location": "BONY",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4750,7 +5696,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4758,7 +5705,8 @@
       "baseValue": 20200000.0,
       "entity": "Global Bank Germany",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4766,7 +5714,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4774,7 +5723,8 @@
       "baseValue": 43555555.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4782,7 +5732,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
       "location": "ASX",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4790,7 +5741,8 @@
       "baseValue": 26933333.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4798,7 +5750,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4806,7 +5759,8 @@
       "baseValue": 21777777.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4814,7 +5768,8 @@
       "baseValue": 13200000.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4822,7 +5777,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4830,7 +5786,8 @@
       "baseValue": 13600000.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4838,7 +5795,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Americas",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4846,7 +5804,8 @@
       "baseValue": 17955555.0,
       "entity": "Global Bank Luxembourg",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4854,7 +5813,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Germany",
       "location": "TSE",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4862,7 +5822,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank Germany",
       "location": "TSE",
-      "ownership": "Client"
+      "ownership": "Client",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4870,7 +5831,8 @@
       "baseValue": 0.0,
       "entity": "Global Bank UK",
       "location": "TSE",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4878,7 +5840,8 @@
       "baseValue": 12757894.0,
       "entity": "Global Bank UK",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4886,7 +5849,8 @@
       "baseValue": 21473684.0,
       "entity": "Global Bank UK",
       "location": "EuroClear",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Pledged Collateral",
@@ -4894,31 +5858,35 @@
       "baseValue": 0.0,
       "entity": "Global Bank Luxembourg",
       "location": "BONY",
-      "ownership": "Owned"
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "GBP",
       "baseValue": 53333333.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "GBP",
       "baseValue": 51881821.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     },
     {
       "type": "Cash",
       "currency": "GBP",
       "baseValue": 52997685.0,
       "entity": "Global Bank UK",
-      "location": "Global",
-      "ownership": "Owned"
+      "location": "EuroClear",
+      "ownership": "Owned",
+      "utilPct": 0.0
     }
   ],
   "fundingTotals": {
@@ -4926,6 +5894,12 @@
     "Cash": 405269956.0,
     "Credit Line": 1154695382.0,
     "Pledged Collateral": 621401394.0
+  },
+  "depositoryTotals": {
+    "EuroClear": 3097796784.0,
+    "BONY": 387480000.0,
+    "ASX": 663774996.0,
+    "TSE": 397292726.0
   },
   "alerts": [
     {
@@ -5356,6 +6330,431 @@
       "entity": "Global Bank UK",
       "correspondent": "Nomura Tokyo",
       "origin": "System Alert"
+    }
+  ],
+  "securities": {
+    "positions": [
+      {
+        "isin": "AU0020030716",
+        "account": "S-119000096",
+        "currency": "AUD",
+        "location": "ASX",
+        "ownership": "Client Pledged",
+        "entity": "Global Bank Luxembourg",
+        "jurisdiction": "Eurozone",
+        "marketValue": 4188800016.0,
+        "buyVolume": 0.0,
+        "sellVolume": 0.0
+      },
+      {
+        "isin": "AU0020030713",
+        "account": "S-119000096",
+        "currency": "AUD",
+        "location": "ASX",
+        "ownership": "Owned",
+        "entity": "Global Bank Luxembourg",
+        "jurisdiction": "America",
+        "marketValue": 3511200000.0,
+        "buyVolume": 0.0,
+        "sellVolume": 0.0
+      },
+      {
+        "isin": "AU0020030714",
+        "account": "S-119000096",
+        "currency": "AUD",
+        "location": "ASX",
+        "ownership": "Owned",
+        "entity": "Global Bank Luxembourg",
+        "jurisdiction": "Eurozone",
+        "marketValue": 3240941676.0,
+        "buyVolume": 0.0,
+        "sellVolume": 132300000.0
+      },
+      {
+        "isin": "USE752E07JR2",
+        "account": "S-110000072",
+        "currency": "USD",
+        "location": "BONY",
+        "ownership": "Owned",
+        "entity": "Global Bank UK",
+        "jurisdiction": "Eurozone",
+        "marketValue": 2154240000.0,
+        "buyVolume": 0.0,
+        "sellVolume": 0.0
+      },
+      {
+        "isin": "FR0020030715",
+        "account": "S-110000124",
+        "currency": "EUR",
+        "location": "EuroClear",
+        "ownership": "Owned",
+        "entity": "Global Bank Luxembourg",
+        "jurisdiction": "Eurozone",
+        "marketValue": 2133120000.0,
+        "buyVolume": 0.0,
+        "sellVolume": 0.0
+      },
+      {
+        "isin": "GB0020127512",
+        "account": "S-119000094",
+        "currency": "GBP",
+        "location": "EuroClear",
+        "ownership": "Owned",
+        "entity": "Global Bank Americas",
+        "jurisdiction": "Eurozone",
+        "marketValue": 2133120000.0,
+        "buyVolume": 0.0,
+        "sellVolume": 0.0
+      },
+      {
+        "isin": "USE752E07I01",
+        "account": "S-110000072",
+        "currency": "USD",
+        "location": "BONY",
+        "ownership": "Owned",
+        "entity": "Global Bank UK",
+        "jurisdiction": "Eurozone",
+        "marketValue": 2064860000.0,
+        "buyVolume": 58800000.0,
+        "sellVolume": 5880000.0
+      },
+      {
+        "isin": "IT0020110030",
+        "account": "S-110000124",
+        "currency": "EUR",
+        "location": "EuroClear",
+        "ownership": "Owned",
+        "entity": "Global Bank Luxembourg",
+        "jurisdiction": "America",
+        "marketValue": 2036160000.0,
+        "buyVolume": 0.0,
+        "sellVolume": 0.0
+      },
+      {
+        "isin": "DE0020030712",
+        "account": "S-110000124",
+        "currency": "EUR",
+        "location": "EuroClear",
+        "ownership": "Owned",
+        "entity": "Global Bank Luxembourg",
+        "jurisdiction": "America",
+        "marketValue": 1995840000.0,
+        "buyVolume": 0.0,
+        "sellVolume": 0.0
+      },
+      {
+        "isin": "GB0020030712",
+        "account": "S-119000094",
+        "currency": "GBP",
+        "location": "EuroClear",
+        "ownership": "Owned",
+        "entity": "Global Bank Americas",
+        "jurisdiction": "Eurozone",
+        "marketValue": 1849600000.0,
+        "buyVolume": 27540000.0,
+        "sellVolume": 0.0
+      },
+      {
+        "isin": "GB0020030718",
+        "account": "S-119000094",
+        "currency": "GBP",
+        "location": "EuroClear",
+        "ownership": "Owned",
+        "entity": "Global Bank Americas",
+        "jurisdiction": "Eurozone",
+        "marketValue": 1822680000.0,
+        "buyVolume": 0.0,
+        "sellVolume": 0.0
+      },
+      {
+        "isin": "USE423A14EN",
+        "account": "S-110000099",
+        "currency": "USD",
+        "location": "EuroClear",
+        "ownership": "Owned",
+        "entity": "Global Bank Germany",
+        "jurisdiction": "America",
+        "marketValue": 1805760000.0,
+        "buyVolume": 0.0,
+        "sellVolume": 0.0
+      },
+      {
+        "isin": "FR0020030717",
+        "account": "S-110000124",
+        "currency": "EUR",
+        "location": "EuroClear",
+        "ownership": "Owned",
+        "entity": "Global Bank Luxembourg",
+        "jurisdiction": "Eurozone",
+        "marketValue": 1775324448.0,
+        "buyVolume": 0.0,
+        "sellVolume": 44100000.0
+      },
+      {
+        "isin": "DE0020030718",
+        "account": "S-110000124",
+        "currency": "EUR",
+        "location": "EuroClear",
+        "ownership": "Owned",
+        "entity": "Global Bank Luxembourg",
+        "jurisdiction": "Eurozone",
+        "marketValue": 1762560000.0,
+        "buyVolume": 0.0,
+        "sellVolume": 0.0
+      },
+      {
+        "isin": "USE121A14M9",
+        "account": "S-110000099",
+        "currency": "USD",
+        "location": "EuroClear",
+        "ownership": "Owned",
+        "entity": "Global Bank Germany",
+        "jurisdiction": "Eurozone",
+        "marketValue": 1648320000.0,
+        "buyVolume": 0.0,
+        "sellVolume": 0.0
+      },
+      {
+        "isin": "USE752E07LP2",
+        "account": "S-110000099",
+        "currency": "USD",
+        "location": "EuroClear",
+        "ownership": "Owned",
+        "entity": "Global Bank Germany",
+        "jurisdiction": "Eurozone",
+        "marketValue": 1551360000.0,
+        "buyVolume": 0.0,
+        "sellVolume": 0.0
+      }
+    ],
+    "depositoryTotals": {
+      "ASX": 10940941692.0,
+      "BONY": 4219100000.0,
+      "EuroClear": 20513844448.0
+    },
+    "ownershipTotals": {
+      "Owned": 31485086124.0,
+      "Client Pledged": 4188800016.0
+    },
+    "totalBuy": 5408640000.0,
+    "totalSell": 2390310000.0,
+    "tradeCount": 168
+  },
+  "pivotCashMatrix": [
+    {
+      "entity": "Global Bank Americas",
+      "currency": "AUD",
+      "netBalance": 0.0,
+      "inflow": 260997482.0,
+      "outflow": -251738457.0,
+      "alertCount": 3
+    },
+    {
+      "entity": "Global Bank Americas",
+      "currency": "CHF",
+      "netBalance": 0.0,
+      "inflow": 260997482.0,
+      "outflow": -251738457.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank Americas",
+      "currency": "EUR",
+      "netBalance": 0.0,
+      "inflow": 260997482.0,
+      "outflow": -251738457.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank Americas",
+      "currency": "GBP",
+      "netBalance": 0.0,
+      "inflow": 260997482.0,
+      "outflow": -251738457.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank Americas",
+      "currency": "JPY",
+      "netBalance": 0.0,
+      "inflow": 260997482.0,
+      "outflow": -251738457.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank Americas",
+      "currency": "USD",
+      "netBalance": 0.0,
+      "inflow": 260997482.0,
+      "outflow": -251738457.0,
+      "alertCount": 3
+    },
+    {
+      "entity": "Global Bank Germany",
+      "currency": "AUD",
+      "netBalance": 0.0,
+      "inflow": 179204976.0,
+      "outflow": -178356167.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank Germany",
+      "currency": "CHF",
+      "netBalance": 0.0,
+      "inflow": 179204976.0,
+      "outflow": -178356167.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank Germany",
+      "currency": "EUR",
+      "netBalance": 0.0,
+      "inflow": 179204976.0,
+      "outflow": -178356167.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank Germany",
+      "currency": "GBP",
+      "netBalance": 0.0,
+      "inflow": 179204976.0,
+      "outflow": -178356167.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank Germany",
+      "currency": "JPY",
+      "netBalance": 0.0,
+      "inflow": 179204976.0,
+      "outflow": -178356167.0,
+      "alertCount": 6
+    },
+    {
+      "entity": "Global Bank Germany",
+      "currency": "USD",
+      "netBalance": 0.0,
+      "inflow": 179204976.0,
+      "outflow": -178356167.0,
+      "alertCount": 12
+    },
+    {
+      "entity": "Global Bank Luxembourg",
+      "currency": "AUD",
+      "netBalance": 0.0,
+      "inflow": 403381034.0,
+      "outflow": -578859488.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank Luxembourg",
+      "currency": "CHF",
+      "netBalance": 0.0,
+      "inflow": 403381034.0,
+      "outflow": -578859488.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank Luxembourg",
+      "currency": "EUR",
+      "netBalance": 0.0,
+      "inflow": 403381034.0,
+      "outflow": -578859488.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank Luxembourg",
+      "currency": "GBP",
+      "netBalance": 0.0,
+      "inflow": 403381034.0,
+      "outflow": -578859488.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank Luxembourg",
+      "currency": "JPY",
+      "netBalance": 0.0,
+      "inflow": 403381034.0,
+      "outflow": -578859488.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank Luxembourg",
+      "currency": "USD",
+      "netBalance": 0.0,
+      "inflow": 403381034.0,
+      "outflow": -578859488.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank UK",
+      "currency": "AUD",
+      "netBalance": 0.0,
+      "inflow": 910385032.0,
+      "outflow": -1025400947.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank UK",
+      "currency": "CHF",
+      "netBalance": 0.0,
+      "inflow": 910385032.0,
+      "outflow": -1025400947.0,
+      "alertCount": 3
+    },
+    {
+      "entity": "Global Bank UK",
+      "currency": "EUR",
+      "netBalance": 0.0,
+      "inflow": 910385032.0,
+      "outflow": -1025400947.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank UK",
+      "currency": "GBP",
+      "netBalance": 0.0,
+      "inflow": 910385032.0,
+      "outflow": -1025400947.0,
+      "alertCount": 0
+    },
+    {
+      "entity": "Global Bank UK",
+      "currency": "JPY",
+      "netBalance": 0.0,
+      "inflow": 910385032.0,
+      "outflow": -1025400947.0,
+      "alertCount": 12
+    },
+    {
+      "entity": "Global Bank UK",
+      "currency": "USD",
+      "netBalance": 0.0,
+      "inflow": 910385032.0,
+      "outflow": -1025400947.0,
+      "alertCount": 17
+    }
+  ],
+  "pivotSecuritiesMatrix": [
+    {
+      "location": "ASX",
+      "owned": 6752141676.0,
+      "clientPledged": 4188800016.0,
+      "total": 10940941692.0,
+      "ownedPct": 61.7
+    },
+    {
+      "location": "BONY",
+      "owned": 4219100000.0,
+      "clientPledged": 0,
+      "total": 4219100000.0,
+      "ownedPct": 100.0
+    },
+    {
+      "location": "EuroClear",
+      "owned": 20513844448.0,
+      "clientPledged": 0,
+      "total": 20513844448.0,
+      "ownedPct": 100.0
     }
   ],
   "topCounterparties": [
