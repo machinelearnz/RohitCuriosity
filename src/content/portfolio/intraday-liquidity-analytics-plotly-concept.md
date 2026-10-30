@@ -7,7 +7,7 @@ role: "Lead Financial Systems Architect"
 featured: true
 coverImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
 technologies: ["Plotly.js", "React", "Dynamic JSON", "BCBS 248", "Tailwind CSS", "Time-Series Analytics"]
-demoUrl: "#portfolio/intraday-liquidity-analytics-plotly-concept"
+demoUrl: ""
 githubUrl: ""
 summary: "A native, high-performance intraday liquidity cockpit engineered with Plotly.js and React. Features dynamic 30-min balance trajectories, stacked hourly cashflow velocity, multi-tier funding headroom, and customizable as-of date flexibility."
 ---

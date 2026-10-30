@@ -500,7 +500,7 @@ export default function PlotlyIntradayDashboard({ isDark }) {
           <div ref={fundingChartRef} className="w-full h-[320px]" />
           <div className="px-2 pt-2 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-400">
             <span>Multi-Tier Intraday Headroom (Cash + Credit Line + Collateral)</span>
-            <span className="font-mono text-purple-400">Intellect IDL Model</span>
+            <span className="font-mono text-purple-400">BCBS 248 Buffer Model</span>
           </div>
         </div>
 

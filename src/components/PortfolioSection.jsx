@@ -211,7 +211,7 @@ export default function PortfolioSection({ portfolio = [], onSelectProject, onOp
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
 
-                  {item.demoUrl && item.demoUrl !== '#' && (
+                  {item.demoUrl && item.demoUrl !== '#' && !item.demoUrl.startsWith('#') && (
                     <a
                       href={item.demoUrl}
                       target="_blank"

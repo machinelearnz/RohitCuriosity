@@ -7,7 +7,7 @@ role: "Quantitative Liquidity Architect"
 featured: true
 coverImage: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=1200&q=80"
 technologies: ["Zoho Analytics", "Intraday Liquidity", "BCBS 248", "Nostro Reconciliation", "Cash Management", "Securities Settlement"]
-demoUrl: "https://analytics.zoho.in/open-view/139442000000241658"
+demoUrl: ""
 githubUrl: ""
 summary: "An institutional proof-of-work suite deploying 9 intraday liquidity dashboards on Zoho Analytics to monitor real-time Nostro balances, unmatched trade settlements, collateral headrooms, and BCBS 248 metrics."
 ---
@@ -71,9 +71,9 @@ Below is the structured directory of all 9 dashboards. Each link opens the corre
 
 ---
 
-## 🏛️ Domain Architecture: The Intellect IDL Paradigm
+## 🏛️ Domain Architecture: Active Intraday Liquidity Framework
 
-The architecture follows the **Intellect Active Intraday Liquidity Management** framework:
+The architecture follows the **Active Intraday Liquidity Management (BCBS 248)** framework:
 
 ```mermaid
 graph TD

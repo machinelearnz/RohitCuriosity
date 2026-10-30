@@ -574,7 +574,7 @@ ${canonicalUrl}`;
             </div>
 
             {/* Live Demo or Links for Projects */}
-            {item.demoUrl && item.demoUrl !== '#' && (
+            {item.demoUrl && item.demoUrl !== '#' && !item.demoUrl.startsWith('#') && (
               <div className="p-4 rounded-2xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-between mb-8">
                 <div>
                   <h4 className="text-xs font-bold text-brand-300 uppercase tracking-wider">Live System Deployment</h4>
