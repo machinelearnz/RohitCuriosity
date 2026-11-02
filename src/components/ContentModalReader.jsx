@@ -35,7 +35,6 @@ import mermaid from 'mermaid';
 import confetti from 'canvas-confetti';
 import { resolveMediaUrl, compileMarkdownWithMedia } from '../utils/mediaStore';
 import ZohoIntradayViewer from './ZohoIntradayViewer';
-import PlotlyIntradayDashboard from './PlotlyIntradayDashboard';
 
 /**
  * Robust Markdown Image component with Error Handling & Fallback
@@ -598,11 +597,6 @@ ${canonicalUrl}`;
           {/* Embedded Interactive Viewer for Zoho Concept Tile */}
           {item.slug === 'intraday-liquidity-analytics-zoho-concept' && (
             <ZohoIntradayViewer isDark={isDark} />
-          )}
-
-          {/* Embedded Interactive Cockpit for Plotly Concept Tile */}
-          {item.slug === 'intraday-liquidity-analytics-plotly-concept' && (
-            <PlotlyIntradayDashboard isDark={isDark} />
           )}
 
           {/* Markdown Body Content Rendered with Rich Media Engines */}
