@@ -58,6 +58,13 @@ export default function AboutSection({ isDark, aboutData = {} }) {
       year: '2016',
       category: 'Risk Management Certification',
       highlight: 'Global Leader in Financial Risk'
+    },
+    {
+      degree: 'Risk and AI (RAI™)',
+      institution: 'GARP (Global Association of Risk Professionals)',
+      year: '2026',
+      category: 'AI & Risk Management Certification',
+      highlight: 'Global Benchmark in AI Risk & Governance'
     }
   ];
 
@@ -107,7 +114,8 @@ export default function AboutSection({ isDark, aboutData = {} }) {
     'Prompt Engineering',
     'Machine Learning',
     'LLM',
-    'Predictive Modelling'
+    'Predictive Modelling',
+    'AI Risk Management (GARP RAI)'
   ];
 
   const domainSkills = [
@@ -123,6 +131,7 @@ export default function AboutSection({ isDark, aboutData = {} }) {
     'Investment Strategy',
     'Investment & Wealth Management',
     'Risk Management',
+    'AI Governance & Model Risk',
     'Valuation',
     'Pricing',
     'Performance & Attribution',
