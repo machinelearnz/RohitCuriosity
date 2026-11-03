@@ -21,6 +21,7 @@ import {
   PieChart as ChartIcon,
   HelpCircle,
   FileText,
+  FileDown,
   Image as ImageIcon,
   Play
 } from 'lucide-react';
@@ -35,6 +36,7 @@ import mermaid from 'mermaid';
 import confetti from 'canvas-confetti';
 import { resolveMediaUrl, compileMarkdownWithMedia } from '../utils/mediaStore';
 import ZohoIntradayViewer from './ZohoIntradayViewer';
+import { exportToPDF } from '../utils/pdfExporter';
 
 /**
  * Robust Markdown Image component with Error Handling & Fallback
@@ -214,7 +216,9 @@ export default function ContentModalReader({ item, type, onClose, isDark, isAdmi
   const [copiedMedium, setCopiedMedium] = useState(false);
   const [copiedLinkedIn, setCopiedLinkedIn] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
+  const [isExportingPdf, setIsExportingPdf] = useState(false);
   const [lightboxImage, setLightboxImage] = useState(null);
+  const markdownRef = useRef(null);
   const originUrl = typeof window !== 'undefined' ? window.location.origin : 'https://rohitcuriosity.com';
   const canonicalUrl = `${originUrl}/${type === 'portfolio' ? 'portfolio' : 'blogs'}/${item?.slug || 'post'}`;
 
@@ -306,6 +310,21 @@ ${canonicalUrl}`;
     }
   };
 
+  const handleExportPDF = () => {
+    setIsExportingPdf(true);
+    try {
+      exportToPDF({
+        item,
+        type,
+        contentEl: markdownRef.current
+      });
+    } catch (err) {
+      console.error('PDF export failed:', err);
+    } finally {
+      setTimeout(() => setIsExportingPdf(false), 1200);
+    }
+  };
+
   // Sanitize content to strip duplicate top H1 header if present in raw markdown
   const cleanContent = React.useMemo(() => {
     const raw = item?.content || (item?.summary && !item?.excerpt ? '' : item?.summary) || '';
@@ -371,6 +390,23 @@ ${canonicalUrl}`;
               {copiedLink ? <Check className="w-3.5 h-3.5" /> : <Share2 className="w-3.5 h-3.5" />}
               <span>{copiedLink ? 'Link Copied' : 'Share'}</span>
             </button>
+
+            {/* Admin-only Convert to PDF Button in Header */}
+            {isAdmin && (
+              <button
+                onClick={handleExportPDF}
+                disabled={isExportingPdf}
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border transition-all ${
+                  isDark
+                    ? 'border-brand-500/40 bg-brand-500/15 text-brand-300 hover:bg-brand-500/25 hover:text-white'
+                    : 'border-brand-500/40 bg-brand-50 text-brand-700 hover:bg-brand-100'
+                }`}
+                title="Convert this document to an executive PDF (Admin)"
+              >
+                <FileDown className="w-3.5 h-3.5 text-brand-400" />
+                <span className="hidden sm:inline">{isExportingPdf ? 'Preparing...' : 'Download PDF'}</span>
+              </button>
+            )}
 
             {/* Close Button */}
             <button
@@ -600,7 +636,7 @@ ${canonicalUrl}`;
           )}
 
           {/* Markdown Body Content Rendered with Rich Media Engines */}
-          <div className="markdown-content">
+          <div ref={markdownRef} className="markdown-content">
             <ReactMarkdown
               remarkPlugins={[remarkGfm, remarkMath]}
               rehypePlugins={[rehypeKatex]}

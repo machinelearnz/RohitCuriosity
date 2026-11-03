@@ -3,6 +3,7 @@ import {
   X, 
   Sparkles, 
   Download, 
+  FileDown,
   Copy, 
   Check, 
   FileText, 
@@ -48,6 +49,7 @@ import { saveMediaItem, saveMediaItemAsync, uploadImageToServer, resolveMediaUrl
 import { SITE_CONFIG } from '../config/siteConfig';
 import { parseMarkdown, calculateReadTime, extractYouTubeId } from '../utils/contentLoader';
 import { computeSha256 } from '../utils/crypto';
+import { exportToPDF } from '../utils/pdfExporter';
 
 function CodeBlock({ language, value }) {
   const [copiedCode, setCopiedCode] = useState(false);
@@ -210,6 +212,8 @@ export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminSta
   };
 
   // Studio State
+  const previewRef = useRef(null);
+  const [cursorPos, setCursorPos] = useState(null);
   const [contentType, setContentType] = useState('blog'); // 'blog' or 'portfolio'
   const [activeTab, setActiveTab] = useState('editor'); // 'editor', 'preview', 'inbox', 'guide', 'security'
   const [copied, setCopied] = useState(false);
@@ -329,8 +333,8 @@ export default function ContentStudioModal({ isOpen, onClose, isDark, onAdminSta
 
     const textarea = bodyTextareaRef.current;
     if (textarea) {
-      const start = textarea.selectionStart ?? body.length;
-      const end = textarea.selectionEnd ?? body.length;
+      const start = cursorPos?.start ?? textarea.selectionStart ?? body.length;
+      const end = cursorPos?.end ?? textarea.selectionEnd ?? body.length;
 
       const before = body.substring(0, start);
       const after = body.substring(end);
@@ -715,6 +719,28 @@ ${body}`;
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleExportPDF = () => {
+    const previewEl = previewRef.current || document.querySelector('.studio-preview-pane') || document.querySelector('.markdown-content');
+    exportToPDF({
+      item: {
+        title,
+        author: author || 'Rohit Gajare, CFA, FRM, RAI™',
+        date: dateStr,
+        category,
+        summary: excerpt,
+        readTime,
+        client: contentType === 'portfolio' ? client : '',
+        role: contentType === 'portfolio' ? role : '',
+        slug,
+        technologies: formattedTags,
+        coverImage: resolveMediaUrl(coverImage)
+      },
+      type: contentType,
+      contentEl: previewEl,
+      contentHtml: previewEl ? previewEl.innerHTML : ''
+    });
+  };
+
   const targetFolder = contentType === 'blog' ? '/src/content/blogs/' : '/src/content/portfolio/';
 
   return (
@@ -975,12 +1001,31 @@ ${body}`;
               </button>
 
               <button
+                onClick={handleExportPDF}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold border border-brand-500/40 bg-brand-500/15 text-brand-300 hover:bg-brand-500/25 hover:text-white transition-all shadow-sm"
+                title="Convert and download current document as a professional PDF"
+              >
+                <FileDown className="w-3.5 h-3.5 text-brand-400" />
+                <span>Export PDF</span>
+              </button>
+
+              <button
                 onClick={handleDownload}
                 className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-semibold bg-brand-500 hover:bg-brand-400 text-white shadow-glow-brand transition-all"
                 title="Downloads ready .md file to your computer"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Download {slug}.md</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setShowImageEmbedModal(true)}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold border border-brand-500/40 bg-brand-500/20 text-brand-300 hover:bg-brand-500/30 hover:text-white transition-all shadow-sm"
+                title="Embed an image at current cursor position in Markdown editor"
+              >
+                <ImageIcon className="w-3.5 h-3.5 text-brand-400" />
+                <span>+ Embed Image at Cursor</span>
               </button>
             </div>
           </div>
@@ -1015,16 +1060,6 @@ ${body}`;
                     <h4 className="text-xs font-bold uppercase tracking-wider text-brand-400">
                       1. Frontmatter Metadata
                     </h4>
-                    <label className="text-[11px] font-bold text-brand-400 hover:text-brand-300 flex items-center gap-1 cursor-pointer">
-                      <FileUp className="w-3 h-3" />
-                      <span>Upload .md file</span>
-                      <input
-                        type="file"
-                        accept=".md,.markdown,text/markdown,text/plain"
-                        onChange={handleMarkdownFileUpload}
-                        className="hidden"
-                      />
-                    </label>
                   </div>
 
                   <div>
@@ -1234,18 +1269,6 @@ ${body}`;
                     <h4 className="text-xs font-bold uppercase tracking-wider text-brand-400">
                       2. Article Body (Markdown)
                     </h4>
-
-                    {/* Clean Image Embed Button */}
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={() => setShowImageEmbedModal(true)}
-                        className="px-3 py-1.5 rounded-xl bg-brand-500/20 text-brand-300 border border-brand-500/40 hover:bg-brand-500/30 transition-all flex items-center gap-1.5 shadow-sm text-xs font-semibold"
-                      >
-                        <ImageIcon className="w-3.5 h-3.5 text-brand-400" />
-                        <span>+ Embed Image at Cursor</span>
-                      </button>
-                    </div>
                   </div>
 
                   <textarea
@@ -1253,7 +1276,16 @@ ${body}`;
                     rows={15}
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
-                    placeholder="Write your article in Markdown. Place cursor anywhere in text and click '+ Embed Image at Cursor'..."
+                    onSelect={(e) => {
+                      setCursorPos({ start: e.target.selectionStart, end: e.target.selectionEnd });
+                    }}
+                    onKeyUp={(e) => {
+                      setCursorPos({ start: e.target.selectionStart, end: e.target.selectionEnd });
+                    }}
+                    onClick={(e) => {
+                      setCursorPos({ start: e.target.selectionStart, end: e.target.selectionEnd });
+                    }}
+                    placeholder="Write your article in Markdown. Place cursor anywhere in text and click '+ Embed Image at Cursor' in the action bar above..."
                     className={`w-full flex-1 p-4 rounded-2xl text-xs sm:text-sm font-mono leading-relaxed resize-none ${
                       isDark ? 'bg-slate-950 border border-slate-800 text-slate-200' : 'bg-slate-50 border border-slate-300 text-slate-900'
                     }`}
@@ -1274,7 +1306,10 @@ ${body}`;
             )}
 
             {/* TAB 2: Live Preview */}
-            {activeTab === 'preview' && (
+            <div 
+              ref={previewRef}
+              className={`studio-preview-pane ${activeTab === 'preview' ? 'block' : 'hidden'}`}
+            >
               <div className={`p-8 rounded-3xl border ${
                 isDark ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-200'
               }`}>
@@ -1369,7 +1404,7 @@ ${body}`;
                   </ReactMarkdown>
                 </div>
               </div>
-            )}
+            </div>
 
             {/* TAB: Incoming Transmissions Inbox */}
             {activeTab === 'inbox' && (
