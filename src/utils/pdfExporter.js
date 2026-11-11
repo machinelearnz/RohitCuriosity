@@ -353,22 +353,23 @@ export function exportToPDF({
     /* Cover Hero Image */
     .pdf-cover-container {
       width: 100%;
-      max-height: 280px;
       margin: 16px 0 22px 0;
       border-radius: 8px;
       overflow: hidden;
       border: 1px solid #cbd5e1;
-      background: #0f172a;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
       page-break-inside: avoid;
       break-inside: avoid;
     }
 
     .pdf-cover-image {
       width: 100%;
-      height: 280px;
-      max-height: 280px;
-      object-fit: cover;
+      max-height: 320px;
+      object-fit: contain;
       display: block;
+      margin: 0 auto;
+      background: #ffffff;
     }
 
     /* Markdown Article Images & Figures */
@@ -661,6 +662,16 @@ export function exportToPDF({
   };
 
   const frameImages = Array.from(frameDoc.querySelectorAll('img'));
+  // Ensure broken or missing images gracefully disappear rather than showing blank/black containers
+  frameImages.forEach(img => {
+    img.addEventListener('error', () => {
+      const coverBox = img.closest('.pdf-cover-container');
+      if (coverBox) coverBox.style.display = 'none';
+      const fig = img.closest('figure, .markdown-image-wrapper');
+      if (fig) fig.style.display = 'none';
+      img.style.display = 'none';
+    });
+  });
   if (frameImages.length === 0) {
     setTimeout(triggerPrint, 350);
   } else {
