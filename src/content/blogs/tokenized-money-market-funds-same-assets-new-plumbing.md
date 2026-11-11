@@ -82,7 +82,9 @@ Tokenized Treasury and money market products held about USD 14.9 billion in earl
 | **MONY** | J.P. Morgan AM | Private 506(c) fund on public Ethereum (Kinexys) | ~USD 0.1bn seed |
 
 
+
 Sizes are September–October 2026 snapshots and differ across trackers.
+
 ---
 
 ## 4. Lifecycle: traditional vs tokenized
