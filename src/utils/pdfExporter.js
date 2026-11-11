@@ -16,7 +16,7 @@ export function exportToPDF({
 
   // 1. Gather document metadata
   const title = item.title || 'Untitled Document';
-  const author = item.author || 'Rohit Gajare, CFA, FRM, RAI™';
+  const author = item.author || 'Rohit Gajare, CFA, FRM, RAI';
   const date = item.formattedDate || item.date || new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   const category = item.category || (type === 'blog' ? 'Research & Market Commentary' : 'Quantitative Systems & Proof of Work');
   const summary = item.summary || item.excerpt || '';
@@ -122,7 +122,7 @@ export function exportToPDF({
         font-family: 'JetBrains Mono', monospace;
       }
       @bottom-left {
-        content: "rohitcuriosity.com • Rohit Gajare, CFA, FRM, RAI™";
+        content: "rohitcuriosity.com • Rohit Gajare, CFA, FRM, RAI";
         font-size: 8pt;
         color: #64748b;
         font-family: 'Plus Jakarta Sans', sans-serif;
@@ -517,7 +517,7 @@ export function exportToPDF({
 
   <!-- PUBLICATION FOOTER -->
   <div class="pdf-footer-note">
-    <span>© ${new Date().getFullYear()} Rohit Gajare (CFA, FRM, RAI™) • Published on rohitcuriosity.com</span>
+    <span>© ${new Date().getFullYear()} Rohit Gajare (CFA, FRM, RAI) • Published on rohitcuriosity.com</span>
     <span>Archival Document & Briefing Note</span>
   </div>
 
@@ -565,38 +565,30 @@ export function exportToPDF({
   if (frameImages.length === 0) {
     setTimeout(triggerPrint, 350);
   } else {
-    let loadedCount = 0;
-    const total = frameImages.length;
     let printed = false;
-
-    const onImageDone = () => {
-      loadedCount++;
-      if (loadedCount >= total && !printed) {
+    const executePrint = () => {
+      if (!printed) {
         printed = true;
-        setTimeout(triggerPrint, 250);
+        setTimeout(triggerPrint, 300);
       }
     };
 
-    frameImages.forEach(img => {
-      if (img.complete) {
-        loadedCount++;
-      } else {
-        img.addEventListener('load', onImageDone);
-        img.addEventListener('error', onImageDone);
+    const imagePromises = frameImages.map(img => {
+      if (img.decode) {
+        return img.decode().catch(() => {});
       }
+      if (img.complete && img.naturalWidth > 0) {
+        return Promise.resolve();
+      }
+      return new Promise(resolve => {
+        img.addEventListener('load', resolve, { once: true });
+        img.addEventListener('error', resolve, { once: true });
+      });
     });
 
-    if (loadedCount >= total && !printed) {
-      printed = true;
-      setTimeout(triggerPrint, 250);
-    }
+    Promise.all(imagePromises).then(executePrint);
 
-    // Fallback safety timeout in case an image hangs
-    setTimeout(() => {
-      if (!printed) {
-        printed = true;
-        triggerPrint();
-      }
-    }, 1500);
+    // Safety fallback timeout in case an image hangs
+    setTimeout(executePrint, 3500);
   }
 }

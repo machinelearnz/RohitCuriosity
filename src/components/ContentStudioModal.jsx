@@ -724,7 +724,7 @@ ${body}`;
     exportToPDF({
       item: {
         title,
-        author: author || 'Rohit Gajare, CFA, FRM, RAI™',
+        author: author || 'Rohit Gajare, CFA, FRM, RAI',
         date: dateStr,
         category,
         summary: excerpt,

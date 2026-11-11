@@ -60,7 +60,7 @@ export default function AboutSection({ isDark, aboutData = {} }) {
       highlight: 'Global Leader in Financial Risk'
     },
     {
-      degree: 'Risk and AI (RAI™)',
+      degree: 'Risk & AI (RAI)',
       institution: 'GARP (Global Association of Risk Professionals)',
       year: '2026',
       category: 'AI & Risk Management Certification',
