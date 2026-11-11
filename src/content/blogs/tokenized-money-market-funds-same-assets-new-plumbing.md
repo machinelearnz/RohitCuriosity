@@ -101,7 +101,7 @@ Each stage gets faster or more portable, but the off-chain roles remain.
 
 
 
-![Tokens move 24/7; redemption cash still runs on bank hours](/images/img_1794413057906_tokenized-mmf-24-7-redemption-lifecycle.png)
+![Tokens move 24/7; redemption cash still runs on bank hours](/images/tokenized-mmf-24-7-redemption-lifecycle.png)
 
 
 

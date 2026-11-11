@@ -6,6 +6,27 @@
  */
 import { resolveMediaUrl } from './mediaStore';
 
+/**
+ * Extracts lossless Base64 PNG data URL directly from an already-rendered live image DOM element.
+ * Guarantees zero network latency and eliminates broken images in print.
+ */
+function getBase64FromImgElement(imgEl) {
+  try {
+    if (!imgEl) return null;
+    const w = imgEl.naturalWidth || imgEl.width || imgEl.clientWidth;
+    const h = imgEl.naturalHeight || imgEl.height || imgEl.clientHeight;
+    if (!w || !h) return null;
+    const canvas = document.createElement('canvas');
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(imgEl, 0, 0);
+    return canvas.toDataURL('image/png');
+  } catch (e) {
+    return null;
+  }
+}
+
 export function exportToPDF({
   item,
   type = 'blog',
@@ -25,6 +46,21 @@ export function exportToPDF({
   const canonicalUrl = `${window.location.origin}/${type === 'blog' ? 'blogs' : 'portfolio'}/${item.slug || ''}`;
   const technologies = item.technologies || item.tags || [];
 
+  // Map live rendered images to lossless Base64 Data URLs so images are 100% embedded
+  const imageBase64Map = new Map();
+  if (contentEl) {
+    const liveImgs = contentEl.querySelectorAll('img');
+    liveImgs.forEach((img, idx) => {
+      const b64 = getBase64FromImgElement(img);
+      if (b64) {
+        if (img.src) imageBase64Map.set(img.src, b64);
+        const rawAttr = img.getAttribute('src');
+        if (rawAttr) imageBase64Map.set(rawAttr, b64);
+        imageBase64Map.set(`idx_${idx}`, b64);
+      }
+    });
+  }
+
   // Resolve Cover Image URL
   let rawCover = item.coverImage || '';
   if (!rawCover && item.youtubeId) {
@@ -39,6 +75,19 @@ export function exportToPDF({
       coverImageUrl = new URL(resolvedCover, window.location.origin).href;
     } else {
       coverImageUrl = new URL('/' + resolvedCover, window.location.origin).href;
+    }
+  }
+
+  // Also check if live cover image exists on page to capture its bitmap
+  if (!coverImageUrl || !coverImageUrl.startsWith('data:')) {
+    const allPageImgs = Array.from(document.querySelectorAll('img'));
+    const matchedCover = allPageImgs.find(img => {
+      const s = img.getAttribute('src') || img.src || '';
+      return rawCover && s.includes(rawCover.replace('/images/', ''));
+    });
+    if (matchedCover) {
+      const b64 = getBase64FromImgElement(matchedCover);
+      if (b64) coverImageUrl = b64;
     }
   }
 
@@ -64,23 +113,53 @@ export function exportToPDF({
   const buttons = tempDiv.querySelectorAll('button, .copy-button, [aria-label="Copy code"]');
   buttons.forEach(btn => btn.remove());
 
-  // Convert relative image sources to absolute URLs and resolve media store refs
+  // Convert relative image sources to Base64 or absolute URLs, remove lazy loading
   const images = tempDiv.querySelectorAll('img');
-  images.forEach(img => {
-    let src = img.getAttribute('src') || '';
-    src = resolveMediaUrl(src);
-    if (src && !src.startsWith('http') && !src.startsWith('data:')) {
-      if (src.startsWith('/')) {
-        img.src = new URL(src, window.location.origin).href;
-      } else {
-        img.src = new URL('/' + src, window.location.origin).href;
-      }
-    } else if (src) {
-      img.src = src;
+  images.forEach((img, idx) => {
+    img.removeAttribute('loading');
+    img.setAttribute('loading', 'eager');
+    img.setAttribute('decoding', 'sync');
+
+    let rawSrc = img.getAttribute('src') || '';
+    
+    // 1. Try matching with live image Base64 map (instant, zero network request)
+    let b64 = imageBase64Map.get(img.src) || imageBase64Map.get(rawSrc) || imageBase64Map.get(`idx_${idx}`);
+    if (b64) {
+      img.setAttribute('src', b64);
+      return;
     }
-    img.style.maxWidth = '100%';
-    img.style.height = 'auto';
-    img.style.borderRadius = '6px';
+
+    // 2. Try media store lookup
+    let resolved = resolveMediaUrl(rawSrc);
+    if (resolved && resolved.startsWith('data:image/')) {
+      img.setAttribute('src', resolved);
+      return;
+    }
+
+    // 3. Fall back to absolute URL
+    let fullUrl = rawSrc;
+    if (resolved && !resolved.startsWith('http') && !resolved.startsWith('data:')) {
+      if (resolved.startsWith('/')) {
+        fullUrl = new URL(resolved, window.location.origin).href;
+      } else {
+        fullUrl = new URL('/' + resolved, window.location.origin).href;
+      }
+    } else if (resolved) {
+      fullUrl = resolved;
+    }
+    img.setAttribute('src', fullUrl);
+  });
+
+  // Clean up interactive elements in captions (remove zoom icon and "(click image to zoom)")
+  const captions = tempDiv.querySelectorAll('figcaption, .markdown-image-caption');
+  captions.forEach(cap => {
+    cap.querySelectorAll('svg, button, a').forEach(el => el.remove());
+    let txt = cap.textContent || '';
+    txt = txt.replace(/—\s*\(click image to zoom\)/gi, '')
+             .replace(/\(click image to zoom\)/gi, '')
+             .replace(/—\s*\(click to enlarge\)/gi, '')
+             .trim();
+    cap.textContent = txt;
   });
 
   // Handle YouTube embeds: convert iframe to clean print box
@@ -104,6 +183,7 @@ export function exportToPDF({
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <base href="${window.location.origin}/">
   <title>${title} - Rohit Curiosity</title>
   
   <!-- Math Stylesheet (KaTeX) -->
@@ -291,6 +371,43 @@ export function exportToPDF({
       display: block;
     }
 
+    /* Markdown Article Images & Figures */
+    figure, .markdown-image-wrapper {
+      margin: 18px 0;
+      text-align: center;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      display: block;
+      width: 100%;
+    }
+
+    figure img, .markdown-image-wrapper img, .pdf-body img {
+      max-width: 100% !important;
+      height: auto !important;
+      max-height: 480px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    figcaption, .markdown-image-caption {
+      margin-top: 8px;
+      font-size: 8pt;
+      font-weight: 600;
+      font-style: italic;
+      color: #64748b;
+      text-align: center;
+      page-break-before: avoid;
+      break-before: avoid;
+      display: block;
+    }
+
     /* Body Typography */
     .pdf-body {
       color: #1e293b;
@@ -330,57 +447,38 @@ export function exportToPDF({
     }
 
     p {
-      margin-top: 0;
-      margin-bottom: 0.85em;
+      margin: 0 0 1em 0;
       text-align: justify;
-    }
-
-    strong {
-      color: #0f172a;
-      font-weight: 700;
+      hyphens: auto;
     }
 
     ul, ol {
-      margin-top: 0;
-      margin-bottom: 0.85em;
-      padding-left: 1.4em;
+      margin: 0.5em 0 1em 1.5em;
+      padding: 0;
     }
 
     li {
-      margin-bottom: 0.35em;
+      margin-bottom: 0.4em;
     }
 
     blockquote {
       border-left: 3px solid #0284c7;
-      background: #f0f9ff;
-      padding: 8px 12px;
-      margin: 12px 0;
-      border-radius: 0 6px 6px 0;
+      margin: 1.2em 0;
+      padding: 8px 16px;
+      background: #f8fafc;
+      color: #334155;
       font-style: italic;
-      color: #0369a1;
+      border-radius: 0 6px 6px 0;
       page-break-inside: avoid;
       break-inside: avoid;
-    }
-
-    blockquote p {
-      margin: 0;
     }
 
     /* Tables */
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 14px 0;
+      margin: 16px 0;
       font-size: 8.5pt;
-      page-break-inside: avoid;
-      break-inside: avoid;
-    }
-
-    thead {
-      display: table-header-group;
-    }
-
-    tr {
       page-break-inside: avoid;
       break-inside: avoid;
     }
@@ -524,14 +622,15 @@ export function exportToPDF({
 </body>
 </html>`;
 
-  // 4. Inject hidden iframe and trigger native Print-to-PDF dialog
+  // 4. Inject offscreen iframe with full viewport dimensions to trigger native Print dialog
   const printFrame = document.createElement('iframe');
   printFrame.style.position = 'fixed';
-  printFrame.style.right = '0';
-  printFrame.style.bottom = '0';
-  printFrame.style.width = '0';
-  printFrame.style.height = '0';
+  printFrame.style.left = '-9999px';
+  printFrame.style.top = '0';
+  printFrame.style.width = '1024px';
+  printFrame.style.height = '1024px';
   printFrame.style.border = '0';
+  printFrame.style.visibility = 'hidden';
   document.body.appendChild(printFrame);
 
   const frameDoc = printFrame.contentDocument || printFrame.contentWindow?.document;
@@ -574,6 +673,9 @@ export function exportToPDF({
     };
 
     const imagePromises = frameImages.map(img => {
+      if (img.src && img.src.startsWith('data:')) {
+        return Promise.resolve();
+      }
       if (img.decode) {
         return img.decode().catch(() => {});
       }

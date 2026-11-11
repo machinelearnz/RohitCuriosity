@@ -73,7 +73,7 @@ function MarkdownImage({ src, alt, onZoom }) {
         onError={handleImageError}
         onClick={() => onZoom && onZoom({ src: resolvedUrl, caption: alt })}
         className="max-w-full max-h-[500px] object-contain rounded-2xl border border-slate-800 shadow-xl cursor-pointer transition-transform hover:scale-[1.01]"
-        loading="lazy"
+        loading="eager"
       />
       {alt && (
         <figcaption className="markdown-image-caption mt-2 text-center text-xs text-slate-400 font-medium italic flex items-center justify-center gap-1.5">
